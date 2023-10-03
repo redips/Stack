@@ -1,0 +1,31 @@
+{
+    "name": "sylius/stack",
+    "description": "The set of e-commerce agnostic PHP components for building your Symfony-based projects.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sylius project",
+            "homepage": "https://sylius.com"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/Sylius/Stack/contributors"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "symfony/http-kernel": "^5.4 || ^6.0"
+    },
+    "require-dev": {
+        "symplify/monorepo-builder": "11.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sylius\\TwigEvent\\": "src/TwigEvent/src/"
+        }
+    },
+    "replace": {
+        "sylius/twig-event": "self.version"
+    }
+}
