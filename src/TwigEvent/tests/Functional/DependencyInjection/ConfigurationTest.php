@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DependencyInjection;
+namespace Tests\Sylius\TwigEvent\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;

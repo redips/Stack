@@ -22,7 +22,7 @@ final class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addEventsConfiguration(ArrayNodeDefinition|NodeDefinition $rootNode): void
+    private function addEventsConfiguration(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->fixXmlConfig('event')
