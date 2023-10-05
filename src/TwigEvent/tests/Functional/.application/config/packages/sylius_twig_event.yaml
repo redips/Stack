@@ -1,0 +1,7 @@
+twig_event:
+    events:
+        some_event:
+            blocks:
+                my_block:
+                    type: 'template'
+                    path: 'some_path.html.twig'

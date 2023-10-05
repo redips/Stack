@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\TwigEvent\Block;
+namespace Tests\Sylius\TwigEvent\Unit\Block;
 
 use PHPUnit\Framework\TestCase;
-use Sylius\TwigEvent\Block\ComponentBlock;
+use Sylius\TwigEvent\Block\ComponentEventBlock;
 
 final class ComponentBlockTest extends TestCase
 {
@@ -49,9 +49,10 @@ final class ComponentBlockTest extends TestCase
         $this->assertFalse($block->isEnabled());
     }
 
-    private function createComponentBlock(): ComponentBlock
+    private function createComponentBlock(): ComponentEventBlock
     {
-        return new ComponentBlock(
+        return new ComponentEventBlock(
+            'event_name',
             'block_name',
             'MyComponent',
             ['my' => 'context'],

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\TwigEvent\Block;
+namespace Tests\Sylius\TwigEvent\Unit\Block;
 
 use PHPUnit\Framework\TestCase;
-use Sylius\TwigEvent\Block\ComponentBlock;
-use Sylius\TwigEvent\Block\TemplateBlock;
+use Sylius\TwigEvent\Block\TemplateEventBlock;
 
 final class TemplateBlockTest extends TestCase
 {
@@ -50,9 +49,10 @@ final class TemplateBlockTest extends TestCase
         $this->assertFalse($block->isEnabled());
     }
 
-    private function createTemplateBlock(): TemplateBlock
+    private function createTemplateBlock(): TemplateEventBlock
     {
-        return new TemplateBlock(
+        return new TemplateEventBlock(
+            'event_name',
             'block_name',
             'my_template.html.twig',
             ['my' => 'context'],

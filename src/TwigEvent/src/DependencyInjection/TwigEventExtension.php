@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Sylius\TwigEvent\DependencyInjection;
 
 
-use Sylius\TwigEvent\Block\ComponentBlock;
-use Sylius\TwigEvent\Block\TemplateBlock;
+use Sylius\TwigEvent\Block\ComponentEventBlock;
+use Sylius\TwigEvent\Block\TemplateEventBlock;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 final class TwigEventExtension extends Extension
 {
@@ -19,6 +20,9 @@ final class TwigEventExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container): void
     {
+        $loader = new PhpFileLoader($container, new FileLocator(dirname(__DIR__, 2) . '/config'));
+        $loader->load('services.php');
+
         $configuration = $this->getConfiguration([], $container);
         if ($configuration === null) {
             return;
@@ -44,10 +48,10 @@ final class TwigEventExtension extends Extension
             foreach ($event['blocks'] as $blockName => $block) {
                 switch ($block['type']) {
                     case self::TEMPLATE_TYPE:
-                        $this->registerBlock($container, TemplateBlock::class, $eventName, $blockName, $block);
+                        $this->registerEventBlock($container, TemplateEventBlock::class, $eventName, $blockName, $block);
                         break;
                     case self::COMPONENT_TYPE:
-                        $this->registerBlock($container, ComponentBlock::class, $eventName, $blockName, $block);
+                        $this->registerEventBlock($container, ComponentEventBlock::class, $eventName, $blockName, $block);
                         break;
                     default:
                         throw new \InvalidArgumentException(sprintf('Block type "%s" is not supported.', $block['type']));
@@ -65,20 +69,19 @@ final class TwigEventExtension extends Extension
      *     enabled: bool,
      * } $block
      */
-    private function registerBlock(ContainerBuilder $container, string $class, string $eventName, string $blockName, array $block): void
+    private function registerEventBlock(ContainerBuilder $container, string $class, string $eventName, string $blockName, array $block): void
     {
-        $blockDefinition = new Definition(
-            $class,
-            [
+        $container
+            ->register(sprintf('twig_event.%s.block.%s', $eventName, $blockName), $class)
+            ->setArguments([
+                $eventName,
                 $blockName,
                 $block['path'],
                 $block['context'],
                 $block['priority'],
                 $block['enabled'],
-            ]
-        );
-        $blockDefinition->addTag('twig_event.block', ['event' => $eventName, 'priority' => $block['priority']]);
-
-        $container->setDefinition(sprintf('twig_event.%s.block.%s', $eventName, $blockName), $blockDefinition);
+            ])
+            ->addTag('twig_event.block', ['priority' => $block['priority']])
+        ;
     }
 }

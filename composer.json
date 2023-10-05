@@ -14,6 +14,7 @@
         }
     ],
     "require": {
+        "laminas/laminas-stdlib": "^3.18",
         "php": "^8.0",
         "symfony/config": "^5.4 || ^6.0",
         "symfony/dependency-injection": "^5.4 || ^6.0",

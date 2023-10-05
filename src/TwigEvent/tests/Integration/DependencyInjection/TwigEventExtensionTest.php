@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\TwigEvent\DependencyInjection;
+namespace Tests\Sylius\TwigEvent\Integration\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Sylius\TwigEvent\Block\ComponentBlock;
-use Sylius\TwigEvent\Block\TemplateBlock;
+use Sylius\TwigEvent\Block\ComponentEventBlock;
+use Sylius\TwigEvent\Block\TemplateEventBlock;
 use Sylius\TwigEvent\DependencyInjection\TwigEventExtension;
 
 final class TwigEventExtensionTest extends AbstractExtensionTestCase
@@ -46,25 +46,25 @@ final class TwigEventExtensionTest extends AbstractExtensionTestCase
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('twig_event.some_event.block.some_block', TemplateBlock::class);
+        $this->assertContainerBuilderHasService('twig_event.some_event.block.some_block', TemplateEventBlock::class);
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             'twig_event.some_event.block.some_block',
             'twig_event.block',
-            ['event' => 'some_event', 'priority' => 16],
+            ['priority' => 16],
         );
 
-        $this->assertContainerBuilderHasService('twig_event.some_event.block.another_block', ComponentBlock::class);
+        $this->assertContainerBuilderHasService('twig_event.some_event.block.another_block', ComponentEventBlock::class);
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             'twig_event.some_event.block.another_block',
             'twig_event.block',
-            ['event' => 'some_event', 'priority' => 16],
+            ['priority' => 16],
         );
 
-        $this->assertContainerBuilderHasService('twig_event.app.more_complex.event_name.block.yet_another_block', TemplateBlock::class);
+        $this->assertContainerBuilderHasService('twig_event.app.more_complex.event_name.block.yet_another_block', TemplateEventBlock::class);
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             'twig_event.app.more_complex.event_name.block.yet_another_block',
             'twig_event.block',
-            ['event' => 'app.more_complex.event_name', 'priority' => 0],
+            ['priority' => 0],
         );
     }
 
