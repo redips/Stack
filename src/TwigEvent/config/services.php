@@ -12,4 +12,10 @@ return static function (ContainerConfigurator $configurator): void {
             tagged_iterator('twig_event.block'),
         ])
     ;
+
+    $services->set('twig_event.renderer.composite_event_block')
+        ->args([
+            tagged_iterator('twig_event.event_block_renderer'),
+        ])
+    ;
 };
