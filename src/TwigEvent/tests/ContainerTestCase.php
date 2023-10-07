@@ -23,6 +23,9 @@ abstract class ContainerTestCase extends TestCase
     /** @var array<string, mixed> */
     private array $configs = [];
 
+    /** @var array<string, mixed> */
+    private array $parameters = [];
+
     protected function setUp(): void
     {
         $this->getMinimalContainerConfiguration();
@@ -38,6 +41,10 @@ abstract class ContainerTestCase extends TestCase
 
         foreach ($this->compilerPasses as $compilerPass) {
             $container->addCompilerPass($compilerPass);
+        }
+
+        foreach ($this->parameters as $name => $value) {
+            $container->setParameter($name, $value);
         }
 
         $container->compile();
@@ -68,6 +75,11 @@ abstract class ContainerTestCase extends TestCase
         });
 
         return $container;
+    }
+
+    protected function addParameter(string $name, mixed $value): void
+    {
+        $this->parameters[$name] = $value;
     }
 
     protected function addExtension(Extension $extension): void

@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Sylius\TwigEvent\Block;
 
-final class ComponentEventBlock extends EventBlock
+class ComponentEventBlock extends EventBlock
 {
+    public function getType(): string
+    {
+        return 'component';
+    }
+
     public function overwriteWith(EventBlock $block): ComponentEventBlock
     {
         if (!$block instanceof self) {

@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Sylius\TwigEvent\Block;
 
-final class TemplateEventBlock extends EventBlock
+class TemplateEventBlock extends EventBlock
 {
+    public function getType(): string
+    {
+        return 'template';
+    }
+
     public function overwriteWith(EventBlock $block): TemplateEventBlock
     {
         if (!$block instanceof self) {

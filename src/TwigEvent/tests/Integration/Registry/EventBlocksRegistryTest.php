@@ -73,6 +73,7 @@ final class EventBlocksRegistryTest extends ContainerTestCase
 
     protected function getMinimalContainerConfiguration(): void
     {
+        $this->addParameter('kernel.debug', true);
         $this->addExtension(new TwigEventExtension());
         $this->addConfiguration('twig_event', [
             'events' => [

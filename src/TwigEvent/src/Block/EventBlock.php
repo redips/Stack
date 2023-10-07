@@ -50,5 +50,7 @@ abstract class EventBlock
         return $this->enabled;
     }
 
+    abstract public function getType(): string;
+
     abstract public function overwriteWith(self $block): self;
 }
