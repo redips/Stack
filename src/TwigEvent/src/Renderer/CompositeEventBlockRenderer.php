@@ -28,11 +28,11 @@ final class CompositeEventBlockRenderer implements EventBlockRendererInterface
         }
     }
 
-    public function render(EventBlock $block): string
+    public function render(EventBlock $block, array $context = []): string
     {
         foreach ($this->renderers as $renderer) {
             if ($renderer->supports($block)) {
-                return $renderer->render($block);
+                return $renderer->render($block, $context);
             }
         }
 

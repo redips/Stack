@@ -8,7 +8,7 @@ use Laminas\Stdlib\SplPriorityQueue;
 use Sylius\TwigEvent\Block\EventBlock;
 
 /** @internal */
-final class EventBlocksRegistry
+class EventBlocksRegistry
 {
     /** @var array<string, array<EventBlock>> */
     private array $eventBlocks = [];

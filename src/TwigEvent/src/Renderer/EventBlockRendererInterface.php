@@ -8,5 +8,8 @@ use Sylius\TwigEvent\Block\EventBlock;
 
 interface EventBlockRendererInterface
 {
-    public function render(EventBlock $block): string;
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function render(EventBlock $block, array $context = []): string;
 }
