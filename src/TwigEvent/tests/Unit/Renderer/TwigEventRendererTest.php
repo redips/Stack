@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Sylius\TwigEvent\Block\EventBlock;
 use Sylius\TwigEvent\Registry\EventBlocksRegistry;
 use Sylius\TwigEvent\Renderer\EventBlockRendererInterface;
-use Sylius\TwigEvent\Renderer\TwigEventRenderer;
+use Sylius\TwigEvent\Renderer\EventRenderer;
 
 final class TwigEventRendererTest extends TestCase
 {
@@ -46,8 +46,8 @@ final class TwigEventRendererTest extends TestCase
         $this->assertSame($expectedOutput, $output);
     }
 
-    private function createRenderer(): TwigEventRenderer
+    private function createRenderer(): EventRenderer
     {
-        return new TwigEventRenderer($this->eventBlocksRegistryMock, $this->eventBlockRendererMock);
+        return new EventRenderer($this->eventBlocksRegistryMock, $this->eventBlockRendererMock);
     }
 }

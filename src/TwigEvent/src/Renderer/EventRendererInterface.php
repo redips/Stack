@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Sylius\TwigEvent\Renderer;
 
-interface TwigEventRendererInterface
+interface EventRendererInterface
 {
     /**
      * @param string|array<string> $eventNames

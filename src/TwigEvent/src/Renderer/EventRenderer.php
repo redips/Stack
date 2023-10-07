@@ -6,7 +6,7 @@ namespace Sylius\TwigEvent\Renderer;
 
 use Sylius\TwigEvent\Registry\EventBlocksRegistry;
 
-final class TwigEventRenderer implements TwigEventRendererInterface
+final class EventRenderer implements EventRendererInterface
 {
     public function __construct (
         private EventBlocksRegistry $eventBlocksRegistry,
