@@ -18,6 +18,7 @@
         "php": "^8.0",
         "symfony/config": "^5.4 || ^6.0",
         "symfony/dependency-injection": "^5.4 || ^6.0",
+        "symfony/flex": "^2",
         "symfony/http-kernel": "^5.4 || ^6.0",
         "symfony/ux-twig-component": "^2.12",
         "twig/twig": "^2.15 || ^3.0"
@@ -44,6 +45,9 @@
         }
     },
     "autoload-dev": {
+        "classmap": [
+            "src/Kernel.php"
+        ],
         "psr-4": {
             "TestApplication\\Sylius\\TwigEvent\\": "src/TwigEvent/tests/Functional/.application/src/",
             "Tests\\Sylius\\TwigEvent\\": "src/TwigEvent/tests/"
@@ -54,6 +58,7 @@
     },
     "config": {
         "allow-plugins": {
+            "symfony/flex": true,
             "symfony/runtime": true
         }
     }

@@ -1,0 +1,6 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
