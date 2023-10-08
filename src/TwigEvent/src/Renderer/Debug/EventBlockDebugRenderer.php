@@ -25,7 +25,7 @@ final class EventBlockDebugRenderer implements EventBlockRendererInterface
 
         $renderedParts = [];
         $renderedParts[] = $this->getOpeningDebugComment($block);
-        $renderedParts[] = $this->eventBlockRenderer->render($block, $context);
+        $renderedParts[] = trim($this->eventBlockRenderer->render($block, $context));
         $renderedParts[] = $this->getClosingDebugComment($block);
 
         return implode(PHP_EOL, $renderedParts);
@@ -58,7 +58,7 @@ final class EventBlockDebugRenderer implements EventBlockRendererInterface
     private function getClosingDebugComment(EventBlock $block): string
     {
         return sprintf(
-            '<!-- END BLOCK | event name: "%s", block type: %s, block name: "%s", path: "%s", priority: %d -->',
+            '<!-- END BLOCK | event name: "%s", block type: "%s", block name: "%s", path: "%s", priority: %d -->',
             $block->getEventName(),
             $block->getType(),
             $block->getName(),

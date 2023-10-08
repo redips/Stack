@@ -7,7 +7,10 @@ namespace Tests\Sylius\TwigEvent\Integration\Registry;
 use Sylius\TwigEvent\Block\EventBlock;
 use Sylius\TwigEvent\DependencyInjection\TwigEventExtension;
 use Sylius\TwigEvent\Registry\EventBlocksRegistry;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\UX\TwigComponent\ComponentRenderer;
 use Tests\Sylius\TwigEvent\ContainerTestCase;
+use Twig\Environment;
 
 final class EventBlocksRegistryTest extends ContainerTestCase
 {
@@ -118,5 +121,8 @@ final class EventBlocksRegistryTest extends ContainerTestCase
                 ],
             ],
         ]);
+
+        $this->addDefinition('twig', new Definition(Environment::class));
+        $this->addDefinition('ux.twig_component.component_renderer', new Definition(ComponentRenderer::class));
     }
 }

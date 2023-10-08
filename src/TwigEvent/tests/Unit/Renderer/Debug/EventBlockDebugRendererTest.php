@@ -63,7 +63,7 @@ final class EventBlockDebugRendererTest extends TestCase
             <<<EXPECTED
             <!-- BEGIN BLOCK | event name: "event_name", block type: "template", block name: "block_name", path: "template.html.twig", priority: 0 -->
             rendered_template_block
-            <!-- END BLOCK | event name: "event_name", block type: template, block name: "block_name", path: "template.html.twig", priority: 0 -->
+            <!-- END BLOCK | event name: "event_name", block type: "template", block name: "block_name", path: "template.html.twig", priority: 0 -->
             EXPECTED,
             $this->getRenderer()->render($templateBlock),
         );
@@ -86,7 +86,7 @@ final class EventBlockDebugRendererTest extends TestCase
             <<<EXPECTED
             <!-- BEGIN BLOCK | event name: "event_name", block type: "component", block name: "block_name", path: "component", priority: 0 -->
             rendered_component_block
-            <!-- END BLOCK | event name: "event_name", block type: component, block name: "block_name", path: "component", priority: 0 -->
+            <!-- END BLOCK | event name: "event_name", block type: "component", block name: "block_name", path: "component", priority: 0 -->
             EXPECTED,
             $this->getRenderer()->render($componentBlock),
         );

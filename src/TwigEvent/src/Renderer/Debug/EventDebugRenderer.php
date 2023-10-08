@@ -22,7 +22,7 @@ final class EventDebugRenderer implements EventRendererInterface
 
         $renderedParts = [];
         $renderedParts[] = $this->getOpeningDebugComment($eventNames);
-        $renderedParts[] = $this->renderer->render($eventNames, $context);
+        $renderedParts[] = trim($this->renderer->render($eventNames, $context));
         $renderedParts[] = $this->getClosingDebugComment($eventNames);
 
         return implode(PHP_EOL, $renderedParts);
@@ -33,6 +33,9 @@ final class EventDebugRenderer implements EventRendererInterface
         return $this->debug;
     }
 
+    /**
+     * @param string|array<string> $eventNames
+     */
     private function getOpeningDebugComment(string|array $eventNames): string
     {
         return sprintf(
@@ -41,6 +44,9 @@ final class EventDebugRenderer implements EventRendererInterface
         );
     }
 
+    /**
+     * @param string|array<string> $eventNames
+     */
     private function getClosingDebugComment(string|array $eventNames): string
     {
         return sprintf(

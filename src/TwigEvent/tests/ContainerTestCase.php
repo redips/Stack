@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
 abstract class ContainerTestCase extends TestCase
@@ -25,6 +26,9 @@ abstract class ContainerTestCase extends TestCase
 
     /** @var array<string, mixed> */
     private array $parameters = [];
+
+    /** @var array<string, Definition> */
+    private array $definitions = [];
 
     protected function setUp(): void
     {
@@ -45,6 +49,10 @@ abstract class ContainerTestCase extends TestCase
 
         foreach ($this->parameters as $name => $value) {
             $container->setParameter($name, $value);
+        }
+
+        foreach ($this->definitions as $id => $definition) {
+            $container->setDefinition($id, $definition);
         }
 
         $container->compile();
@@ -98,6 +106,11 @@ abstract class ContainerTestCase extends TestCase
     protected function addCompilerPass(CompilerPassInterface $compilerPass): void
     {
         $this->compilerPasses[] = $compilerPass;
+    }
+
+    protected function addDefinition(string $id, Definition $definition): void
+    {
+        $this->definitions[$id] = $definition;
     }
 
     protected function getMinimalContainerConfiguration(): void
