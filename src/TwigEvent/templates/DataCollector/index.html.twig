@@ -1,0 +1,114 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        {{ include('@TwigEvent/DataCollector/toolbar-icon.svg') }}
+
+        <span class="sf-toolbar-value">{{ collector.totalRenderingTime }}</span>
+        <span class="sf-toolbar-label">ms</span>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            <div class="sf-toolbar-info-piece">
+                <b>{{ 'sylius_twig_event.profiler.render_time'|trans }}</b>
+                <span>{{ collector.totalRenderingTime }} <span class="unit">ms</span></span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>{{ 'sylius_twig_event.profiler.rendered_events'|trans }}</b>
+                <span class="sf-toolbar-status">{{ collector.numberOfEvents }}</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>{{ 'sylius_twig_event.profiler.rendered_event_blocks'|trans }}</b>
+                <span class="sf-toolbar-status">{{ collector.numberOfEventBlocks }}</span>
+            </div>
+        </div>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': true }) }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+        <span class="icon">
+            {{ include('@TwigEvent/DataCollector/icon.svg') }}
+        </span>
+        <strong>{{ 'sylius_twig_event.profiler.twig_events'|trans }}</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>{{ 'sylius_twig_event.profiler.twig_events_metrics.title'|trans }}</h2>
+    <div class="metrics">
+        <div class="metric">
+            <span class="value">{{ collector.totalRenderingTime }} <span class="unit">ms</span></span>
+            <span class="label">{{ 'sylius_twig_event.profiler.render_time'|trans }}</span>
+        </div>
+
+        <div class="metric-divider"></div>
+
+        <div class="metric-group">
+            <div class="metric">
+                <span class="value">{{ collector.numberOfEvents }}</span>
+                <span class="label">{{ 'sylius_twig_event.profiler.rendered_events'|trans }}</span>
+            </div>
+
+            <div class="metric">
+                <span class="value">{{ collector.numberOfEventBlocks }}</span>
+                <span class="label">{{ 'sylius_twig_event.profiler.rendered_event_blocks'|trans }}</span>
+            </div>
+        </div>
+    </div>
+    <p class="help">{{ 'sylius_twig_event.profiler.twig_events_metrics.render_time_description'|trans }}</p>
+
+    <h2>{{ 'sylius_twig_event.profiler.rendered_events'|trans }}</h2>
+    {% if collector.numberOfEvents > 0 %}
+        <table>
+            <thead>
+            </thead>
+            <tbody>
+                {% for eventProfile in collector.eventProfiles %}
+                    <tr>
+                        <td>
+                            <h4 style="margin-top: 0;">
+                                {{ 'sylius_twig_event.profiler.rendered_events.label'|trans({ events: eventProfile.eventsNames|length }) }} <span class="sf-dump-str">{{ eventProfile.eventsNames|join(', ') }}</span>
+                                <span class="badge">{{ 'sylius_twig_event.profiler.render_time'|trans }}: {{ eventProfile.duration }} <span class="unit">ms</span></span>
+                                <span class="badge">{{ 'sylius_twig_event.profiler.rendered_event_blocks'|trans }}: {{ eventProfile.eventBlocksIds|length }}</span>
+                            </h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'sylius_twig_event.profiler.event_name'|trans }}</th>
+                                        <th>{{ 'sylius_twig_event.profiler.name'|trans }}</th>
+                                        <th>{{ 'sylius_twig_event.profiler.type.label'|trans }}</th>
+                                        <th>{{ 'sylius_twig_event.profiler.path'|trans }}</th>
+                                        <th>{{ 'sylius_twig_event.profiler.render_time'|trans }}</th>
+                                        <th>{{ 'sylius_twig_event.profiler.priority'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for eventBlockId in eventProfile.eventBlocksIds %}
+                                        {% set eventBlockProfile = collector.eventBlockProfile(eventBlockId) %}
+                                        {% set eventBlock = eventBlockProfile.eventBlock %}
+                                        <tr>
+                                            <td><span class="badge">{{ eventBlock.eventName  }}</span></td>
+                                            <td>{{ eventBlock.name }}</td>
+                                            <td>{{ ('sylius_twig_event.profiler.type.' ~ eventBlock.type)|trans }}</td>
+                                            <td>{{ eventBlock.path }}</td>
+                                            <td>{{ eventBlockProfile.duration }} <span class="unit">ms</span></td>
+                                            <td>{{ eventBlock.priority }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">
+            <p>{{ 'sylius_twig_event.profiler.no_events'|trans }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

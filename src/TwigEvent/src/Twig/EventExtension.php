@@ -19,7 +19,7 @@ final class EventExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('twig_event', [$this, 'render'], ['is_safe' => ['html']]),
+            new TwigFunction('twig_event', [$this, 'render'], ['is_safe' => ['html'], 'needs_context' => true,]),
         ];
     }
 
@@ -27,7 +27,7 @@ final class EventExtension extends AbstractExtension
      * @param string|array<string> $eventName
      * @param array<string, mixed> $context
      */
-    public function render(string|array $eventName, array $context = []): string
+    public function render(array $contextt, string|array $eventName, array $context = []): string
     {
         if (is_string($eventName)) {
             $eventName = [$eventName];

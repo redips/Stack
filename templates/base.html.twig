@@ -11,6 +11,8 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {{ twig_event(['base.override', 'base']) }}
+        {% endblock %}
     </body>
 </html>

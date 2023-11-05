@@ -1,0 +1,9 @@
+sylius_twig_event:
+    profiler:
+        rendered_events:
+            label: >-
+                {events, plural,
+                    =0 {Events}
+                    =1 {Event}
+                    other {Events}
+                }

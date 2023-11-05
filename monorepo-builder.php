@@ -10,10 +10,10 @@ return static function (MBConfig $mbConfig): void {
 
     $mbConfig->dataToAppend([
         ComposerJsonSection::REQUIRE => [
-            'symfony/flex' => '^2',
         ],
         ComposerJsonSection::REQUIRE_DEV => [
             'phpstan/phpstan' => '^1.10',
+            'symfony/flex' => '^2',
             'symplify/monorepo-builder' => '11.2.*',
             'vimeo/psalm' => '^5.15',
             'phpstan/phpstan-symfony' => '^1.3'
