@@ -14,7 +14,7 @@ final class TraceableEventBlockRenderer implements EventBlockRendererInterface
 {
     public function __construct (
         private EventBlockRendererInterface $decorated,
-        private Stopwatch $stopwatch,
+        private ?Stopwatch $stopwatch,
         private Profiler $profiler,
         private bool $debug,
     ) {
@@ -27,14 +27,14 @@ final class TraceableEventBlockRenderer implements EventBlockRendererInterface
         }
 
         $eventId = sprintf('%s#%s', $block->getEventName(), $block->getName());
-        $this->stopwatch->start($eventId);
+        $this->stopwatch?->start($eventId);
 
         $result = $this->decorated->render($block, $context);
 
         $profile = new EventBlockProfile(
             $eventId,
             $block,
-            $this->stopwatch->stop($eventId),
+            $this->stopwatch?->stop($eventId),
         );
         $this->profiler->addEventBlockProfile($profile);
 

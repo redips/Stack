@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use TestApplication\Sylius\TwigEvent\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use TestApplication\Sylius\TwigEvent\Kernel;
 
 $_SERVER['APP_RUNTIME_OPTIONS'] = [
     'project_dir' => dirname(__DIR__),

@@ -13,7 +13,7 @@ final class TraceableEventRenderer implements EventRendererInterface
     public function __construct (
         private EventRendererInterface $decorated,
         private Profiler $profiler,
-        private Stopwatch $stopwatch,
+        private ?Stopwatch $stopwatch,
         private bool $debug,
     ) {
     }
@@ -25,7 +25,7 @@ final class TraceableEventRenderer implements EventRendererInterface
         }
 
         $eventId = sprintf('%s', is_string($eventNames) ? $eventNames : implode('#', $eventNames));
-        $this->stopwatch->start($eventId);
+        $this->stopwatch?->start($eventId);
 
         $result = $this->decorated->render($eventNames, $context);
 
@@ -50,7 +50,7 @@ final class TraceableEventRenderer implements EventRendererInterface
             $eventId,
             $blocksIds,
             $eventsIds,
-            $this->stopwatch->stop($eventId),
+            $this->stopwatch?->stop($eventId),
         ));
 
         return $result;

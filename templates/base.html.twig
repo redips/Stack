@@ -12,7 +12,7 @@
     </head>
     <body>
         {% block body %}
-            {{ twig_event(['base.override', 'base']) }}
+            {% hook ['base.override', 'base'] %}
         {% endblock %}
     </body>
 </html>

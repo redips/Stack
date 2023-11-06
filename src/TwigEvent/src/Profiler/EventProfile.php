@@ -16,7 +16,7 @@ final class EventProfile
         private string $eventId,
         private array $eventBlocksIds,
         private array $nestedEventsIds,
-        private StopwatchEvent $stopwatchEvent,
+        private ?StopwatchEvent $stopwatchEvent,
     ) {
     }
 
@@ -49,6 +49,6 @@ final class EventProfile
 
     public function getDuration(): int|float
     {
-        return $this->stopwatchEvent->getDuration();
+        return $this->stopwatchEvent?->getDuration() ?? 0;
     }
 }

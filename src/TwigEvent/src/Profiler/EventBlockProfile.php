@@ -12,7 +12,7 @@ final class EventBlockProfile
     public function __construct (
         private string $eventBlockId,
         private EventBlock $block,
-        private StopwatchEvent $stopwatchEvent,
+        private ?StopwatchEvent $stopwatchEvent = null,
     ) {
     }
 
@@ -33,6 +33,6 @@ final class EventBlockProfile
 
     public function getDuration(): int|float
     {
-        return $this->stopwatchEvent->getDuration();
+        return $this->stopwatchEvent?->getDuration() ?? 0;
     }
 }

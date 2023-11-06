@@ -6,7 +6,9 @@ namespace Sylius\TwigEvent\Twig;
 
 use Sylius\TwigEvent\Renderer\EventRendererInterface;
 use Sylius\TwigEvent\Twig\Exception\NoEventProvidedException;
+use Sylius\TwigEvent\Twig\TokenParser\HookTokenParser;
 use Twig\Extension\AbstractExtension;
+use Twig\TokenParser\TokenParserInterface;
 use Twig\TwigFunction;
 
 final class EventExtension extends AbstractExtension
@@ -19,15 +21,44 @@ final class EventExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('twig_event', [$this, 'render'], ['is_safe' => ['html'], 'needs_context' => true,]),
+            new TwigFunction('get_hook_data', [$this, 'getHookData'], ['needs_context' => true]),
+            new TwigFunction('get_hook_configuration', [$this, 'getHookData'], ['needs_context' => true]),
         ];
+    }
+
+    /**
+     * @return array<TokenParserInterface>
+     */
+    public function getTokenParsers(): array
+    {
+        return [
+            new HookTokenParser(),
+        ];
+    }
+
+    /**
+     * @param array{hook_data?: array<string, string>} $context
+     * @return array<string, string>
+     */
+    public function getHookData(array $context): array
+    {
+        return $context['hook_data'] ?? [];
+    }
+
+    /**
+     * @param array{hook_configuration?: array<string, string>} $context
+     * @return array<string, string>
+     */
+    public function getHookConfiguration(array $context): array
+    {
+        return $context['hook_configuration'] ?? [];
     }
 
     /**
      * @param string|array<string> $eventName
      * @param array<string, mixed> $context
      */
-    public function render(array $contextt, string|array $eventName, array $context = []): string
+    public function render(string|array $eventName, array $context = []): string
     {
         if (is_string($eventName)) {
             $eventName = [$eventName];
@@ -39,6 +70,6 @@ final class EventExtension extends AbstractExtension
             throw new NoEventProvidedException('No event name provided');
         }
 
-        return $this->eventRenderer->render($eventName, $context);
+        return $this->eventRenderer->render($eventName, $context) . PHP_EOL;
     }
 }

@@ -42,7 +42,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->decorate('twig_event.event_block_renderer.debug', priority: 2048)
         ->args([
             service('.inner'),
-            service('debug.stopwatch'),
+            service('debug.stopwatch')->ignoreOnInvalid(),
             service('twig_event.profiler'),
             param('kernel.debug'),
         ])
@@ -74,7 +74,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->args([
             service('.inner'),
             service('twig_event.profiler'),
-            service('debug.stopwatch'),
+            service('debug.stopwatch')->ignoreOnInvalid(),
             param('kernel.debug'),
         ])
     ;
