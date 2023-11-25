@@ -12,7 +12,7 @@
     </head>
     <body>
         {% block body %}
-            {% hook ['base.override', 'base'] %}
+            {% hook ['base.override', 'base'] with { some: 'data' } %}
         {% endblock %}
     </body>
 </html>
