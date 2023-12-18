@@ -1,0 +1,32 @@
+name: Split Packages
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'src/**'
+    workflow_dispatch: ~
+
+jobs:
+    split_monorepo:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                package:
+                    - { package_name: 'TwigHooks' }
+        steps:
+            -   uses: actions/checkout@v3
+                with:
+                    fetch-depth: 0
+
+            -   name: Monorepo Split of CustomerService
+                uses: alphpaca/monoplus-split-action@2022.1-beta1
+                with:
+                    package_path: 'src/{{ matrix.package_name }}'
+                    personal_access_token: ${{ secrets.MONOPLUS_PAT }}
+                    git_username: 'jakubtobiasz'
+                    git_email: 'jakub.tobiasz@icloud.com'
+                    repository_owner: "Sylius"
+                    repository_name: "{{ matrix.package_name }}"
