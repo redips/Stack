@@ -39,8 +39,7 @@
         "symfony/twig-bundle": "^5.4 || ^6.0",
         "symfony/web-profiler-bundle": "^5.4 || ^6.0",
         "symfony/yaml": "^5.4 || ^6.0 ",
-        "symplify/monorepo-builder": "11.2.*",
-        "vimeo/psalm": "^5.15"
+        "symplify/monorepo-builder": "11.2.*"
     },
     "autoload": {
         "psr-4": {

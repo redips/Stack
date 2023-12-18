@@ -6,4 +6,4 @@ parameters:
     level: 8
     reportUnmatchedIgnoredErrors: false
     paths:
-        - 'src/TwigEvent/src'
+        - 'src/TwigHooks/src'
