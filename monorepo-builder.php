@@ -14,6 +14,7 @@ return static function (MBConfig $mbConfig): void {
         ComposerJsonSection::REQUIRE_DEV => [
             'phpstan/phpstan' => '^1.10',
             'symfony/flex' => '^2.4',
+            'symfony/phpunit-bridge' => '^5.4 || ^6.0',
             'symplify/monorepo-builder' => '11.2.*',
             'phpstan/phpstan-symfony' => '^1.3'
         ],
