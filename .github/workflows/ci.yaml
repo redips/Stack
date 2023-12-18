@@ -1,0 +1,63 @@
+name: Continuous Integration
+
+on:
+    pull_request:
+        paths-ignore:
+            - "*.md"
+    workflow_dispatch: ~
+    push: ~
+
+jobs:
+    static-checks:
+        runs-on: ubuntu-latest
+        name: "PHP ${{ matrix.php }}"
+        env:
+            APP_ENV: test_cached
+        steps:
+            -   name: "Checkout"
+                uses: actions/checkout@v3
+
+            -   name: "Setup PHP"
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: "${{ matrix.php }}"
+                    tools: symfony
+                    coverage: none
+
+            -   name: "Restrict packages' versions"
+                run: |
+                    composer global config --no-plugins allow-plugins.symfony/flex true
+                    composer global require --no-progress --no-scripts --no-plugins "symfony/flex"
+                    composer config extra.symfony.require "${{ matrix.symfony }}"
+
+            -   name: Get Composer cache directory
+                id: composer-cache
+                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            -   name: "Setup cache"
+                uses: actions/cache@v3
+                with:
+                    path: |
+                        ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ github.run_id }}-${{ runner.os }}-${{ hashFiles('composer.json') }}-symfony-${{ matrix.symfony }}-api-platform-${{ matrix.api-platform }}
+
+            -   name: "Install dependencies"
+                run: composer update --no-interaction --no-scripts
+
+            -   name: "Validate composer.json"
+                run: composer validate --strict --no-check-version
+
+            -   name: "Check for security vulnerabilities"
+                run: symfony security:check
+
+            -   name: "Validate Container"
+                run: bin/console lint:container
+
+            -   name: Validate Package versions
+                run: vendor/bin/monorepo-builder validate
+
+            -   name: Run PHPStan
+                run: vendor/bin/phpstan analyse
+
+            -   name: Run PHPUnit
+                run: vendor/bin/phpunit
