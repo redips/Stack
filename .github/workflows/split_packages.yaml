@@ -21,12 +21,12 @@ jobs:
                 with:
                     fetch-depth: 0
 
-            -   name: Split of {{ matrix.package.name }}
+            -   name: Split of ${{ matrix.package.name }}
                 uses: alphpaca/monoplus-split-action@2022.1-beta2
                 with:
-                    package_path: 'src/{{ matrix.package.name }}'
+                    package_path: 'src/${{ matrix.package.name }}'
                     personal_access_token: ${{ secrets.MONOPLUS_PAT }}
                     git_username: 'jakubtobiasz'
                     git_email: 'jakub.tobiasz@icloud.com'
                     repository_owner: "Sylius"
-                    repository_name: "{{ matrix.package.name }}"
+                    repository_name: "${{ matrix.package.name }}"
