@@ -65,5 +65,10 @@
             "symfony/runtime": true
         },
         "sort-packages": true
+    },
+    "extra": {
+        "symfony": {
+            "require": "6.4.*"
+        }
     }
 }
