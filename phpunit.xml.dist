@@ -20,8 +20,15 @@
     <testsuites>
         <testsuite name="TwigHooks Test Suite">
             <directory>src/TwigHooks/tests</directory>
+
         </testsuite>
     </testsuites>
+
+    <groups>
+        <exclude>
+            <group>kernel-required</group>
+        </exclude>
+    </groups>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
