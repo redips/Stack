@@ -17,7 +17,7 @@ jobs:
                 symfony: [ "^5.4", "^6.4" ]
         name: "Continuous Integration (PHP ${{ matrix.php }} / Symfony ${{ matrix.symfony }})"
         env:
-            APP_ENV: test_cached
+            APP_ENV: test
         steps:
             -   name: "Checkout"
                 uses: actions/checkout@v3
