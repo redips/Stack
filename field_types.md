@@ -102,6 +102,10 @@ DateTime
 This column type works exactly the same way as *string*, but expects
 *DateTime* instance and outputs a formatted date and time string.
 
+Available options:
+* `format` - default is `Y:m:d H:i:s`, you can modify it with any supported format (see https://www.php.net/manual/en/datetime.format.php)
+* `timezone` - default is `%timezone%` parameter, null if such a parameter does not exist, you can modify it with any supported timezone (see https://www.php.net/manual/en/timezones.php)
+
 <details open><summary>Yaml</summary>
 
 ```yaml
@@ -115,7 +119,8 @@ sylius_grid:
                     type: datetime
                     label: app.ui.birthday
                     options:
-                        format: 'Y:m:d H:i:s' # this is the default value, but you can modify it
+                        format: 'Y:m:d H:i:s'
+                        timezone: null
 ```
 
 </details>
@@ -133,7 +138,7 @@ use Sylius\Bundle\GridBundle\Config\GridConfig;
 return static function (GridConfig $grid): void {
     $grid->addGrid(GridBuilder::create('app_user', '%app.model.user.class%')
         ->addField(
-            DateTimeField::create('birthday', 'Y:m:d H:i:s') // this format is the default value, but you can modify it
+            DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify it
                 ->setLabel('app.ui.birthday')
         )
     )
@@ -167,7 +172,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     {
         $gridBuilder
             ->addField(
-                DateTimeField::create('birthday', 'Y:m:d H:i:s') // this format is the default value, but you can modify it
+                DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify it
                     ->setLabel('app.ui.birthday')
             )
         ;
@@ -184,13 +189,15 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 ### *Warning*
 
-You have to pass the `'format'` again if you want to call the `setOptions` function. Otherwise it will be unset:
+You have to pass `'format'` and `'timezone'` again if you want to call the `setOptions` function.
+Otherwise, it will be unset:
 
 Example:
 
 ```php
 $field->setOptions([
     'format' => 'Y-m-d H:i:s',
+    'timezone' => 'null'
 
     // Your options here
 ]);
