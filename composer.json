@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "laminas/laminas-stdlib": "^3.18",
         "php": "^8.1",
+        "laminas/laminas-stdlib": "^3.18",
         "symfony/config": "^5.4 || ^6.0",
         "symfony/dependency-injection": "^5.4 || ^6.0",
         "symfony/expression-language": "^5.4 || ^6.0",
@@ -58,7 +58,8 @@
         }
     },
     "replace": {
-        "sylius/twig-event": "self.version"
+        "sylius/twig-event": "self.version",
+        "sylius/twig-hooks": "self.version"
     },
     "config": {
         "allow-plugins": {
