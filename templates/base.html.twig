@@ -11,8 +11,14 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-            {% hook ['base.override', 'base'] with { some: 'data' } %}
-        {% endblock %}
+        {% hook 'base' with {
+            _prefixes: ['app', 'sylius_twig_hooks']
+        } %}
+
+        {# or #}
+
+        {% hook ['app.base', 'sylius_twig_hooks.base'] %}
+
+    {% dump(_context) %}
     </body>
 </html>
