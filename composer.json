@@ -50,10 +50,8 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "src/Kernel.php"
-        ],
         "psr-4": {
+            "App\\": "app/",
             "TestApplication\\Sylius\\TwigHooks\\": "src/TwigHooks/tests/Functional/.application/src/",
             "Tests\\Sylius\\TwigHooks\\": "src/TwigHooks/tests/"
         }
