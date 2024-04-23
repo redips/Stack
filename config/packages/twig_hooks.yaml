@@ -1,0 +1,5 @@
+twig_hooks:
+    hooks:
+        'app.base':
+            content:
+                template: 'base/content.html.twig'
