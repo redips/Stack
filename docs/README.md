@@ -1,0 +1,2 @@
+# About Sylius Stack
+
