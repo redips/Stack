@@ -12,8 +12,10 @@ on:
 
 jobs:
     ci:
+        name: "Continuous Integration"
         uses: ./.github/workflows/ci.yaml
     split_monorepo:
+        name: "Split packages"
         needs: ci
         runs-on: ubuntu-latest
         strategy:
