@@ -11,7 +11,10 @@ on:
     workflow_dispatch: ~
 
 jobs:
+    ci:
+        uses: ./.github/workflows/ci.yaml
     split_monorepo:
+        needs: ci
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
