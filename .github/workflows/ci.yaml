@@ -65,7 +65,7 @@ jobs:
                 run: vendor/bin/phpstan analyse
 
             -   name: Run PHPUnit
-                run: bin/phpunit
+                run: vendor/bin/phpunit
 
             -   name: Run PHPUnit (Twig Hooks)
-                run: bin/phpunit -c src/TwigHooks/phpunit.xml.dist
+                run: vendor/bin/phpunit -c src/TwigHooks/phpunit.xml.dist
