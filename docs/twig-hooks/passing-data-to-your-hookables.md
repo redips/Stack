@@ -9,7 +9,7 @@ The context data from these two sources are merged and passed with the metadata 
 
 <div data-full-width="false">
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
