@@ -29,11 +29,11 @@ jobs:
                     fetch-depth: 0
 
             -   name: Split of ${{ matrix.package.name }}
-                uses: alphpaca/monoplus-split-action@2022.1-beta2
+                uses: alphpaca/monoplus-split-action@2022.1-beta3
                 with:
                     package_path: 'src/${{ matrix.package.name }}'
                     personal_access_token: ${{ secrets.MONOPLUS_PAT }}
-                    git_username: 'jakubtobiasz'
-                    git_email: 'jakub.tobiasz@icloud.com'
+                    git_username: 'GSadee'
+                    git_email: 'sadowskigp@gmail.com'
                     repository_owner: "Sylius"
                     repository_name: "${{ matrix.package.name }}"
