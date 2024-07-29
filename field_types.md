@@ -104,7 +104,7 @@ This column type works exactly the same way as *string*, but expects
 
 Available options:
 * `format` - default is `Y:m:d H:i:s`, you can modify it with any supported format (see https://www.php.net/manual/en/datetime.format.php)
-* `timezone` - default is `%timezone%` parameter, null if such a parameter does not exist, you can modify it with any supported timezone (see https://www.php.net/manual/en/timezones.php)
+* `timezone` - default is `%sylius_grid.timezone%` parameter, null if such a parameter does not exist, you can modify it with any supported timezone (see https://www.php.net/manual/en/timezones.php)
 
 <details open><summary>Yaml</summary>
 
