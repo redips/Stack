@@ -8,4 +8,5 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
 ];
