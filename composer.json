@@ -47,6 +47,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Sylius\\TwigExtra\\": "src/TwigExtra/src/",
             "Sylius\\TwigHooks\\": "src/TwigHooks/src/"
         }
     },
