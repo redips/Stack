@@ -19,7 +19,7 @@
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/orm": "^2.0",
         "laminas/laminas-stdlib": "^3.18",
-        "sylius/resource-bundle": "dev-symfony-7",
+        "sylius/resource-bundle": "^1.11 || ^1.12@alpha",
         "symfony/config": "^6.4 || ^7.0",
         "symfony/dependency-injection": "^6.4 || ^7.0",
         "symfony/expression-language": "^6.4 || ^7.0",
