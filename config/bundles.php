@@ -10,4 +10,8 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
     Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
+    winzou\Bundle\StateMachineBundle\winzouStateMachineBundle::class => ['all' => true],
+    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
+    BabDev\PagerfantaBundle\BabDevPagerfantaBundle::class => ['all' => true],
+    Sylius\Bundle\ResourceBundle\SyliusResourceBundle::class => ['all' => true],
 ];
