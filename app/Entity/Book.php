@@ -42,11 +42,9 @@ class Book implements ResourceInterface
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-
-        return $this;
     }
 
     public function getAuthorName(): ?string
@@ -54,11 +52,9 @@ class Book implements ResourceInterface
         return $this->authorName;
     }
 
-    public function setAuthorName(string $authorName): self
+    public function setAuthorName(string $authorName): void
     {
         $this->authorName = $authorName;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -66,10 +62,8 @@ class Book implements ResourceInterface
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 }
