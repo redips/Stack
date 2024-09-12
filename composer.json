@@ -38,6 +38,7 @@
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-symfony": "^1.3",
         "phpunit/phpunit": "^9.6",
+        "sylius-labs/coding-standard": "^4.0",
         "symfony/console": "^6.4 || ^7.0",
         "symfony/debug-bundle": "^6.4 || ^7.0",
         "symfony/dom-crawler": "^6.4 || ^7.0",
@@ -72,7 +73,8 @@
     "config": {
         "allow-plugins": {
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         },
         "sort-packages": true
     },
