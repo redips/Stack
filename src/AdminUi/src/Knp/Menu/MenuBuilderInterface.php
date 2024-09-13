@@ -11,12 +11,11 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace Sylius\AdminUi\Knp\Menu;
 
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Knp\Menu\ItemInterface;
 
-class Kernel extends BaseKernel
+interface MenuBuilderInterface
 {
-    use MicroKernelTrait;
+    public function createMenu(array $options): ItemInterface;
 }

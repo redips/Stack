@@ -37,6 +37,9 @@
             "src/DataFixtures/AppFixtures.php"
         ]
     },
+    "knplabs/knp-menu-bundle": {
+        "version": "v3.4.2"
+    },
     "phpstan/phpstan": {
         "version": "1.10",
         "recipe": {
@@ -71,6 +74,9 @@
         "files": [
             "phpcs.xml.dist"
         ]
+    },
+    "sylius/grid-bundle": {
+        "version": "dev-symfony-7"
     },
     "sylius/resource-bundle": {
         "version": "1.10",
