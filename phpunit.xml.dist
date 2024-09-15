@@ -33,6 +33,10 @@
         <testsuite name="TwigHooks Test Suite">
             <directory>src/TwigHooks/tests</directory>
         </testsuite>
+
+        <testsuite name="UiTranslations Test Suite">
+            <directory>src/UiTranslations/tests</directory>
+        </testsuite>
     </testsuites>
 
     <groups>
