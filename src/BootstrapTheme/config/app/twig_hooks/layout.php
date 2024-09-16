@@ -18,12 +18,12 @@ return static function (ContainerConfigurator $container): void {
         'hooks' => [
             'sylius_admin.base#stylesheets' => [
                 'styles' => [
-                    'template' => '@SyliusBootstrapTheme/shared/layout/stylesheets.html.twig',
+                    'template' => '@SyliusBootstrapTheme/admin/shared/layout/stylesheets.html.twig',
                 ],
             ],
             'sylius_admin.base#javascripts' => [
                 'javascripts' => [
-                    'template' => '@SyliusBootstrapTheme/shared/layout/javascripts.html.twig',
+                    'template' => '@SyliusBootstrapTheme/admin/shared/layout/javascripts.html.twig',
                 ],
             ],
         ],

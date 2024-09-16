@@ -18,7 +18,7 @@ return static function (ContainerConfigurator $container): void {
         'hooks' => [
             'sylius_admin.common.index' => [
                 'sidebar' => [
-                    'template' => '@SyliusBootstrapTheme/shared/crud/common/sidebar.html.twig',
+                    'template' => '@SyliusBootstrapTheme/admin/shared/crud/common/sidebar.html.twig',
                 ],
             ],
         ],

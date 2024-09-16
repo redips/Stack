@@ -18,10 +18,10 @@ return static function (ContainerConfigurator $container): void {
         'hooks' => [
             'sylius_admin.common.component.sidebar' => [
                 'logo' => [
-                    'template' => '@SyliusBootstrapTheme/shared/crud/common/sidebar/logo.html.twig',
+                    'template' => '@SyliusBootstrapTheme/admin/shared/crud/common/sidebar/logo.html.twig',
                 ],
                 'menu' => [
-                    'template' => '@SyliusBootstrapTheme/shared/crud/common/sidebar/menu.html.twig',
+                    'template' => '@SyliusBootstrapTheme/admin/shared/crud/common/sidebar/menu.html.twig',
                 ],
             ],
         ],

@@ -54,7 +54,7 @@ final class AdminMenuBuilder implements MenuBuilderInterface
         ;
 
         $library->addChild('authors')
-            ->setLabel('Authors')
+            ->setLabel('app.ui.authors')
             ->setLabelAttribute('icon', 'folder')
         ;
     }
