@@ -1,6 +1,11 @@
 app:
     ui:
+        admin_users: Admin users
         authors: Authors
         book: Book
         books: Books
+        channels: Channels
+        configuration: Configuration
+        countries: Countries
         library: Library
+        zones: zones
