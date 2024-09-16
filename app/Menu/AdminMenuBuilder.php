@@ -63,24 +63,24 @@ final class AdminMenuBuilder implements MenuBuilderInterface
     {
         $library = $menu
             ->addChild('configuration')
-            ->setLabel('Configuration')
+            ->setLabel('app.ui.configuration')
             ->setLabelAttribute('icon', 'dashboard')
         ;
 
         $library->addChild('channels')
-            ->setLabel('Channels')
+            ->setLabel('app.ui.channels')
             ->setLabelAttribute('icon', 'shuffle');
 
         $library->addChild('countries')
-            ->setLabel('Countries')
+            ->setLabel('app.ui.countries')
             ->setLabelAttribute('icon', 'flag');
 
         $library->addChild('zones')
-            ->setLabel('Zones')
+            ->setLabel('app.ui.zones')
             ->setLabelAttribute('icon', 'globe');
 
         $library->addChild('administrators')
-            ->setLabel('Admin Users')
+            ->setLabel('app.ui.admin_users')
             ->setLabelAttribute('icon', 'lock');
     }
 }
