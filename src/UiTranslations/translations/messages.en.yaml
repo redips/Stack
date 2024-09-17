@@ -1,6 +1,7 @@
 sylius:
     ui:
         actions: Actions
+        add_new_entry: Add a new entry
         are_your_sure_you_want_to_perform_this_action: 'Are you sure you want to perform this action?'
         cancel: Cancel
         contains: Contains
@@ -12,6 +13,8 @@ sylius:
         filter: Filter
         filters: Filters
         new: New
+        no_results: No results found
+        no_results_adjust_your_search: 'Adjust your search and try again.'
         pagination:
             number_of_results: 'Showing %from% to %to% of %total% entries'
         reset: Reset
