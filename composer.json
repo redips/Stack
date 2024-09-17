@@ -62,7 +62,7 @@
     "autoload": {
         "psr-4": {
             "Sylius\\AdminUi\\": "src/AdminUi/src/",
-            "Sylius\\BootstrapTheme\\": "src/BootstrapTheme/src/",
+            "Sylius\\BootstrapAdminUi\\": "src/BootstrapAdminUi/src/",
             "Sylius\\TwigExtra\\": "src/TwigExtra/src/",
             "Sylius\\TwigHooks\\": "src/TwigHooks/src/",
             "Sylius\\UiTranslations\\": "src/UiTranslations/src/"

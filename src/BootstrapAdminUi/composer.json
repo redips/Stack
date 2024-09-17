@@ -1,9 +1,9 @@
 {
-    "name": "sylius/bootstrap-theme",
+    "name": "sylius/bootstrap-admin-ui",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Sylius\\BootstrapTheme\\": "src/"
+            "Sylius\\BootstrapAdminUi\\": "src/"
         }
     },
     "require": {

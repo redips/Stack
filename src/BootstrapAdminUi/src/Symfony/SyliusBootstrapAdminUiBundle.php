@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Sylius\BootstrapTheme\Symfony;
+namespace Sylius\BootstrapAdminUi\Symfony;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-final class SyliusBootstrapThemeBundle extends AbstractBundle
+final class SyliusBootstrapAdminUiBundle extends AbstractBundle
 {
     public function getPath(): string
     {
