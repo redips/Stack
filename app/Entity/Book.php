@@ -19,7 +19,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Annotation\SyliusCrudRoutes;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\BulkDelete;
 use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
 
@@ -32,6 +34,8 @@ use Sylius\Resource\Metadata\Update;
         new Create(),
         new Update(),
         new Index(grid: BookGrid::class),
+        new Delete(),
+        new BulkDelete(),
     ],
 )]
 #[SyliusCrudRoutes(
