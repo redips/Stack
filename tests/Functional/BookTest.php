@@ -37,6 +37,10 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', '/admin/books');
 
         self::assertResponseIsSuccessful();
+
+        // Validate Header
+        self::assertSelectorTextContains('h1.page-title', 'Books');
+        self::assertSelectorExists('a:contains("Create")');
     }
 
     public function testAddingBookContent(): void
