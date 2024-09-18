@@ -7,6 +7,7 @@ namespace MainTests\Sylius\Functional;
 use App\Factory\BookFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Link;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class BookTest extends WebTestCase
@@ -51,10 +52,12 @@ final class BookTest extends WebTestCase
         self::assertSelectorTextContains('tr.item:first-child', 'Carrie');
         self::assertSelectorTextContains('tr.item:first-child', 'Stephen King');
         self::assertSelectorExists('tr.item:first-child [data-bs-title=Edit]');
+        self::assertSelectorExists('tr.item:first-child [data-bs-title=Delete]');
 
         self::assertSelectorTextContains('tr.item:last-child', 'Shinning');
         self::assertSelectorTextContains('tr.item:last-child', 'Stephen King');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
+        self::assertSelectorExists('tr.item:last-child [data-bs-title=Delete]');
     }
 
     public function testSortingBooks(): void
@@ -100,5 +103,20 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', sprintf('/admin/books/%s/edit', $book->getId()));
 
         self::assertResponseIsSuccessful();
+    }
+
+    public function testRemovingBook(): void
+    {
+        BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        $this->client->request('GET', '/admin/books');
+        $deleteButton = $this->client->getCrawler()->filter('tr.item:first-child [data-test-confirm-button]');
+
+        $this->client->submit($deleteButton->form());
+
+        $this->assertCount(0,  BookFactory::all());
     }
 }
