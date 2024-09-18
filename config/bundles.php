@@ -5,7 +5,7 @@ return [
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
     Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],
     Sylius\TwigHooks\TwigHooksBundle::class => ['all' => true],
-    Sylius\TwigExtra\Symfony\TwigExtraBundle::class => ['all' => true],
+    Sylius\TwigExtra\Symfony\SyliusTwigExtraBundle::class => ['all' => true],
     Sylius\AdminUi\Symfony\SyliusAdminUiBundle::class => ['all' => true],
     Sylius\UiTranslations\Symfony\UiTranslationsBundle::class => ['all' => true],
     Sylius\BootstrapAdminUi\Symfony\SyliusBootstrapAdminUiBundle::class => ['all' => true],
