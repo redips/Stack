@@ -113,9 +113,9 @@ final class BookTest extends WebTestCase
             ->create();
 
         $this->client->request('GET', '/admin/books');
-        $delete_button = $this->client->getCrawler()->filter('tr.item:first-child [data-test-confirm-button]');
+        $deleteButton = $this->client->getCrawler()->filter('tr.item:first-child [data-test-confirm-button]');
 
-        $this->client->submit($delete_button->form());
+        $this->client->submit($deleteButton->form());
 
         $this->assertCount(0,  BookFactory::all());
     }
