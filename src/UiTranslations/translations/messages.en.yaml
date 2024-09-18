@@ -21,5 +21,6 @@ sylius:
         show: Show
         search: Search
         search_menu: 'Search menu'
+        success: Success
         update: Update
         value: Value
