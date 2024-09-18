@@ -41,6 +41,46 @@ final class BookTest extends WebTestCase
         // Validate Header
         self::assertSelectorTextContains('h1.page-title', 'Books');
         self::assertSelectorExists('a:contains("Create")');
+
+        // Validate Table header
+        self::assertSelectorTextContains('.sylius-table-column-title', 'Title');
+        self::assertSelectorTextContains('.sylius-table-column-authorName', 'Author Name');
+        self::assertSelectorTextContains('.sylius-table-column-actions', 'Actions');
+
+        // Validate Table data
+        self::assertSelectorTextContains('tr.item:first-child', 'Carrie');
+        self::assertSelectorTextContains('tr.item:first-child', 'Stephen King');
+        self::assertSelectorExists('tr.item:first-child [data-bs-title=Edit]');
+
+        self::assertSelectorTextContains('tr.item:last-child', 'Shinning');
+        self::assertSelectorTextContains('tr.item:last-child', 'Stephen King');
+        self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
+    }
+
+    public function testSortingBooks(): void
+    {
+        BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        BookFactory::new()
+            ->withTitle('Carrie')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        $crawler = $this->client->request('GET', '/admin/books');
+
+        self::assertResponseIsSuccessful();
+
+        $link = $crawler->filter('.sylius-table-column-title a')->link();
+        $this->client->request('GET', $link->getUri());
+
+        self::assertResponseIsSuccessful();
+
+        // Validate it's sorted by title desc
+        self::assertSelectorTextContains('tr.item:first-child', 'Shinning');
+        self::assertSelectorTextContains('tr.item:last-child', 'Carrie');
     }
 
     public function testAddingBookContent(): void
