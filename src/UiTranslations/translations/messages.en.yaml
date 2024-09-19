@@ -10,8 +10,10 @@ sylius:
         delete: Delete
         details: Details
         edit: Edit
+        error: Error
         filter: Filter
         filters: Filters
+        info: Info
         new: New
         no_results: No results found
         no_results_adjust_your_search: 'Adjust your search and try again.'
@@ -24,3 +26,4 @@ sylius:
         success: Success
         update: Update
         value: Value
+        warning: Warning
