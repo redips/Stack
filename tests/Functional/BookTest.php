@@ -117,6 +117,13 @@ final class BookTest extends WebTestCase
 
         $this->client->submit($deleteButton->form());
 
+        self::assertResponseRedirects();
+
+        $this->client->request('GET', '/admin/books');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Book has been successfully deleted.');
+
         $this->assertCount(0,  BookFactory::all());
     }
 }
