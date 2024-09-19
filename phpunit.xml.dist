@@ -32,18 +32,13 @@
 
         <testsuite name="TwigHooks Test Suite">
             <directory>src/TwigHooks/tests</directory>
+            <exclude>src/TwigHooks/tests/Functional</exclude>
         </testsuite>
 
         <testsuite name="UiTranslations Test Suite">
             <directory>src/UiTranslations/tests</directory>
         </testsuite>
     </testsuites>
-
-    <groups>
-        <exclude>
-            <group>kernel-required</group>
-        </exclude>
-    </groups>
 
     <extensions>
     </extensions>
