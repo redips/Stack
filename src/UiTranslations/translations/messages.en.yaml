@@ -24,6 +24,7 @@ sylius:
         search: Search
         search_menu: 'Search menu'
         success: Success
+        this_form_contains_errors: 'This form contains errors.'
         update: Update
         value: Value
         warning: Warning

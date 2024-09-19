@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace MainTests\Sylius\Functional;
 
+use App\Entity\Book;
 use App\Factory\BookFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Link;
+use Symfony\Component\HttpFoundation\Response;
+use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class BookTest extends WebTestCase
@@ -93,6 +95,39 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
     }
 
+    public function testAddingBook(): void
+    {
+        $this->client->request('GET', '/admin/books/new');
+
+        $this->client->submitForm('Create', [
+            'sylius_resource[title]' => 'Shinning',
+            'sylius_resource[authorName]' => 'Stephen King',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        /** @var Proxy<Book> $book */
+        $book = BookFactory::find(['title' => 'Shinning']);
+
+        self::assertSame('Shinning', $book->getTitle());
+        self::assertSame('Stephen King', $book->getAuthorName());
+    }
+
+    public function testValidationErrorsWhenAddingBook(): void
+    {
+        $this->client->request('GET', '/admin/books/new');
+        $this->client->submitForm('Create', [
+            'sylius_resource[title]' => null,
+            'sylius_resource[authorName]' => null,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        self::assertSelectorTextContains('[data-test-form-error-alert] .alert-title', 'Error');
+        self::assertSelectorTextContains('[data-test-form-error-alert] .text-secondary', 'This form contains errors.');
+        self::assertSelectorTextContains('#sylius_resource_title + .invalid-feedback', 'This value should not be blank.');
+        self::assertSelectorTextContains('#sylius_resource_authorName + .invalid-feedback', 'This value should not be blank.');
+    }
+
     public function testEditingBookContent(): void
     {
         $book = BookFactory::new()
@@ -103,6 +138,49 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', sprintf('/admin/books/%s/edit', $book->getId()));
 
         self::assertResponseIsSuccessful();
+    }
+
+    public function testEditingBook(): void
+    {
+        $book = BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        $this->client->request('GET', sprintf('/admin/books/%s/edit', $book->getId()));
+
+        $this->client->submitForm('Update', [
+            'sylius_resource[title]' => 'Carrie',
+            'sylius_resource[authorName]' => 'Stephen King',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        /** @var Proxy<Book> $book */
+        $book = BookFactory::find(['title' => 'Carrie']);
+
+        self::assertSame('Carrie', $book->getTitle());
+        self::assertSame('Stephen King', $book->getAuthorName());
+    }
+
+    public function testValidationErrorsWhenEditingBook(): void
+    {
+        $book = BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        $this->client->request('GET', sprintf('/admin/books/%s/edit', $book->getId()));
+        $this->client->submitForm('Update', [
+            'sylius_resource[title]' => null,
+            'sylius_resource[authorName]' => null,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        self::assertSelectorTextContains('[data-test-form-error-alert] .alert-title', 'Error');
+        self::assertSelectorTextContains('[data-test-form-error-alert] .text-secondary', 'This form contains errors.');
+        self::assertSelectorTextContains('#sylius_resource_title + .invalid-feedback', 'This value should not be blank.');
+        self::assertSelectorTextContains('#sylius_resource_authorName + .invalid-feedback', 'This value should not be blank.');
     }
 
     public function testRemovingBook(): void

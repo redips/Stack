@@ -24,6 +24,7 @@ use Sylius\Resource\Metadata\Create;
 use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[AsResource(
@@ -59,9 +60,11 @@ class Book implements ResourceInterface
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[NotBlank]
     private ?string $title = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[NotBlank]
     private ?string $authorName = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
@@ -82,7 +85,7 @@ class Book implements ResourceInterface
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -92,7 +95,7 @@ class Book implements ResourceInterface
         return $this->authorName;
     }
 
-    public function setAuthorName(string $authorName): void
+    public function setAuthorName(?string $authorName): void
     {
         $this->authorName = $authorName;
     }
