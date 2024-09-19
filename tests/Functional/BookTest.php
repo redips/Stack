@@ -76,8 +76,6 @@ final class BookTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/admin/books');
 
-        self::assertResponseIsSuccessful();
-
         $link = $crawler->filter('.sylius-table-column-title a')->link();
         $this->client->request('GET', $link->getUri());
 
@@ -88,11 +86,38 @@ final class BookTest extends WebTestCase
         self::assertSelectorTextContains('tr.item:last-child', 'Carrie');
     }
 
+    public function testFilteringBooks(): void
+    {
+        BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        BookFactory::new()
+            ->withTitle('Carrie')
+            ->withAuthorName('Stephen King')
+            ->create();
+
+        $this->client->request('GET', '/admin/books');
+
+        $this->client->submitForm(button: 'Filter', fieldValues: [
+            'criteria[search][value]' => 'Shinn',
+        ], method: 'GET');
+
+        self::assertResponseIsSuccessful();
+
+        self::assertSelectorCount(1, 'tr.item');
+        self::assertSelectorTextContains('tr.item:first-child', 'Shinning');
+    }
+
     public function testAddingBookContent(): void
     {
         $this->client->request('GET', '/admin/books/new');
 
         self::assertResponseIsSuccessful();
+
+        self::assertInputValueSame('sylius_resource[title]', '');
+        self::assertInputValueSame('sylius_resource[authorName]', '');
     }
 
     public function testAddingBook(): void
@@ -105,6 +130,11 @@ final class BookTest extends WebTestCase
         ]);
 
         self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/books');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Book has been successfully created.');
 
         /** @var Proxy<Book> $book */
         $book = BookFactory::find(['title' => 'Shinning']);
@@ -138,6 +168,9 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', sprintf('/admin/books/%s/edit', $book->getId()));
 
         self::assertResponseIsSuccessful();
+
+        self::assertInputValueSame('sylius_resource[title]', 'Shinning');
+        self::assertInputValueSame('sylius_resource[authorName]', 'Stephen King');
     }
 
     public function testEditingBook(): void
@@ -155,6 +188,11 @@ final class BookTest extends WebTestCase
         ]);
 
         self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/books');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Book has been successfully updated.');
 
         /** @var Proxy<Book> $book */
         $book = BookFactory::find(['title' => 'Carrie']);
