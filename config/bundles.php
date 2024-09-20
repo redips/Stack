@@ -7,7 +7,7 @@ return [
     Sylius\TwigHooks\TwigHooksBundle::class => ['all' => true],
     Sylius\TwigExtra\Symfony\SyliusTwigExtraBundle::class => ['all' => true],
     Sylius\AdminUi\Symfony\SyliusAdminUiBundle::class => ['all' => true],
-    Sylius\UiTranslations\Symfony\UiTranslationsBundle::class => ['all' => true],
+    Sylius\UiTranslations\Symfony\SyliusUiTranslationsBundle::class => ['all' => true],
     Sylius\BootstrapAdminUi\Symfony\SyliusBootstrapAdminUiBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
