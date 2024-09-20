@@ -16,7 +16,7 @@ namespace Tests\Sylius\UiTranslations\Integration\DependencyInjection;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class UiTranslationsBundleTest extends KernelTestCase
+final class SyliusUiTranslationsBundleTest extends KernelTestCase
 {
     public function testItRegistersUiTranslations(): void
     {

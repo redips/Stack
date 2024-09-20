@@ -15,7 +15,7 @@ namespace Sylius\UiTranslations\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-final class UiTranslationsBundle extends AbstractBundle
+final class SyliusUiTranslationsBundle extends AbstractBundle
 {
     public function getPath(): string
     {
