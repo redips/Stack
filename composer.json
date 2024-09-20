@@ -72,6 +72,7 @@
         "psr-4": {
             "App\\": "app/",
             "MainTests\\Sylius\\": "tests/",
+            "TestApplication\\Sylius\\AdminUi\\": "src/AdminUi/tests/Functional/.application/src/",
             "TestApplication\\Sylius\\TwigExtra\\": "src/TwigExtra/tests/Functional/.application/src/",
             "TestApplication\\Sylius\\TwigHooks\\": "src/TwigHooks/tests/Functional/.application/src/",
             "Tests\\Sylius\\AdminUi\\": "src/AdminUi/tests/",
