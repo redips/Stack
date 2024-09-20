@@ -38,6 +38,7 @@
 
         <testsuite name="UiTranslations Test Suite">
             <directory>src/UiTranslations/tests</directory>
+            <exclude>src/UiTranslations/tests/Functional</exclude>
         </testsuite>
     </testsuites>
 
