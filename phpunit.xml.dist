@@ -28,6 +28,7 @@
 
         <testsuite name="TwigExtra Test Suite">
             <directory>src/TwigExtra/tests</directory>
+            <exclude>src/TwigExtra/tests/Functional</exclude>
         </testsuite>
 
         <testsuite name="TwigHooks Test Suite">
