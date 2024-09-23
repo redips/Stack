@@ -1,0 +1,19 @@
+{% set book = hookable_metadata.context.book %}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="card-title" {{ sylius_test_html_attribute('title') }}>
+                    {{ book.title }}
+                </div>
+            </div>
+            <div class="card-body" {{ sylius_test_html_attribute('author-name') }}>
+                <strong>{{ 'app.ui.author'|trans }}:</strong>
+                {{ book.authorName }}
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -3,3 +3,6 @@ twig_hooks:
         'app.base':
             content:
                 template: 'base/content.html.twig'
+        'sylius_admin.common.show.content':
+            page_body:
+                template: 'book/show/content/page_body.html.twig'

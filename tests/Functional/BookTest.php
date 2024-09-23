@@ -23,6 +23,26 @@ final class BookTest extends WebTestCase
         $this->client = self::createClient();
     }
 
+    public function testShowingBook(): void
+    {
+        $book = BookFactory::new()
+            ->withTitle('Shinning')
+            ->withAuthorName('Stephen King')
+            ->create()
+        ;
+
+        $this->client->request('GET', sprintf('/admin/books/%s', $book->getId()));
+
+        self::assertResponseIsSuccessful();
+
+        // Validate Header
+        self::assertSelectorTextContains('h1.page-title', 'Show Book');
+
+        // Validate page body
+        self::assertSelectorTextContains('[data-test-title]', 'Shinning');
+        self::assertSelectorTextContains('[data-test-author-name]', 'Stephen King');
+    }
+
     public function testBrowsingBooks(): void
     {
         BookFactory::new()
