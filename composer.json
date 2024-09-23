@@ -79,7 +79,8 @@
             "TestApplication\\Sylius\\UiTranslations\\": "src/UiTranslations/tests/Functional/.application/src/",
             "Tests\\Sylius\\AdminUi\\": "src/AdminUi/tests/",
             "Tests\\Sylius\\TwigExtra\\": "src/TwigExtra/tests/",
-            "Tests\\Sylius\\TwigHooks\\": "src/TwigHooks/tests/"
+            "Tests\\Sylius\\TwigHooks\\": "src/TwigHooks/tests/",
+            "Tests\\Sylius\\UiTranslations\\": "src/UiTranslations/tests/"
         }
     },
     "replace": {

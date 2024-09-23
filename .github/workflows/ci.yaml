@@ -141,3 +141,16 @@ jobs:
             -   name: Run PHPUnit (Twig Extra)
                 run: (cd src/TwigExtra/ && vendor/bin/phpunit)
 
+            - name: "Restrict packages' versions (Ui Translations)"
+              run: |
+                  (cd src/UiTranslations/ && composer global config --no-plugins allow-plugins.symfony/flex true)
+                  (cd src/UiTranslations/ && composer global config --no-plugins allow-plugins.symfony/runtime true)
+                  (cd src/UiTranslations/ && composer global require --no-progress --no-scripts --no-plugins "symfony/flex")
+                  (cd src/UiTranslations/ && composer config extra.symfony.require "${{ matrix.symfony }}")
+
+            -   name: "Install dependencies (Ui Translations)"
+                run: (cd src/UiTranslations/ && composer update --no-interaction --no-scripts)
+
+            -   name: Run PHPUnit (Ui Translations)
+                run: (cd src/UiTranslations/ && vendor/bin/phpunit)
+
