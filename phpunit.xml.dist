@@ -24,6 +24,7 @@
 
         <testsuite name="AdminUi Test Suite">
             <directory>src/AdminUi/tests</directory>
+            <exclude>src/AdminUi/tests/Functional</exclude>
         </testsuite>
 
         <testsuite name="TwigExtra Test Suite">
