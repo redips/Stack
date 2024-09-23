@@ -22,7 +22,11 @@ jobs:
             fail-fast: false
             matrix:
                 package:
+                    - { name: 'AdminUi' }
+                    - { name: 'BootstrapAdminUi' }
+                    - { name: 'TwigExtra' }
                     - { name: 'TwigHooks' }
+                    - { name: 'UiTranslations' }
         steps:
             -   uses: actions/checkout@v3
                 with:
