@@ -23,6 +23,7 @@ use Sylius\Resource\Metadata\BulkDelete;
 use Sylius\Resource\Metadata\Create;
 use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Show;
 use Sylius\Resource\Metadata\Update;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -37,6 +38,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
         new Index(grid: BookGrid::class),
         new Delete(),
         new BulkDelete(),
+        new Show(),
     ],
 )]
 #[SyliusCrudRoutes(

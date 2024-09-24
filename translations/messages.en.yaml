@@ -1,6 +1,7 @@
 app:
     ui:
         admin_users: Admin users
+        author: Author
         authors: Authors
         book: Book
         books: Books
