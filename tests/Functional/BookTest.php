@@ -73,11 +73,13 @@ final class BookTest extends WebTestCase
         // Validate Table data
         self::assertSelectorTextContains('tr.item:first-child', 'Carrie');
         self::assertSelectorTextContains('tr.item:first-child', 'Stephen King');
+        self::assertSelectorExists('tr.item:first-child [data-bs-title=Show]');
         self::assertSelectorExists('tr.item:first-child [data-bs-title=Edit]');
         self::assertSelectorExists('tr.item:first-child [data-bs-title=Delete]');
 
         self::assertSelectorTextContains('tr.item:last-child', 'Shinning');
         self::assertSelectorTextContains('tr.item:last-child', 'Stephen King');
+        self::assertSelectorExists('tr.item:last-child [data-bs-title=Show]');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Delete]');
     }
