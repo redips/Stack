@@ -4,7 +4,7 @@
 `Autoprefixing` is turned off by default. If you want to use this feature you need to set the `enable_autoprefixing` setting to `true` in your `config/packages/twig_hooks.yaml` file:
 
 ```
-twig_hooks:
+sylius_twig_hooks:
     # ...
     enable_autoprefixing: true
     # ...
@@ -92,7 +92,7 @@ The configuration for the hooks and hookables above is:
 
 {% code title="config/packages/twig_hooks.yaml" lineNumbers="true" %}
 ```yaml
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'app.index':
             content:

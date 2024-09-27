@@ -72,7 +72,7 @@ Now, we can define our first hookable with the following configuration:
 
 {% code title="config/packages/twig_hooks.yaml" lineNumbers="true" %}
 ```yaml
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'my_first_hook':
             some_block:
@@ -96,7 +96,7 @@ Depending on the hookable template, we can pass different configuration options 
 {% tab title="Hookable Template" %}
 {% code lineNumbers="true" %}
 ```yaml
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'my_first_hook':
             some_block:
@@ -112,7 +112,7 @@ twig_hooks:
 {% tab title="Hookable Component" %}
 {% code title="" %}
 ```yaml
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'my_first_hook':
             some_block:
