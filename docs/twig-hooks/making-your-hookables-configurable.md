@@ -38,7 +38,7 @@ Configuration can be defined only while defining a hookable, and is accessibly w
 
 {% code title="twig_hooks.yaml" lineNumbers="true" %}
 ```
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'index.form':
             name:

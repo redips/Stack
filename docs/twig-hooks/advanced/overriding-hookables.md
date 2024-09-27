@@ -44,7 +44,7 @@ Let's consider the following hooks configuration:
 
 {% code title="config/packages/twig_hooks.yaml" lineNumbers="true" %}
 ```yaml
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'app.common.create':
             header:
@@ -85,7 +85,7 @@ As there is no configuration for the `app.course.create` and `app.course_categor
 
 {% code title="config/packages/twig_hooks.yaml" lineNumbers="true" %}
 ```
-twig_hooks:
+sylius_twig_hooks:
     hooks:
         'app.common.create':
             header:
