@@ -1,0 +1,180 @@
+<?php
+
+/*
+ * This file is part of the Sylius package.
+ *
+ * (c) Sylius Sp. z o.o.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace App\Story;
+
+use App\Factory\SpeakerFactory;
+use App\Factory\TalkFactory;
+use Zenstruck\Foundry\Story;
+
+final class DefaultTalksStory extends Story
+{
+    public function build(): void
+    {
+        TalkFactory::new()
+            ->withTitle('Create World-Class Sylius Plugins')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Joachim', 'lastName' => 'Løvgaard']))
+            ->withDescription(
+                <<<'TEXT'
+                Joachim will share his extensive experience in creating Sylius plugins and bundles. He will discuss the best practices for plugin development, focusing on aspects such as code quality, dependency management, and optimizing the developer experience to build effective and maintainable plugins.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Sylius Beyond E-commerce: Building the Perfect WordPress Competitor')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Jacques', 'lastName' => 'Bodin-Hullin']))
+            ->withDescription(
+                <<<'TEXT'
+                Jacques will introduce the NoCommerce plugin, which transforms Sylius into a robust framework for building a variety of websites beyond e-commerce. He will explain how this plugin can make Sylius a versatile alternative to WordPress for non-commercial sites, detailing the integration process and unique benefits.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Sylius Payment Overview and Future')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Francis', 'lastName' => 'Hilaire']))
+            ->withDescription(
+                <<<'TEXT'
+                Francis will provide a comprehensive overview of the Sylius payment system, focusing on its history and upcoming developments in Sylius 2.0. He will discuss the challenges faced in building the system and how new features will improve payment handling and integration.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Adapting Price Calculation to B2B Needs')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Luca', 'lastName' => 'Gallinari']))
+            //->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Manuele', 'lastName' => 'Menozzi']))
+            ->withDescription(
+                <<<'TEXT'
+                Luca and Manuele will explain how to customize the Sylius Price Calculator for complex B2B pricing models. The talk will cover practical examples of how to implement these changes and ensure accurate pricing through automated testing.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Beyond One-Size-Fits-All: Unlocking User Value with Profilation and Adaptable Architecture')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Viorel', 'lastName' => 'Tudor']))
+            ->withDescription(
+                <<<'TEXT'
+                Viorel will discuss how Freshful leverages Sylius to create personalized, consumer-centric solutions. The presentation will cover how detailed user profiling and a modular architecture allow for tailored e-grocery experiences that enhance customer satisfaction and engagement.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Handling Background Processing in Sylius')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Łukasz', 'lastName' => 'Chruściel']))
+            //->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Mateusz', 'lastName' => 'Zalewski']))
+            ->withDescription(
+                <<<'TEXT'
+                Łukasz and Mateusz will explore different methods for managing background tasks in Sylius applications. They will cover basic techniques using Symfony console commands, more advanced approaches with Symfony Messenger, and sophisticated strategies for high availability and fault tolerance.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Building a Semantic Search Experience Using PHP and Meilisearch')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Guillaume', 'lastName' => 'Loulier']))
+            ->withDescription(
+                <<<'TEXT'
+                Guillaume will demonstrate how to build a semantic search experience using PHP and Meilisearch. He will cover how to leverage recent advancements in machine learning and search engine technology to improve search accuracy and user experience in your applications.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Boost Your Sylius Frontend with Hotwire, aka Symfony UX')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Caillieux']))
+            ->withDescription(
+                <<<'TEXT'
+                Loïc will showcase how to enhance the frontend of your Sylius application using Hotwire and Symfony UX. He will provide live examples of how these tools can improve the user interface and experience, focusing on making the frontend more dynamic and responsive.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Admin Panel (R)evolution for Your Symfony Projects')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Frémont']))
+            ->withDescription(
+                <<<'TEXT'
+                Loïc will cover the evolution of the Sylius admin panel, from its initial use of Bootstrap to the current integration with tools like the Sylius Grid component and Twig Hooks. He will discuss how these changes improve the admin panel's functionality and how they can be applied to any Symfony project.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Prepping for Black Friday: Improve, Scale, and Stress Test Your Sylius App')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Thomas', 'lastName' => 'di Luccio']))
+            ->withDescription(
+                <<<'TEXT'
+                Thomas will provide strategies for preparing your Sylius application for peak traffic during events like Black Friday. He will explain how to use tools like Blackfire and Platform.sh for performance optimization and load testing to ensure your app remains stable under high demand.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Crafting an Open Source Product Discovery Solution')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Romain', 'lastName' => 'Ruaud']))
+            ->withDescription(
+                <<<'TEXT'
+                Romain will share the story behind the inception and development of Gally, an open-source search engine solution for product discovery. You’ll learn how to build a REST/GraphQL layer on top of Elasticsearch using API Platform and Symfony. Romain will cover key technical principles, such as Elasticsearch index abstraction, automatic mapping computation, and GraphQL stitching. Additionally, you'll discover how Gally can be leveraged in a Composable Commerce approach, including various architectural use cases like Headless Sylius, Headful Sylius, and external applications, such as vendor tablets.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('TBA')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Kévin', 'lastName' => 'Dunglas']))
+            ->withDescription(
+                <<<'TEXT'
+                Details of this presentation will be announced soon.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Simplifying Sylius Containerization with DDEV')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Stephan', 'lastName' => 'Hochdörfer']))
+            ->withDescription(
+                <<<'TEXT'
+                Stephan will demonstrate how DDEV simplifies the use of Docker and Docker Compose for Sylius applications. The talk will include a step-by-step guide on installing and integrating DDEV into a Sylius project and how to extend its capabilities for better development workflows.
+                TEXT
+            )
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Developer Docs: The write way to streamline project')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Ksenia', 'lastName' => 'Zvereva']))
+            ->withDescription(
+                <<<'TEXT'
+                Ksenia will share her approach to improving developer documentation. She will offer tips on how clear and effective documentation can streamline project development, enhance collaboration, and improve overall project outcomes.
+                TEXT
+            )
+            ->create()
+        ;
+    }
+}

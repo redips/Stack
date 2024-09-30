@@ -15,6 +15,7 @@ namespace App\DataFixtures;
 
 use App\Story\DefaultBooksStory;
 use App\Story\DefaultSpeakersStory;
+use App\Story\DefaultTalksStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -24,5 +25,6 @@ class AppFixtures extends Fixture
     {
         DefaultBooksStory::load();
         DefaultSpeakersStory::load();
+        DefaultTalksStory::load();
     }
 }
