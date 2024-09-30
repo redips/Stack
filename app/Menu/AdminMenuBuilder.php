@@ -52,35 +52,22 @@ final class AdminMenuBuilder implements MenuBuilderInterface
             ->setLabel('app.ui.books')
             ->setLabelAttribute('icon', 'book')
         ;
-
-        $library->addChild('authors')
-            ->setLabel('app.ui.authors')
-            ->setLabelAttribute('icon', 'folder')
-        ;
     }
 
     private function addConfigurationSubMenu(ItemInterface $menu): void
     {
-        $library = $menu
+        $configuration = $menu
             ->addChild('configuration')
             ->setLabel('app.ui.configuration')
             ->setLabelAttribute('icon', 'dashboard')
         ;
 
-        $library->addChild('channels')
-            ->setLabel('app.ui.channels')
-            ->setLabelAttribute('icon', 'shuffle');
+        $configuration->addChild('talks', ['route' => 'app_admin_talk_index'])
+            ->setLabel('app.ui.talks')
+        ;
 
-        $library->addChild('countries')
-            ->setLabel('app.ui.countries')
-            ->setLabelAttribute('icon', 'flag');
-
-        $library->addChild('zones')
-            ->setLabel('app.ui.zones')
-            ->setLabelAttribute('icon', 'globe');
-
-        $library->addChild('administrators')
-            ->setLabel('app.ui.admin_users')
-            ->setLabelAttribute('icon', 'lock');
+        $configuration->addChild('speakers', ['route' => 'app_admin_speaker_index'])
+            ->setLabel('app.ui.speakers')
+        ;
     }
 }

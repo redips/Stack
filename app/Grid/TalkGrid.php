@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Grid;
 
 use App\Entity\Speaker;
-use Sylius\Bundle\GridBundle\Builder\Action\Action;
+use App\Entity\Talk;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
@@ -23,44 +23,40 @@ use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
-use Sylius\Bundle\GridBundle\Builder\Filter\StringFilter;
+use Sylius\Bundle\GridBundle\Builder\Filter\EntityFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 
-final class SpeakerGrid extends AbstractGrid implements ResourceAwareGridInterface
+final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public static function getName(): string
     {
-        return 'app_speaker';
+        return 'app_admin_talk';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
             ->addFilter(
-                StringFilter::create('search', ['firstName', 'lastName', 'companyName'])
-                    ->setLabel('sylius.ui.search'),
+                EntityFilter::create('speaker', Speaker::class)
+                    ->setLabel('app.ui.speaker')
+                    ->addFormOption('choice_label', 'fullName'),
             )
-            ->addOrderBy('firstName', 'asc')
             ->addField(
                 TwigField::create('avatar', 'speaker/grid/field/image.html.twig')
-                    ->setPath('.'),
+                    ->setPath('speaker'),
             )
             ->addField(
-                StringField::create('firstName')
-                    ->setLabel('app.ui.first_name')
+                StringField::create('title')
+                    ->setLabel('Title')
                     ->setSortable(true),
             )
             ->addField(
-                StringField::create('lastName')
-                    ->setLabel('app.ui.last_name')
-                    ->setSortable(true),
-            )
-            ->addField(
-                StringField::create('companyName')
-                    ->setLabel('app.ui.company_name')
-                    ->setSortable(true),
+                StringField::create('speaker')
+                    ->setLabel('app.ui.speaker')
+                    ->setPath('speaker.fullName')
+                    ->setSortable(true, 'speaker.firstName'),
             )
             ->addActionGroup(
                 MainActionGroup::create(
@@ -69,19 +65,6 @@ final class SpeakerGrid extends AbstractGrid implements ResourceAwareGridInterfa
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    Action::create('show_talks', 'show')
-                        ->setIcon('list_letters')
-                        ->setLabel('app.ui.show_talks')
-                        ->setOptions([
-                            'link' => [
-                                'route' => 'app_admin_talk_index',
-                                'parameters' => [
-                                    'criteria' => [
-                                        'speaker' => 'resource.id',
-                                    ],
-                                ],
-                            ],
-                        ]),
                     UpdateAction::create(),
                     DeleteAction::create(),
                 ),
@@ -96,6 +79,6 @@ final class SpeakerGrid extends AbstractGrid implements ResourceAwareGridInterfa
 
     public function getResourceClass(): string
     {
-        return Speaker::class;
+        return Talk::class;
     }
 }

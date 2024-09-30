@@ -1,17 +1,15 @@
 app:
     ui:
-        admin_users: Admin users
         author: Author
-        authors: Authors
         book: Book
         books: Books
-        channels: Channels
         company_name: Company name
         configuration: Configuration
-        countries: Countries
         first_name: First name
         last_name: Last name
         library: Library
+        show_talks: Show talks
         speaker: Speaker
         speakers: Speakers
-        zones: zones
+        talk: Talk
+        talks: Talks
