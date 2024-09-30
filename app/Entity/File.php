@@ -23,13 +23,13 @@ abstract class File
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    protected ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $path = null;
+    protected ?string $path = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    protected ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -41,11 +41,9 @@ abstract class File
         return $this->path;
     }
 
-    public function setPath(string $path): static
+    public function setPath(string $path): void
     {
         $this->path = $path;
-
-        return $this;
     }
 
     public function getFile(): ?\SplFileInfo

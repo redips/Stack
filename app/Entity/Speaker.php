@@ -93,11 +93,9 @@ class Speaker implements ResourceInterface
         return $this->companyName;
     }
 
-    public function setCompanyName(?string $companyName): static
+    public function setCompanyName(?string $companyName): void
     {
         $this->companyName = $companyName;
-
-        return $this;
     }
 
     public function getAvatar(): ?SpeakerAvatar
