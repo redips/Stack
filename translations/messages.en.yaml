@@ -5,11 +5,13 @@ app:
         books: Books
         company_name: Company name
         configuration: Configuration
+        ends_at: Ends at
         first_name: First name
         last_name: Last name
         library: Library
         show_talks: Show talks
         speaker: Speaker
         speakers: Speakers
+        starts_at: Starts at
         talk: Talk
         talks: Talks

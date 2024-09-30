@@ -57,6 +57,12 @@ class Talk implements ResourceInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Speaker $speaker = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $startsAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $endsAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,5 +96,25 @@ class Talk implements ResourceInterface
     public function setSpeaker(?Speaker $speaker): void
     {
         $this->speaker = $speaker;
+    }
+
+    public function getStartsAt(): ?\DateTimeImmutable
+    {
+        return $this->startsAt;
+    }
+
+    public function setStartsAt(\DateTimeImmutable $startsAt): void
+    {
+        $this->startsAt = $startsAt;
+    }
+
+    public function getEndsAt(): ?\DateTimeImmutable
+    {
+        return $this->endsAt;
+    }
+
+    public function setEndsAt(\DateTimeImmutable $endsAt): void
+    {
+        $this->endsAt = $endsAt;
     }
 }

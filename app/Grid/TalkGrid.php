@@ -21,8 +21,10 @@ use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\BulkActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
+use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
+use Sylius\Bundle\GridBundle\Builder\Filter\DateFilter;
 use Sylius\Bundle\GridBundle\Builder\Filter\EntityFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
@@ -38,10 +40,15 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
+            ->addOrderBy('startsAt')
             ->addFilter(
                 EntityFilter::create('speaker', Speaker::class)
                     ->setLabel('app.ui.speaker')
                     ->addFormOption('choice_label', 'fullName'),
+            )
+            ->addFilter(
+                DateFilter::create('startsAt')
+                    ->setLabel('app.ui.starts_at'),
             )
             ->addField(
                 TwigField::create('avatar', 'speaker/grid/field/image.html.twig')
@@ -57,6 +64,11 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->setLabel('app.ui.speaker')
                     ->setPath('speaker.fullName')
                     ->setSortable(true, 'speaker.firstName'),
+            )
+            ->addField(
+                DateTimeField::create('startsAt', 'Y-m-d H:i')
+                    ->setLabel('app.ui.starts_at')
+                    ->setSortable(true),
             )
             ->addActionGroup(
                 MainActionGroup::create(
