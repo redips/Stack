@@ -62,11 +62,11 @@ final class AdminMenuBuilder implements MenuBuilderInterface
             ->setLabelAttribute('icon', 'dashboard')
         ;
 
-        $configuration->addChild('admin_talks', ['route' => 'app_admin_talk_index'])
+        $configuration->addChild('talks', ['route' => 'app_admin_talk_index'])
             ->setLabel('app.ui.talks')
         ;
 
-        $configuration->addChild('admin_speakers', ['route' => 'app_admin_speaker_index'])
+        $configuration->addChild('speakers', ['route' => 'app_admin_speaker_index'])
             ->setLabel('app.ui.speakers')
         ;
     }

@@ -32,7 +32,7 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public static function getName(): string
     {
-        return 'app_talk';
+        return 'app_admin_talk';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
