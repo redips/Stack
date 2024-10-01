@@ -67,6 +67,10 @@ class Talk implements ResourceInterface
     #[ORM\Column(enumType: Track::class)]
     private ?Track $track = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Conference $conference = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,5 +134,15 @@ class Talk implements ResourceInterface
     public function setTrack(Track $track): void
     {
         $this->track = $track;
+    }
+
+    public function getConference(): ?Conference
+    {
+        return $this->conference;
+    }
+
+    public function setConference(?Conference $conference): void
+    {
+        $this->conference = $conference;
     }
 }

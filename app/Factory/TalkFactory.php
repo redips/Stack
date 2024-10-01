@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Entity\Conference;
 use App\Entity\Speaker;
 use App\Entity\Talk;
 use App\Enum\Track;
+use function Zenstruck\Foundry\lazy;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 
@@ -60,6 +62,14 @@ final class TalkFactory extends PersistentProxyObjectFactory
         return $this->with(['track' => $track]);
     }
 
+    /**
+     * @param Proxy<Conference>|Conference $conference
+     */
+    public function withConference(Proxy|Conference $conference): self
+    {
+        return $this->with(['conference' => $conference]);
+    }
+
     protected function defaults(): array|callable
     {
         return [
@@ -68,6 +78,7 @@ final class TalkFactory extends PersistentProxyObjectFactory
             'startsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'endsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'track' => self::faker()->randomElement(Track::cases()),
+            'conference' => lazy(fn () => ConferenceFactory::randomOrCreate()),
         ];
     }
 }

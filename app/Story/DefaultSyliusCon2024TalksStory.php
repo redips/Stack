@@ -14,11 +14,12 @@ declare(strict_types=1);
 namespace App\Story;
 
 use App\Enum\Track;
+use App\Factory\ConferenceFactory;
 use App\Factory\SpeakerFactory;
 use App\Factory\TalkFactory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultTalksStory extends Story
+final class DefaultSyliusCon2024TalksStory extends Story
 {
     public function build(): void
     {
@@ -40,6 +41,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -54,6 +56,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -68,6 +71,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -82,6 +86,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:15:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -96,6 +101,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -110,6 +116,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 16:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -124,6 +131,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
             ->withTrack(Track::BIZ)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
     }
@@ -141,6 +149,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -155,6 +164,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -169,6 +179,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -184,6 +195,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:30:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -198,6 +210,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -213,6 +226,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 16:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -227,6 +241,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
             ->withTrack(Track::TECH_ONE)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
     }
@@ -244,6 +259,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -257,6 +273,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -271,6 +288,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -285,6 +303,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:30:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -299,6 +318,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -313,6 +333,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
 
@@ -327,6 +348,7 @@ final class DefaultTalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
             ->withTrack(Track::TECH_TWO)
+            ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
             ->create()
         ;
     }
