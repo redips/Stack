@@ -12,6 +12,7 @@ app:
         first_name: First name
         last_name: Last name
         library: Library
+        name: Name
         past_event: Past event
         show_talks: Show talks
         speaker: Speaker
