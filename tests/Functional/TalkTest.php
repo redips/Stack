@@ -26,12 +26,16 @@ final class TalkTest extends WebTestCase
         TalkFactory::new()
             ->withTitle('Boost Your Sylius Frontend with Hotwire, aka Symfony UX')
             ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Caillieux']))
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
             ->create()
         ;
 
         TalkFactory::new()
             ->withTitle('Admin Panel (R)evolution for Your Symfony Projects')
             ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Frémont']))
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
             ->create()
         ;
 
