@@ -47,6 +47,14 @@ final class TalkFactory extends PersistentProxyObjectFactory
         return $this->with(['speaker' => $speaker]);
     }
 
+    /**
+     * @param Proxy<Speaker>|Speaker ...$speakers
+     */
+    public function withSpeakers(Proxy|Speaker ...$speakers): self
+    {
+        return $this->with(['speakers' => $speakers]);
+    }
+
     public function withStartingDate(\DateTimeImmutable $startsAt): self
     {
         return $this->with(['startsAt' => $startsAt]);

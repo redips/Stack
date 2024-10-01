@@ -17,6 +17,8 @@ use App\Enum\Track;
 use App\Form\TalkType;
 use App\Grid\TalkGrid;
 use App\Repository\TalkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Resource\Metadata\AsResource;
@@ -70,6 +72,17 @@ class Talk implements ResourceInterface
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Conference $conference = null;
+
+    /**
+     * @var Collection<int, Speaker>
+     */
+    #[ORM\ManyToMany(targetEntity: Speaker::class)]
+    private Collection $speakers;
+
+    public function __construct()
+    {
+        $this->speakers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -144,5 +157,25 @@ class Talk implements ResourceInterface
     public function setConference(?Conference $conference): void
     {
         $this->conference = $conference;
+    }
+
+    /**
+     * @return Collection<int, Speaker>
+     */
+    public function getSpeakers(): Collection
+    {
+        return $this->speakers;
+    }
+
+    public function addSpeaker(Speaker $speaker): void
+    {
+        if (!$this->speakers->contains($speaker)) {
+            $this->speakers->add($speaker);
+        }
+    }
+
+    public function removeSpeaker(Speaker $speaker): void
+    {
+        $this->speakers->removeElement($speaker);
     }
 }
