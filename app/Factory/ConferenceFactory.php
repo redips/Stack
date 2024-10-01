@@ -46,6 +46,11 @@ final class ConferenceFactory extends PersistentProxyObjectFactory
         return $this->with(['pastEvent' => $pastEvent]);
     }
 
+    public function withArchivingDate(\DateTimeImmutable $archivedAt): self
+    {
+        return $this->with(['archivedAt' => $archivedAt]);
+    }
+
     protected function defaults(): array|callable
     {
         return [

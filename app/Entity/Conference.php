@@ -58,6 +58,9 @@ class Conference implements ResourceInterface
     #[ORM\Column]
     private bool $pastEvent = false;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $archivedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,5 +104,15 @@ class Conference implements ResourceInterface
     public function setPastEvent(bool $pastEvent): void
     {
         $this->pastEvent = $pastEvent;
+    }
+
+    public function getArchivedAt(): ?\DateTimeImmutable
+    {
+        return $this->archivedAt;
+    }
+
+    public function setArchivedAt(?\DateTimeImmutable $archivedAt): void
+    {
+        $this->archivedAt = $archivedAt;
     }
 }

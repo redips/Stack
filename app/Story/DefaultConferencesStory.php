@@ -34,6 +34,7 @@ final class DefaultConferencesStory extends Story
             ->withStartingDate(new DateTimeImmutable('2023-11-03 09:00:00'))
             ->withEndingDate(new DateTimeImmutable('2023-11-03 18:00:00'))
             ->pastEvent(true)
+            ->withArchivingDate(new DateTimeImmutable('2024-01-01 00:00:00'))
             ->create()
         ;
     }
