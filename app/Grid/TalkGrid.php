@@ -15,6 +15,7 @@ namespace App\Grid;
 
 use App\Entity\Speaker;
 use App\Entity\Talk;
+use App\Enum\Track;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
@@ -26,6 +27,7 @@ use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\Filter\DateFilter;
 use Sylius\Bundle\GridBundle\Builder\Filter\EntityFilter;
+use Sylius\Bundle\GridBundle\Builder\Filter\SelectFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
@@ -49,6 +51,14 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
             ->addFilter(
                 DateFilter::create('startsAt')
                     ->setLabel('app.ui.starts_at'),
+            )
+            ->addFilter(
+                SelectFilter::create('track', [
+                    'app.ui.biz' => Track::BIZ->value,
+                    'app.ui.tech_one' => Track::TECH_ONE->value,
+                    'app.ui.tech_two' => Track::TECH_TWO->value,
+                ])
+                    ->setLabel('app.ui.track'),
             )
             ->addField(
                 TwigField::create('avatar', 'speaker/grid/field/image.html.twig')

@@ -1,6 +1,7 @@
 app:
     ui:
         author: Author
+        biz: Biz
         book: Book
         books: Books
         company_name: Company name
@@ -15,3 +16,6 @@ app:
         starts_at: Starts at
         talk: Talk
         talks: Talks
+        tech_one: Tech#1
+        tech_two: Tech#2
+        track: Track
