@@ -33,7 +33,7 @@ final class ConferenceGrid extends AbstractGrid implements ResourceAwareGridInte
 {
     public static function getName(): string
     {
-        return 'app_conference';
+        return 'app_admin_conference';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
@@ -50,7 +50,7 @@ final class ConferenceGrid extends AbstractGrid implements ResourceAwareGridInte
             )
             ->addField(
                 StringField::create('name')
-                    ->setLabel('Name')
+                    ->setLabel('app.ui.name')
                     ->setSortable(true),
             )
             ->addField(

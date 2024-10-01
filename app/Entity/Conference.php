@@ -56,7 +56,7 @@ class Conference implements ResourceInterface
     private ?\DateTimeImmutable $endsAt = null;
 
     #[ORM\Column]
-    private ?bool $pastEvent = null;
+    private bool $pastEvent = false;
 
     public function getId(): ?int
     {
@@ -68,7 +68,7 @@ class Conference implements ResourceInterface
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -93,7 +93,7 @@ class Conference implements ResourceInterface
         $this->endsAt = $endsAt;
     }
 
-    public function isPastEvent(): ?bool
+    public function isPastEvent(): bool
     {
         return $this->pastEvent;
     }
