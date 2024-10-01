@@ -13,26 +13,27 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Entity\Talk;
+use App\Entity\Speaker;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
+use Symfony\UX\Autocomplete\Form\BaseEntityAutocompleteType;
 
-class TalkType extends AbstractType
+#[AsEntityAutocompleteField(
+    alias: 'app_admin_speaker',
+)]
+final class SpeakerAutocompleteType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('title')
-            ->add('speaker', SpeakerAutocompleteType::class)
-            ->add('description')
-        ;
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Talk::class,
+            'class' => Speaker::class,
+            'choice_label' => 'fullName',
         ]);
+    }
+
+    public function getParent(): string
+    {
+        return BaseEntityAutocompleteType::class;
     }
 }
