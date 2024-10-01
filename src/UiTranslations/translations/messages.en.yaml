@@ -18,6 +18,7 @@ sylius:
         from: From
         info: Info
         new: New
+        no_label: No
         no_results: No results found
         no_results_adjust_your_search: 'Adjust your search and try again.'
         pagination:
@@ -32,3 +33,4 @@ sylius:
         update: Update
         value: Value
         warning: Warning
+        yes_label: Yes

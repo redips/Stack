@@ -5,11 +5,14 @@ app:
         book: Book
         books: Books
         company_name: Company name
+        conference: Conference
+        conferences: Conferences
         configuration: Configuration
         ends_at: Ends at
         first_name: First name
         last_name: Last name
         library: Library
+        past_event: Past event
         show_talks: Show talks
         speaker: Speaker
         speakers: Speakers
