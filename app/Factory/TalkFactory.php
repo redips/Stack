@@ -15,6 +15,7 @@ namespace App\Factory;
 
 use App\Entity\Speaker;
 use App\Entity\Talk;
+use App\Enum\Track;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 
@@ -54,6 +55,11 @@ final class TalkFactory extends PersistentProxyObjectFactory
         return $this->with(['endsAt' => $endsAt]);
     }
 
+    public function withTrack(Track $track): self
+    {
+        return $this->with(['track' => $track]);
+    }
+
     protected function defaults(): array|callable
     {
         return [
@@ -61,6 +67,7 @@ final class TalkFactory extends PersistentProxyObjectFactory
             'title' => self::faker()->text(255),
             'startsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'endsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
+            'track' => self::faker()->randomElement(Track::cases()),
         ];
     }
 }

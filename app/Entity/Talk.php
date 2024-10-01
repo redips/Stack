@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\Track;
 use App\Form\TalkType;
 use App\Grid\TalkGrid;
 use App\Repository\TalkRepository;
@@ -62,6 +63,9 @@ class Talk implements ResourceInterface
 
     #[ORM\Column]
     private ?\DateTimeImmutable $endsAt = null;
+
+    #[ORM\Column(enumType: Track::class)]
+    private ?Track $track = null;
 
     public function getId(): ?int
     {
@@ -116,5 +120,15 @@ class Talk implements ResourceInterface
     public function setEndsAt(\DateTimeImmutable $endsAt): void
     {
         $this->endsAt = $endsAt;
+    }
+
+    public function getTrack(): ?Track
+    {
+        return $this->track;
+    }
+
+    public function setTrack(Track $track): void
+    {
+        $this->track = $track;
     }
 }

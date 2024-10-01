@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Story;
 
+use App\Enum\Track;
 use App\Factory\SpeakerFactory;
 use App\Factory\TalkFactory;
 use Zenstruck\Foundry\Story;
@@ -20,6 +21,114 @@ use Zenstruck\Foundry\Story;
 final class DefaultTalksStory extends Story
 {
     public function build(): void
+    {
+        $this->createBizTalks();
+        $this->createTechOneTalks();
+        $this->createTechTwoTalks();
+    }
+
+    private function createBizTalks(): void
+    {
+        TalkFactory::new()
+            ->withTitle('The Missing Piece in the Developer\'s Toolkit: Communication')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Stéphane', 'lastName' => 'Decock']))
+            ->withDescription(
+                <<<'TEXT'
+                This talk will explore the vital role of communication in software development. Stéphane will discuss how effective communication can bridge the gap between developers and stakeholders, reduce misunderstandings, and lead to more successful projects. He will also provide techniques to help developers articulate complex ideas clearly and understand stakeholder needs better.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('TBA')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Hélèna', 'lastName' => 'Gravelier']))
+            ->withDescription(
+                <<<'TEXT'
+                Details of this presentation will be announced soon.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('TBA')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Przemysław', 'lastName' => 'Połeć']))
+            ->withDescription(
+                <<<'TEXT'
+                Details of this presentation will be announced soon.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Transforming the Retail Industry with Sylius')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Zrinka', 'lastName' => 'Dedic']))
+            ->withDescription(
+                <<<'TEXT'
+                Zrinka will share how Locastic utilized Sylius to transform the retail operations of Tommy.hr. The presentation will cover the specific strategies and changes implemented using Sylius to improve efficiency and operational effectiveness in the retail sector.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:15:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Building a Sustainable Accessibility Program for Your Team')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Kuba', 'lastName' => 'Zwoliński']))
+            ->withDescription(
+                <<<'TEXT'
+                Kuba will outline the key elements needed to create a sustainable accessibility program within an organization. He will focus on developing an accessibility culture, integrating accessibility into your workflows from the beginning, and preparing for upcoming European regulations like the European Accessibility Act.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:45:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('Multiple Webshops with Case-Specific Sales Processes on One Sylius Instance - A Case Study')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Gregor', 'lastName' => 'Šink']))
+            ->withDescription(
+                <<<'TEXT'
+                Gregor will present a case study of DZS, a Slovenian publishing house, which integrated multiple webshops into a single Sylius instance. The talk will cover how this consolidation catered to different customer needs (B2C, B2B, CMS) under one platform, providing a unique experience for each user while reducing operating expenses.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 16:30:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+
+        TalkFactory::new()
+            ->withTitle('When Sylius Meets Beer: A Refresh That’s Brewing Up a Storm')
+            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Julien', 'lastName' => 'Jacottet']))
+            ->withDescription(
+                <<<'TEXT'
+                Julien, CTO of Mezcalito, will take you through the journey of Une Petite Mousse, a popular online beer shop, and their successful transition from an internal solution to Sylius. He will share the challenges they overcame, the innovative solutions they developed, and how Sylius helped brew up tangible, sparkling results.
+                TEXT
+            )
+            ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
+            ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
+            ->withTrack(Track::BIZ)
+            ->create()
+        ;
+    }
+
+    private function createTechOneTalks(): void
     {
         TalkFactory::new()
             ->withTitle('Create World-Class Sylius Plugins')
@@ -31,6 +140,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -44,6 +154,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -57,6 +168,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -71,6 +183,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:30:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -84,6 +197,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -98,6 +212,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 16:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
 
@@ -111,9 +226,13 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
+            ->withTrack(Track::TECH_ONE)
             ->create()
         ;
+    }
 
+    private function createTechTwoTalks(): void
+    {
         TalkFactory::new()
             ->withTitle('Boost Your Sylius Frontend with Hotwire, aka Symfony UX')
             ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Caillieux']))
@@ -124,6 +243,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
 
@@ -150,6 +270,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 12:30:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
 
@@ -163,6 +284,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 12:45:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 13:30:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
 
@@ -176,6 +298,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 16:15:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
 
@@ -189,6 +312,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 15:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 17:15:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
 
@@ -202,6 +326,7 @@ final class DefaultTalksStory extends Story
             )
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 17:30:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 18:00:00'))
+            ->withTrack(Track::TECH_TWO)
             ->create()
         ;
     }
