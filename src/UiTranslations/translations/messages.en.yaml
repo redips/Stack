@@ -1,7 +1,13 @@
 sylius:
+    form:
+        login:
+            username: 'Username'
+            password: 'Password'
+            remember_me: 'Remember me'
     ui:
         actions: Actions
         add_new_entry: Add a new entry
+        administration_panel_login: 'Connexion à l''espace d''administration'
         all: All
         are_your_sure_you_want_to_perform_this_action: 'Are you sure you want to perform this action?'
         cancel: Cancel
@@ -17,6 +23,8 @@ sylius:
         filters: Filters
         from: From
         info: Info
+        login: Login
+        login_to_your_account: 'Login to your account'
         new: New
         no_label: No
         no_results: No results found

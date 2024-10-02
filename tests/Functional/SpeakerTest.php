@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Functional;
 
 use App\Factory\SpeakerFactory;
+use App\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class SpeakerTest extends WebTestCase
 {
+    use Factories;
     use ResetDatabase;
 
     private KernelBrowser $client;
@@ -19,6 +22,13 @@ final class SpeakerTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = self::createClient();
+
+        $user = UserFactory::new()
+            ->admin()
+            ->create()
+        ;
+
+        $this->client->loginUser($user->_real());
     }
 
     public function testBrowsingSpeakers(): void

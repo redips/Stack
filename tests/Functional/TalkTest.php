@@ -8,13 +8,16 @@ use App\Enum\Track;
 use App\Factory\ConferenceFactory;
 use App\Factory\SpeakerFactory;
 use App\Factory\TalkFactory;
+use App\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class TalkTest extends WebTestCase
 {
+    use Factories;
     use ResetDatabase;
 
     private KernelBrowser $client;
@@ -22,6 +25,13 @@ final class TalkTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = self::createClient();
+
+        $user = UserFactory::new()
+            ->admin()
+            ->create()
+        ;
+
+        $this->client->loginUser($user->_real());
     }
 
     public function testBrowsingTalks(): void
