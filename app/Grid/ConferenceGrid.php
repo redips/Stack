@@ -25,6 +25,7 @@ use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Filter\BooleanFilter;
 use Sylius\Bundle\GridBundle\Builder\Filter\DateFilter;
+use Sylius\Bundle\GridBundle\Builder\Filter\ExistsFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
@@ -47,6 +48,11 @@ final class ConferenceGrid extends AbstractGrid implements ResourceAwareGridInte
             ->addFilter(
                 DateFilter::create('startsAt')
                     ->setLabel('app.ui.starts_at'),
+            )
+            ->addFilter(
+                ExistsFilter::create('archival', 'archivedAt')
+                    ->setDefaultValue(false)
+                    ->setLabel('app.ui.archival'),
             )
             ->addField(
                 StringField::create('name')
