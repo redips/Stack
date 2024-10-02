@@ -24,6 +24,7 @@ use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
 use Sylius\Resource\Model\ResourceInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: SpeakerRepository::class)]
 #[AsResource(
@@ -47,9 +48,11 @@ class Speaker implements ResourceInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -68,7 +71,7 @@ class Speaker implements ResourceInterface
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): void
+    public function setFirstName(?string $firstName): void
     {
         $this->firstName = $firstName;
     }
@@ -78,7 +81,7 @@ class Speaker implements ResourceInterface
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): void
+    public function setLastName(?string $lastName): void
     {
         $this->lastName = $lastName;
     }

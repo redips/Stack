@@ -37,6 +37,7 @@ class TalkType extends AbstractType
             ])
             ->add('track', EnumType::class, [
                 'class' => Track::class,
+                'placeholder' => 'Select a track',
             ])
             ->add('speakers', LiveCollectionType::class, [
                 'entry_type' => SpeakerAutocompleteType::class,

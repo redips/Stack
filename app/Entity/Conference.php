@@ -24,6 +24,7 @@ use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
 use Sylius\Resource\Model\ResourceInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: ConferenceRepository::class)]
 #[AsResource(
@@ -47,12 +48,15 @@ class Conference implements ResourceInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $startsAt = null;
 
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $endsAt = null;
 
     #[ORM\Column]
@@ -81,7 +85,7 @@ class Conference implements ResourceInterface
         return $this->startsAt;
     }
 
-    public function setStartsAt(\DateTimeImmutable $startsAt): void
+    public function setStartsAt(?\DateTimeImmutable $startsAt): void
     {
         $this->startsAt = $startsAt;
     }
@@ -91,7 +95,7 @@ class Conference implements ResourceInterface
         return $this->endsAt;
     }
 
-    public function setEndsAt(\DateTimeImmutable $endsAt): void
+    public function setEndsAt(?\DateTimeImmutable $endsAt): void
     {
         $this->endsAt = $endsAt;
     }
