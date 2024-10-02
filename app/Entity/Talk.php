@@ -28,6 +28,7 @@ use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
 use Sylius\Resource\Model\ResourceInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: TalkRepository::class)]
 #[AsResource(
@@ -51,15 +52,18 @@ class Talk implements ResourceInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $startsAt = null;
 
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $endsAt = null;
 
     #[ORM\Column(enumType: Track::class)]
@@ -108,7 +112,7 @@ class Talk implements ResourceInterface
         return $this->startsAt;
     }
 
-    public function setStartsAt(\DateTimeImmutable $startsAt): void
+    public function setStartsAt(?\DateTimeImmutable $startsAt): void
     {
         $this->startsAt = $startsAt;
     }
@@ -118,7 +122,7 @@ class Talk implements ResourceInterface
         return $this->endsAt;
     }
 
-    public function setEndsAt(\DateTimeImmutable $endsAt): void
+    public function setEndsAt(?\DateTimeImmutable $endsAt): void
     {
         $this->endsAt = $endsAt;
     }

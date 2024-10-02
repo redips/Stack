@@ -13,11 +13,15 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Entity\Conference;
 use App\Entity\Talk;
+use App\Enum\Track;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class TalkType extends AbstractType
 {
@@ -25,12 +29,24 @@ class TalkType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('speakers', CollectionType::class, [
+            ->add('conference', EntityType::class, [
+                'class' => Conference::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Select a conference',
+            ])
+            ->add('track', EnumType::class, [
+                'class' => Track::class,
+            ])
+            ->add('speakers', LiveCollectionType::class, [
                 'entry_type' => SpeakerAutocompleteType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'app.ui.speakers',
             ])
             ->add('description')
+            ->add('startsAt')
+            ->add('endsAt')
         ;
     }
 
