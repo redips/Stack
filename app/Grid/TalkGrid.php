@@ -77,7 +77,7 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
             )
             ->addField(
                 StringField::create('title')
-                    ->setLabel('Title')
+                    ->setLabel('app.ui.title')
                     ->setSortable(true),
             )
             ->addField(
