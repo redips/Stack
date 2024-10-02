@@ -7,6 +7,7 @@ namespace Functional;
 use App\Factory\SpeakerFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class SpeakerTest extends WebTestCase
@@ -57,5 +58,72 @@ final class SpeakerTest extends WebTestCase
         self::assertSelectorTextContains('tr.item:last-child', 'Šink');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Delete]');
+    }
+
+    public function testAddingSpeaker(): void
+    {
+        $this->client->request('GET', '/admin/speakers/new');
+
+        $this->client->submitForm('Create', [
+            'speaker[firstName]' => 'Loïc',
+            'speaker[lastName]' => 'Caillieux',
+            'speaker[companyName]' => 'Emagma',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/speakers');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Speaker has been successfully created.');
+
+        $speaker = SpeakerFactory::find(['firstName' => 'Loïc']);
+
+        self::assertSame('Loïc', $speaker->getFirstName());
+        self::assertSame('Caillieux', $speaker->getLastName());
+        self::assertSame('Emagma', $speaker->getCompanyName());
+    }
+
+    public function testEditingSpeaker(): void
+    {
+        $speaker = SpeakerFactory::new()
+            ->withFirstName('Loïc')
+            ->withLastName('Frémont')
+            ->create();
+
+        $this->client->request('GET', sprintf('/admin/speakers/%s/edit', $speaker->getId()));
+
+        $this->client->submitForm('Update', [
+            'speaker[lastName]' => 'Caillieux',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/speakers');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Speaker has been successfully updated.');
+
+        $speaker = SpeakerFactory::find(['firstName' => 'Loïc']);
+
+        self::assertSame('Loïc', $speaker->getFirstName());
+        self::assertSame('Caillieux', $speaker->getLastName());
+    }
+
+    public function testValidationErrorsWhenEditingSpeaker(): void
+    {
+        $speaker = SpeakerFactory::createOne();
+
+        $this->client->request('GET', sprintf('/admin/speakers/%s/edit', $speaker->getId()));
+        $this->client->submitForm('Update', [
+            'speaker[firstName]' => null,
+            'speaker[lastName]' => null,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        self::assertSelectorTextContains('[data-test-form-error-alert] .alert-title', 'Error');
+        self::assertSelectorTextContains('[data-test-form-error-alert] .text-secondary', 'This form contains errors.');
+        self::assertSelectorTextContains('#speaker_firstName + .invalid-feedback', 'This value should not be blank.');
+        self::assertSelectorTextContains('#speaker_lastName + .invalid-feedback', 'This value should not be blank.');
     }
 }

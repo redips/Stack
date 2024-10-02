@@ -7,6 +7,7 @@ namespace MainTests\Sylius\Functional;
 use App\Factory\ConferenceFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class ConferenceTest extends WebTestCase
@@ -62,5 +63,76 @@ final class ConferenceTest extends WebTestCase
         self::assertSelectorTextContains('tr.item:last-child', '2023-11-03 18:00:00');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Delete]');
+    }
+
+    public function testAddingConference(): void
+    {
+        $this->client->request('GET', '/admin/conferences/new');
+
+        $this->client->submitForm('Create', [
+            'conference[name]' => 'SyliusCon 2024',
+            'conference[startsAt]' => '2024-11-13T09:00',
+            'conference[endsAt]' => '2024-11-13T18:00',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/conferences');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Conference has been successfully created.');
+
+        $conference = ConferenceFactory::find(['name' => 'SyliusCon 2024']);
+
+        self::assertSame('SyliusCon 2024', $conference->getName());
+        self::assertSame('2024-11-13 09:00', $conference->getStartsAt()?->format('Y-m-d H:i'));
+        self::assertSame('2024-11-13 18:00', $conference->getEndsAt()?->format('Y-m-d H:i'));
+    }
+
+    public function testEditingConference(): void
+    {
+        $conference = ConferenceFactory::new()
+            ->withName('SyliusCon 2023')
+            ->create();
+
+        $this->client->request('GET', sprintf('/admin/conferences/%s/edit', $conference->getId()));
+
+        $this->client->submitForm('Update', [
+            'conference[name]' => 'SyliusCon 2024',
+            'conference[startsAt]' => '2024-11-13T09:00',
+            'conference[endsAt]' => '2024-11-13T18:00',
+        ]);
+
+        self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
+
+        $this->client->request('GET', '/admin/conferences');
+
+        // Test flash message
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Conference has been successfully updated.');
+
+        $conference = ConferenceFactory::find(['name' => 'SyliusCon 2024']);
+
+        self::assertSame('SyliusCon 2024', $conference->getName());
+        self::assertSame('2024-11-13 09:00', $conference->getStartsAt()?->format('Y-m-d H:i'));
+        self::assertSame('2024-11-13 18:00', $conference->getEndsAt()?->format('Y-m-d H:i'));
+    }
+
+    public function testValidationErrorsWhenEditingConference(): void
+    {
+        $conference = ConferenceFactory::createOne();
+
+        $this->client->request('GET', sprintf('/admin/conferences/%s/edit', $conference->getId()));
+        $this->client->submitForm('Update', [
+            'conference[name]' => null,
+            'conference[startsAt]' => null,
+            'conference[endsAt]' => null,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        self::assertSelectorTextContains('[data-test-form-error-alert] .alert-title', 'Error');
+        self::assertSelectorTextContains('[data-test-form-error-alert] .text-secondary', 'This form contains errors.');
+        self::assertSelectorTextContains('#conference_name + .invalid-feedback', 'This value should not be blank.');
+        self::assertSelectorTextContains('#conference_startsAt + .invalid-feedback', 'This value should not be blank.');
+        self::assertSelectorTextContains('#conference_endsAt + .invalid-feedback', 'This value should not be blank.');
     }
 }

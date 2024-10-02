@@ -67,10 +67,12 @@ class Talk implements ResourceInterface
     private ?\DateTimeImmutable $endsAt = null;
 
     #[ORM\Column(enumType: Track::class)]
+    #[NotBlank]
     private ?Track $track = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[NotBlank]
     private ?Conference $conference = null;
 
     /** @var Collection<int, Speaker> */
@@ -132,7 +134,7 @@ class Talk implements ResourceInterface
         return $this->track;
     }
 
-    public function setTrack(Track $track): void
+    public function setTrack(?Track $track): void
     {
         $this->track = $track;
     }
