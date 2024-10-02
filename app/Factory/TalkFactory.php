@@ -41,10 +41,12 @@ final class TalkFactory extends PersistentProxyObjectFactory
         return $this->with(['description' => $description]);
     }
 
-    /** @param Speaker|Proxy<Speaker> $speaker */
-    public function withSpeaker(Proxy|Speaker $speaker): self
+    /**
+     * @param Proxy<Speaker>|Speaker ...$speakers
+     */
+    public function withSpeakers(Proxy|Speaker ...$speakers): self
     {
-        return $this->with(['speaker' => $speaker]);
+        return $this->with(['speakers' => $speakers]);
     }
 
     public function withStartingDate(\DateTimeImmutable $startsAt): self
@@ -73,7 +75,6 @@ final class TalkFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'speaker' => SpeakerFactory::new(),
             'title' => self::faker()->text(255),
             'startsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'endsAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),

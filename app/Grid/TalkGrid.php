@@ -50,7 +50,7 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->addFormOption('choice_label', 'name'),
             )
             ->addFilter(
-                EntityFilter::create('speaker', Speaker::class)
+                EntityFilter::create(name: 'speaker', resourceClass: Speaker::class, fields: ['speakers.id'])
                     ->setLabel('app.ui.speaker')
                     ->addFormOption('choice_label', 'fullName'),
             )
@@ -67,19 +67,18 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->setLabel('app.ui.track'),
             )
             ->addField(
-                TwigField::create('avatar', 'speaker/grid/field/image.html.twig')
-                    ->setPath('speaker'),
+                TwigField::create('avatar', 'talk/grid/field/images.html.twig')
+                    ->setPath('speakers')
+                    ->setLabel('app.ui.avatar'),
+            )
+            ->addField(
+                TwigField::create('speakers', 'talk/grid/field/speakers.html.twig')
+                    ->setLabel('app.ui.speakers'),
             )
             ->addField(
                 StringField::create('title')
-                    ->setLabel('Title')
+                    ->setLabel('app.ui.title')
                     ->setSortable(true),
-            )
-            ->addField(
-                StringField::create('speaker')
-                    ->setLabel('app.ui.speaker')
-                    ->setPath('speaker.fullName')
-                    ->setSortable(true, 'speaker.firstName'),
             )
             ->addField(
                 DateTimeField::create('startsAt', 'Y-m-d H:i')

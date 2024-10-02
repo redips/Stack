@@ -17,6 +17,8 @@ use App\Enum\Track;
 use App\Form\TalkType;
 use App\Grid\TalkGrid;
 use App\Repository\TalkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Resource\Metadata\AsResource;
@@ -26,6 +28,7 @@ use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
 use Sylius\Resource\Metadata\Update;
 use Sylius\Resource\Model\ResourceInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: TalkRepository::class)]
 #[AsResource(
@@ -49,19 +52,18 @@ class Talk implements ResourceInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'talks')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Speaker $speaker = null;
-
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $startsAt = null;
 
     #[ORM\Column]
+    #[NotBlank]
     private ?\DateTimeImmutable $endsAt = null;
 
     #[ORM\Column(enumType: Track::class)]
@@ -70,6 +72,15 @@ class Talk implements ResourceInterface
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Conference $conference = null;
+
+    /** @var Collection<int, Speaker> */
+    #[ORM\ManyToMany(targetEntity: Speaker::class)]
+    private Collection $speakers;
+
+    public function __construct()
+    {
+        $this->speakers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -81,7 +92,7 @@ class Talk implements ResourceInterface
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -96,22 +107,12 @@ class Talk implements ResourceInterface
         $this->description = $description;
     }
 
-    public function getSpeaker(): ?Speaker
-    {
-        return $this->speaker;
-    }
-
-    public function setSpeaker(?Speaker $speaker): void
-    {
-        $this->speaker = $speaker;
-    }
-
     public function getStartsAt(): ?\DateTimeImmutable
     {
         return $this->startsAt;
     }
 
-    public function setStartsAt(\DateTimeImmutable $startsAt): void
+    public function setStartsAt(?\DateTimeImmutable $startsAt): void
     {
         $this->startsAt = $startsAt;
     }
@@ -121,7 +122,7 @@ class Talk implements ResourceInterface
         return $this->endsAt;
     }
 
-    public function setEndsAt(\DateTimeImmutable $endsAt): void
+    public function setEndsAt(?\DateTimeImmutable $endsAt): void
     {
         $this->endsAt = $endsAt;
     }
@@ -144,5 +145,25 @@ class Talk implements ResourceInterface
     public function setConference(?Conference $conference): void
     {
         $this->conference = $conference;
+    }
+
+    /**
+     * @return Collection<int, Speaker>
+     */
+    public function getSpeakers(): Collection
+    {
+        return $this->speakers;
+    }
+
+    public function addSpeaker(Speaker $speaker): void
+    {
+        if (!$this->speakers->contains($speaker)) {
+            $this->speakers->add($speaker);
+        }
+    }
+
+    public function removeSpeaker(Speaker $speaker): void
+    {
+        $this->speakers->removeElement($speaker);
     }
 }

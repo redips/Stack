@@ -1,0 +1,5 @@
+{%- for speaker in data -%}
+    {% apply spaceless %}
+    {% if loop.index0 >= 1 %},{% endif %} {{ speaker.fullName }}
+    {% endapply %}
+{% endfor %}

@@ -2,6 +2,7 @@ app:
     ui:
         archival: Archival
         author: Author
+        avatar: Avatar
         biz: Biz
         book: Book
         books: Books
@@ -23,4 +24,5 @@ app:
         talks: Talks
         tech_one: Tech#1
         tech_two: Tech#2
+        title: Title
         track: Track
