@@ -3,15 +3,22 @@ sylius_twig_hooks:
         'app.base':
             content:
                 template: 'base/content.html.twig'
+
         'sylius_admin.common.show.content':
             page_body:
                 template: 'book/show/content/page_body.html.twig'
+
+        'sylius_admin.book.index.content.header':
+            description:
+                template: 'book/index/content/header/description.html.twig'
+
         'sylius_admin.talk.create.content':
             form:
                 component: 'App\Twig\Component\TalkFormComponent'
                 props:
                     form: '@=_context.form'
                     initialFormData: '@=_context.resource'
+
         'sylius_admin.talk.update.content':
             form:
                 component: 'App\Twig\Component\TalkFormComponent'

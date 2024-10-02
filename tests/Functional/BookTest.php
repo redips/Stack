@@ -65,6 +65,9 @@ final class BookTest extends WebTestCase
         self::assertSelectorTextContains('h1.page-title', 'Books');
         self::assertSelectorExists('a:contains("Create")');
 
+        // Validate Custom Twig Hooks
+        self::assertSelectorTextContains('[data-test-book-grid-description]', 'Aliquam arcu ligula, aliquet vitae malesuada quis');
+
         // Validate Table header
         self::assertSelectorTextContains('.sylius-table-column-title', 'Title');
         self::assertSelectorTextContains('.sylius-table-column-authorName', 'Author Name');
