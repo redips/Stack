@@ -15,6 +15,7 @@ namespace App\Form;
 
 use App\Entity\Talk;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +25,11 @@ class TalkType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('speaker', SpeakerAutocompleteType::class)
+            ->add('speakers', CollectionType::class, [
+                'entry_type' => SpeakerAutocompleteType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+            ])
             ->add('description')
         ;
     }
