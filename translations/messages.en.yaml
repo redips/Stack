@@ -23,4 +23,5 @@ app:
         talks: Talks
         tech_one: Tech#1
         tech_two: Tech#2
+        title: Title
         track: Track
