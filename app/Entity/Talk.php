@@ -56,10 +56,6 @@ class Talk implements ResourceInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'talks')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Speaker $speaker = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $startsAt = null;
 
@@ -73,9 +69,7 @@ class Talk implements ResourceInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Conference $conference = null;
 
-    /**
-     * @var Collection<int, Speaker>
-     */
+    /** @var Collection<int, Speaker> */
     #[ORM\ManyToMany(targetEntity: Speaker::class)]
     private Collection $speakers;
 
@@ -107,16 +101,6 @@ class Talk implements ResourceInterface
     public function setDescription(?string $description): void
     {
         $this->description = $description;
-    }
-
-    public function getSpeaker(): ?Speaker
-    {
-        return $this->speaker;
-    }
-
-    public function setSpeaker(?Speaker $speaker): void
-    {
-        $this->speaker = $speaker;
     }
 
     public function getStartsAt(): ?\DateTimeImmutable

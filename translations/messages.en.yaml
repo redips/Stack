@@ -1,6 +1,7 @@
 app:
     ui:
         author: Author
+        avatar: Avatar
         biz: Biz
         book: Book
         books: Books

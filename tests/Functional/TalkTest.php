@@ -25,7 +25,7 @@ final class TalkTest extends WebTestCase
     {
         TalkFactory::new()
             ->withTitle('Boost Your Sylius Frontend with Hotwire, aka Symfony UX')
-            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Caillieux']))
+            ->withSpeakers(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Caillieux']))
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 10:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 10:45:00'))
             ->create()
@@ -33,7 +33,7 @@ final class TalkTest extends WebTestCase
 
         TalkFactory::new()
             ->withTitle('Admin Panel (R)evolution for Your Symfony Projects')
-            ->withSpeaker(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Frémont']))
+            ->withSpeakers(SpeakerFactory::findOrCreate(['firstName' => 'Loïc', 'lastName' => 'Frémont']))
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
             ->create()
@@ -49,7 +49,7 @@ final class TalkTest extends WebTestCase
 
         // Validate Table header
         self::assertSelectorTextContains('.sylius-table-column-title', 'Title');
-        self::assertSelectorTextContains('.sylius-table-column-speaker', 'Speaker');
+        self::assertSelectorTextContains('.sylius-table-column-speakers', 'Speaker');
         self::assertSelectorTextContains('.sylius-table-column-actions', 'Actions');
 
         // Validate Table data
