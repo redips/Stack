@@ -18,6 +18,7 @@ use App\Entity\Talk;
 use App\Enum\Track;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -45,8 +46,12 @@ class TalkType extends AbstractType
                 'label' => 'app.ui.speakers',
             ])
             ->add('description')
-            ->add('startsAt')
-            ->add('endsAt')
+            ->add('startsAt', DateTimeType::class, [
+                'widget' => 'single_text',
+            ])
+            ->add('endsAt', DateTimeType::class, [
+                'widget' => 'single_text',
+            ])
         ;
     }
 
