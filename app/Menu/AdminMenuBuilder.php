@@ -29,7 +29,9 @@ final class AdminMenuBuilder implements MenuBuilderInterface
         $menu = $this->menuBuilder->createMenu($options);
 
         $menu
-            ->addChild('dashboard')
+            ->addChild('dashboard', [
+                'route' => 'sylius_admin_ui_dashboard',
+            ])
             ->setLabel('sylius.ui.dashboard')
             ->setLabelAttribute('icon', 'dashboard')
         ;
