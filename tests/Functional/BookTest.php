@@ -7,7 +7,6 @@ namespace MainTests\Sylius\Functional;
 use App\Entity\Book;
 use App\Factory\BookFactory;
 use App\Factory\UserFactory;
-use App\Story\DefaultUsersStory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
