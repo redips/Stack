@@ -6,14 +6,18 @@ namespace MainTests\Sylius\Functional;
 
 use App\Entity\Book;
 use App\Factory\BookFactory;
+use App\Factory\UserFactory;
+use App\Story\DefaultUsersStory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 final class BookTest extends WebTestCase
 {
+    Use Factories;
     use ResetDatabase;
 
     private KernelBrowser $client;
@@ -21,6 +25,13 @@ final class BookTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = self::createClient();
+
+        $user = UserFactory::new()
+            ->admin()
+            ->create()
+        ;
+
+        $this->client->loginUser($user->_real());
     }
 
     public function testShowingBook(): void
