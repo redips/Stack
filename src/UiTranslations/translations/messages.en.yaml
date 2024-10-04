@@ -22,9 +22,11 @@ sylius:
         filter: Filter
         filters: Filters
         from: From
+        hello: Hello
         info: Info
         login: Login
         login_to_your_account: 'Login to your account'
+        logout: Logout
         new: New
         no_label: No
         no_results: No results found
