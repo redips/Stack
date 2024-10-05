@@ -16,7 +16,7 @@ jobs:
         uses: ./.github/workflows/ci.yaml
     split_monorepo:
         name: "Split packages"
-        needs: ci
+        #needs: ci
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
