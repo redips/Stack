@@ -89,8 +89,11 @@
         }
     },
     "replace": {
-        "sylius/twig-event": "self.version",
-        "sylius/twig-hooks": "self.version"
+        "sylius/admin-ui": "self.version",
+        "sylius/bootstrap-admin-ui": "self.version",
+        "sylius/twig-extra": "self.version",
+        "sylius/twig-hooks": "self.version",
+        "sylius/ui-translations": "self.version"
     },
     "config": {
         "allow-plugins": {
