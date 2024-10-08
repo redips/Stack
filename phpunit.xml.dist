@@ -18,26 +18,30 @@
     </php>
 
     <testsuites>
-        <testsuite name="Main Test Suite">
+        <testsuite name="MainTestSuite">
             <directory>tests</directory>
         </testsuite>
 
-        <testsuite name="AdminUi Test Suite">
+        <testsuite name="TranslationsTestSuite">
+            <directory>tests/Translations</directory>
+        </testsuite>
+
+        <testsuite name="AdminUiTestSuite">
             <directory>src/AdminUi/tests</directory>
             <exclude>src/AdminUi/tests/Functional</exclude>
         </testsuite>
 
-        <testsuite name="TwigExtra Test Suite">
+        <testsuite name="TwigExtraTestSuite">
             <directory>src/TwigExtra/tests</directory>
             <exclude>src/TwigExtra/tests/Functional</exclude>
         </testsuite>
 
-        <testsuite name="TwigHooks Test Suite">
+        <testsuite name="TwigHooksTestSuite">
             <directory>src/TwigHooks/tests</directory>
             <exclude>src/TwigHooks/tests/Functional</exclude>
         </testsuite>
 
-        <testsuite name="UiTranslations Test Suite">
+        <testsuite name="UiTranslationsTestSuite">
             <directory>src/UiTranslations/tests</directory>
             <exclude>src/UiTranslations/tests/Functional</exclude>
         </testsuite>

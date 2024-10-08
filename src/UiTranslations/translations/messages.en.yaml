@@ -34,9 +34,9 @@ sylius:
         pagination:
             number_of_results: 'Showing %from% to %to% of %total% entries'
         reset: Reset
-        show: Show
         search: Search
         search_menu: 'Search menu'
+        show: Show
         success: Success
         this_form_contains_errors: 'This form contains errors.'
         to: To

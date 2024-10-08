@@ -2,6 +2,7 @@ app:
     ui:
         archival: Archival
         author: Author
+        author_name: Author name
         avatar: Avatar
         biz: Biz
         book: Book
