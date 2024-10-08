@@ -27,7 +27,7 @@ sylius:
         new: 'Nowy'
         no_label: 'Nie'
         no_results: 'Brak wyników'
-        reset: 'Zresetowano'
+        reset: 'Resetuj'
         search: 'Szukaj'
         show: 'Pokaż'
         success: 'Sukces'
