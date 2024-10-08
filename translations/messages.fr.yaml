@@ -1,0 +1,29 @@
+app:
+    ui:
+        archival: Archive
+        author: Auteur
+        author_name: Auteur
+        avatar: Avatar
+        biz: Biz
+        book: Livre
+        books: Livres
+        company_name: Société
+        conference: Conférence
+        conferences: Conférences
+        configuration: Configuration
+        ends_at: Termine à
+        first_name: Prénom
+        last_name: Nom de famille
+        library: Bibliothèque
+        name: Nom
+        past_event: Evènement passé
+        show_talks: Affiche les talks
+        speaker: Conférencier
+        speakers: Conférencier–e–s
+        starts_at: Commence à
+        talk: Talk
+        talks: Talks
+        tech_one: Tech#1
+        tech_two: Tech#2
+        title: Titre
+        track: Track

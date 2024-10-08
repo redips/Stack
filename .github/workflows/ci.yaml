@@ -89,6 +89,10 @@ jobs:
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit
 
+            -   name: Run Translations Test Suite with PHPUnit
+                run: |
+                    APP_LOCALE=fr vendor/bin/phpunit --testsuite="TranslationsTestSuite"
+
             - name: "Restrict packages' versions (Admin Ui)"
               run: |
                   (cd src/AdminUi/ && composer global config --no-plugins allow-plugins.symfony/flex true)
