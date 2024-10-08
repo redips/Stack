@@ -38,4 +38,3 @@ sylius:
         value: 'Wartość'
         warning: 'Ostrzeżenie'
         yes_label: 'Tak'
-
