@@ -23,6 +23,7 @@ sylius:
         hello: 'Witaj'
         info: 'Info'
         login: 'Zaloguj'
+        login_to_your_account: 'Zaloguj się do swojego konta'
         logout: 'Wyloguj'
         new: 'Nowy'
         no_label: 'Nie'
