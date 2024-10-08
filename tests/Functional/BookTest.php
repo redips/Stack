@@ -80,7 +80,7 @@ final class BookTest extends WebTestCase
 
         // Validate Table header
         self::assertSelectorTextContains('.sylius-table-column-title', 'Title');
-        self::assertSelectorTextContains('.sylius-table-column-authorName', 'Author Name');
+        self::assertSelectorTextContains('.sylius-table-column-authorName', 'Author name');
         self::assertSelectorTextContains('.sylius-table-column-actions', 'Actions');
 
         // Validate Table data
