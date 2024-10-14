@@ -62,6 +62,7 @@ final class AdminMenuBuilder implements MenuBuilderInterface
             ->addChild('configuration')
             ->setLabel('app.ui.configuration')
             ->setLabelAttribute('icon', 'dashboard')
+            ->setExtra('always_open', true)
         ;
 
         $configuration->addChild('conferences', ['route' => 'app_admin_conference_index'])
