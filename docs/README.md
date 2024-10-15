@@ -4,6 +4,8 @@ The Sylius stack is a set of tools for your Symfony projects:
 
 * [Minimalist generic templates for your admin panels](admin-ui/getting-started.md)
 * [Build your Bootstrap admin panels with Sylius and Symfony UX](bootstrap-admin-ui/getting-started.md)
+* [Resource management system, routing and CRUD operations](https://github.com/Sylius/SyliusResourceBundle/blob/1.13/docs/index.md)
+* [Amazing grids with support of filters and custom fields integrated into Symfony](https://github.com/Sylius/SyliusGridBundle/blob/1.13/docs/index.md)
 * [Additional Twig extensions for your Symfony projects](twig-extra/getting-started.md)
 * [Composable Twig layouts](twig-hooks/getting-started.md)
 * [Basic UI translations](ui-translations/getting-started.md)
