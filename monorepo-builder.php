@@ -12,6 +12,8 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateBranchAliasReleaseWorker;
 
 return static function (MBConfig $mbConfig): void {
+    $mbConfig->defaultBranch('main');
+
     $mbConfig->packageDirectories([__DIR__ . '/src']);
 
     $mbConfig->dataToAppend([
