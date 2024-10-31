@@ -70,7 +70,7 @@ final class SpeakerGrid extends AbstractGrid implements ResourceAwareGridInterfa
             ->addActionGroup(
                 ItemActionGroup::create(
                     Action::create('show_talks', 'show')
-                        ->setIcon('list_letters')
+                        ->setIcon('tabler:list-letters')
                         ->setLabel('app.ui.show_talks')
                         ->setOptions([
                             'link' => [
