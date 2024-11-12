@@ -7,31 +7,29 @@
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import('@SyliusBootstrapAdminUiBundle/config/app.php');
+    // ...
 
     // Add these following lines to define your own Twig template for the logo.
     $containerConfigurator->extension('sylius_twig_hooks', [
         'hooks' => [
-            'sylius_admin.common.component.sidebar' => [
-                'logo' => [
-                    'template' => 'shared/crud/common/sidebar/logo.html.twig',
+            'sylius_admin.common.component.sidebar.logo' => [
+                'image' => [
+                    // 'template' => '@SyliusBootstrapAdminUi/shared/crud/common/sidebar/logo/image.html.twig',
+                    'template' => 'shared/crud/common/sidebar/logo/image.html.twig',
                 ],
             ],
         ],
+        
     ]);
 };
 
 ```
 
 ```twig
-{% set dashboard_path = hookable_metadata.context.routing.dashboard_path|default('/admin') %}
+{# templates/shared/crud/common/sidebar/logo/image.html.twig #}
 
-<h1 class="navbar-brand">
-    <a href="{{ dashboard_path }}">
-        <img src="{{ asset('images/logo.png') }}" alt="CFC" class="navbar-brand-image" />
-    </a>
-</h1>
-
+<img src="{{ asset('images/logo.png') }}" alt="CFC" class="navbar-brand-image" />
+  
 ```
 
 ## How to customize the login page logo
@@ -50,10 +48,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // Add these following lines to define your own Twig template for the logo.
     $containerConfigurator->extension('sylius_twig_hooks', [
         'hooks' => [
-            'sylius_admin.security.login' => [
-                'logo' => [
-                    // 'template' => '@SyliusBootstrapAdminUi/security/common/logo.html.twig'
-                    'template' => 'security/common/logo.html.twig',
+            'sylius_admin.security.login.logo' => [
+                'image' => [
+                    // 'template' => '@SyliusBootstrapAdminUi/security/common/logo/image.html.twig'
+                    'template' => 'security/common/logo/image.html.twig',
                 ],
             ],
         ],
@@ -62,9 +60,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 ```
 
 ```twig
-<div class="text-center mb-4">
-    <img src="{{ asset('images/logo.png') }}" alt="Your Brand name" class="sylius navbar-brand-image">
-</div>
+<img src="{{ asset('images/logo.png') }}" alt="Your Brand name" class="sylius navbar-brand-image">
 
 ```
 
