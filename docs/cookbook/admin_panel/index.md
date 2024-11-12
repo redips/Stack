@@ -50,7 +50,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
 ## How to customize the login page logo
 
-To customize the login page logo, you need to configure the new template to use using the following configuration.
+To customize the login page logo,you need to set new logo template at `sylius_admin.security.login.logo` twig hook.
 Choose the YAML or the PHP version.
 
 ```yaml
