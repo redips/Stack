@@ -44,7 +44,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 ```twig
 {# templates/shared/crud/common/sidebar/logo/image.html.twig #}
 
-<img src="{{ asset('images/logo.png') }}" alt="CFC" class="navbar-brand-image" />
+<img src="{{ asset('images/logo.png') }}" alt="Your Brand name" class="navbar-brand-image" />
   
 ```
 
