@@ -2,6 +2,22 @@
 
 ## How to customize the sidebar logo
 
+To customize the sidebar logo, you need to configure the new template to use using the following configuration.
+Choose the YAML or the PHP version.
+
+```yaml
+# config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        'sylius_admin.common.component.sidebar.logo':
+            image:
+                # template: '@SyliusBootstrapAdminUi/shared/crud/common/sidebar/logo/image.html.twig'
+                template: 'shared/crud/common/sidebar/logo/image.html.twig'
+
+```
+
 ```php
 // config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -34,8 +50,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
 ## How to customize the login page logo
 
+To customize the login page logo, you need to configure the new template to use using the following configuration.
+Choose the YAML or the PHP version.
+
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        'sylius_admin.security.login.logo':
+            image:
+                # template: '@SyliusBootstrapAdminUi/security/common/logo/image.html.twig'
+                template: 'security/common/logo/image.html.twig'
+
 ```
 
 ```php
