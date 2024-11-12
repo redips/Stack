@@ -2,7 +2,7 @@
 
 ## How to customize the sidebar logo
 
-To customize the sidebar logo, you need to configure the new template to use using the following configuration.
+To customize the sidebar logo, you need to set new logo template at `sylius_admin.common.component.sidebar.logo` twig hook.
 Choose the YAML or the PHP version.
 
 ```yaml
