@@ -30,11 +30,13 @@ $books = [new Book('Shinning'), new Book('A Lord Of The Rings')];
 ```
 
 ```twig
+{% raw %}
 <ul>
 {% for book in books|sort_by('name') %}
     <li>{{ book.name }}</li>
 {% endif %}
 </ul>
+{% endraw %}
 ```
 
 ```text
@@ -52,11 +54,13 @@ $books = [['name' => 'Shinning'], ['name' => 'A Lord Of The Rings']];
 You just need to encapsulate the key with `[]`.
 
 ```twig
+{% raw %}
 <ul>
 {% for book in books|sort_by('[name]') %}
     <li>{{ book.name }}</li>
 {% endif %}
 </ul>
+{% endraw %}
 ```
 
 ### Test HTML attribute

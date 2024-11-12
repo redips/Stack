@@ -42,9 +42,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 ```
 
 ```twig
+{% raw %}
 {# templates/shared/crud/common/sidebar/logo/image.html.twig #}
 
 <img src="{{ asset('images/logo.png') }}" alt="Your Brand name" class="navbar-brand-image" />
+{% endraw %}
   
 ```
 
@@ -71,7 +73,7 @@ sylius_twig_hooks:
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import('@SyliusBootstrapAdminUiBundle/config/app.php');
+    // ...
 
     // Add these following lines to define your own Twig template for the logo.
     $containerConfigurator->extension('sylius_twig_hooks', [
@@ -88,8 +90,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 ```
 
 ```twig
+{% raw %}
 <img src="{{ asset('images/logo.png') }}" alt="Your Brand name" class="sylius navbar-brand-image">
-
+{% endraw %}
 ```
 
 ## How to customize the admin menu
