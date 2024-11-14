@@ -22,6 +22,10 @@ composer require sylius/admin-ui
 
 ## Minimalist templates
 
+All these following templates are kind of "empty".
+
+You can install the optional [BootstrapAdminUi package](../bootstrap-admin-ui/getting-started.md) to configure their contents automatically.
+
 ### Crud templates
 
 - crud/create.html.twig
