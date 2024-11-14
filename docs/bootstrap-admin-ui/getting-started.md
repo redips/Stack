@@ -23,7 +23,7 @@ You are able to add new blocks, disable existing ones, or reorder them using the
 
 ### Create
 
-This package configures content of the template to add a new resource item.
+This package configures content of the template to create a new resource.
 
 This adds configurable blocks into the `@SyliusAdminUi/crud/create.html.twig` template.
 
@@ -58,7 +58,7 @@ flowchart LR
 
 ### Index
 
-This package configures content of the template to list resource items.
+This package configures content of the template to list resources.
 
 This adds configurable blocks into the `@SyliusAdminUi/crud/index.html.twig` template.
 
@@ -81,7 +81,7 @@ flowchart LR
 
 ### Show
 
-This package configures content of the template to show details resource item.
+This package configures content of the template to show resource details.
 
 This adds configurable blocks into the `@SyliusAdminUi/crud/show.html.twig` template.
 
