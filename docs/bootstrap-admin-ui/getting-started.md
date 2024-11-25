@@ -19,7 +19,7 @@ composer require sylius/bootstrap-admin-ui
 
 Content of CRUD templates is split into configurable blocks.
 
-You are able to add new blocks, disable existing ones, or reorder them using the [TwigExtra package](../twig-extra/getting-started.md).
+You are able to add new blocks, disable existing ones, or reorder them using the [TwigHooks package](../twig-hooks/getting-started.md).
 
 ### Create
 
