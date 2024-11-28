@@ -10,6 +10,11 @@ The Sylius stack is a set of tools for your Symfony projects:
 * [Composable Twig layouts](twig-hooks/getting-started.md)
 * [Basic UI translations](ui-translations/getting-started.md)
 
+📖 Documentation
+----------------
+
+Documentation is available on the [docs directory](SUMMARY.md).
+
 🤝 Community
 ------------
 
