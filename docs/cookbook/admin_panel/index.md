@@ -29,8 +29,8 @@ use Sylius\Resource\Model\ResourceInterface;
     routePrefix: '/admin',
     templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic template for your list
     operations: [
-        new Index( // This operation will add your "index" operation for the book list
-            grid: BookGrid::class, // Use the grid class you have generated above
+        new Index( // This operation will add "index" operation for the books list
+            grid: BookGrid::class, // Use the grid class you have generated in previous step
         ), 
     ],    
 )]
