@@ -2,6 +2,12 @@
 
 ## How to add a new list of resources
 
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/list_of_books.png" alt="List of books"></figure>
+
+</div>
+
 Create a grid for your resource.
 
 ```shell
