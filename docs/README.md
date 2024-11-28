@@ -13,7 +13,7 @@ The Sylius stack is a set of tools for your Symfony projects:
 📖 Documentation
 ----------------
 
-Documentation is available on the [docs directory](SUMMARY.md).
+Documentation is available in the [docs directory](SUMMARY.md).
 
 🤝 Community
 ------------
