@@ -1,5 +1,60 @@
 # How to customize your admin panel
 
+## How to add a new list of resources
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/list_of_books.png" alt="List of books"></figure>
+
+</div>
+
+Create a grid for your resource.
+
+```shell
+bin/console make:grid
+```
+
+Configure the `index` operation in your resource.
+
+```php
+namespace App\Entity;
+
+use App\Grid\BookGrid;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Model\ResourceInterface;
+
+#[AsResource(
+    section: 'admin', // This will influence the route name
+    routePrefix: '/admin',
+    templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic template for your list
+    operations: [
+        new Index( // This operation will add your "index" operation for the book list
+            grid: BookGrid::class, // Use the grid class you have generated above
+        ), 
+    ],    
+)]
+class Book implements ResourceInterface
+{
+    //...
+}
+```
+
+Use the Symfony `debug:router` command to check the results.
+
+```shell
+bin/console debug:router
+```
+
+Your route should look like this.
+
+```shell
+ ------------------------------ ---------------------------
+  Name                           Path                                           
+ ------------------------------ ---------------------------                  
+  app_admin_book_index           /admin/books               
+```
+
 ## How to customize the sidebar logo
 
 To customize the sidebar logo, you need to set new logo template at `sylius_admin.common.component.sidebar.logo` twig hook.
