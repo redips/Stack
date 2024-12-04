@@ -38,7 +38,6 @@
   * [Create resource](resource/create_resource.md)
   * [Delete resource](resource/delete_resource.md)
   * [Forms](resource/forms.md)
-  * [Index](resource/index.md)
   * [Index resources](resource/index_resources.md)
   * [Installation](resource/installation.md)
   * [Processors](resource/processors.md)
