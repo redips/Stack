@@ -210,12 +210,12 @@ app:
 After that your new grid should look like that when accessing the
 `/admin/suppliers/new` path in order to create new object:
 
-![image](./_images/grid_new.png)
+![image](../.gitbook/assets/grid_new.png)
 
 And when accessing index on the */admin/suppliers/* path it should look
 like that:
 
-![image](./_images/grid.png)
+![image](../.gitbook/assets/grid.png)
 
 Defining Filters
 ----------------
@@ -309,7 +309,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 
 How will it look like in the admin panel?
 
-![image](./_images/grid_filters.png)
+![image](../.gitbook/assets/grid_filters.png)
 
 What about filtering by fields of related entities? For instance if you
 would like to filter your suppliers by their country of origin, which is
@@ -946,6 +946,6 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 
 This activates such a view on the `/admin/suppliers/` path:
 
-![image](./_images/grid_full.png)
+![image](../.gitbook/assets/grid_full.png)
 
 Your grid is ready to use!
