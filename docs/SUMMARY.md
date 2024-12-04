@@ -13,9 +13,34 @@
 * [Getting started](bootstrap-admin-ui/getting-started.md)
 * [Customizing](bootstrap-admin-ui/customizing.md)
 
+## Resource
+
+* [Resource Bundle documentation](resource/index.md)
+  * [Configuration](resource/configuration.md)
+  * [Configure your operations](resource/configure_your_operations.md)
+  * [Configure your resource](resource/configure_your_resource.md)
+  * [Create new resource](resource/create_new_resource.md)
+  * [Create resource](resource/create_resource.md)
+  * [Delete resource](resource/delete_resource.md)
+  * [Forms](resource/forms.md)
+  * [Index resources](resource/index_resources.md)
+  * [Installation](resource/installation.md)
+  * [Processors](resource/processors.md)
+  * [Providers](resource/providers.md)
+  * [Redirect](resource/redirect.md)
+  * [Reference](resource/reference.md)
+  * [Resource factories](resource/resource_factories.md)
+  * [Responders](resource/responders.md)
+  * [Routing](resource/routing.md)
+  * [Services](resource/services.md)
+  * [Show resource](resource/show_resource.md)
+  * [State machine](resource/state_machine.md)
+  * [Update resource](resource/update_resource.md)
+  * [Validation](resource/validation.md)
+
 ## Grid
 
-* [Documentation](grid/index.md)
+* [Grid Bundle documentation](grid/index.md)
   * [Custom bulk action](grid/custom_bulk_action.md)
   * [Installation](grid/installation.md)
   * [Field types](grid/field_types.md)
