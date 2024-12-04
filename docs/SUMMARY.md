@@ -13,6 +13,10 @@
 * [Getting started](bootstrap-admin-ui/getting-started.md)
 * [Customizing](bootstrap-admin-ui/customizing.md)
 
+## Grid
+
+* [Documentation](grid/index.md)
+
 ## 🍀 Twig Extra
 
 * [Getting started](twig-extra/getting-started.md)
