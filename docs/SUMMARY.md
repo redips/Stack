@@ -30,7 +30,7 @@
 
 ## Resource
 
-* [Documentation](resource/index.md)
+* [Resource Bundle documentation](resource/index.md)
   * [Configuration](resource/configuration.md)
   * [Configure your operations](resource/configure_your_operations.md)
   * [Configure your resource](resource/configure_your_resource.md)
