@@ -107,6 +107,7 @@ Your route should look like this.
   Name                           Path                                           
  ------------------------------ ---------------------------                  
   app_admin_book_create           /admin/books/new               
+```
 
 ## How to customize the sidebar logo
 
