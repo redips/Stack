@@ -9,6 +9,7 @@ The Sylius stack is a set of tools for your Symfony projects:
 * [**TwigExtra:** Additional Twig extensions for your Symfony projects](twig-extra/getting-started.md)
 * [**TwigHooks:** Composable Twig layouts](twig-hooks/getting-started.md)
 * [**UiTranslations:** Basic UI translations](ui-translations/getting-started.md)
+* [..BehatBridge:** Additional Behat helpers for your Symfony projects](behat-bridge/getting-started.md)
 
 📖 Documentation
 ----------------

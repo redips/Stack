@@ -69,3 +69,7 @@
   * [Metadata objects](twig-hooks/advanced/metadata-objects.md)
   * [Multiple hooks inside a single template](twig-hooks/advanced/multiple-hooks-inside-a-single-template.md)
   * [Overriding hookables](twig-hooks/advanced/overriding-hookables.md)
+
+## Behat Bridge
+
+* [Getting started](behat-bridge/getting-started.md)

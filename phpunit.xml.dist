@@ -31,6 +31,10 @@
             <exclude>src/AdminUi/tests/Functional</exclude>
         </testsuite>
 
+        <testsuite name="BehatBridgeTestSuite">
+            <directory>src/BehatBridge/tests</directory>
+        </testsuite>
+
         <testsuite name="TwigExtraTestSuite">
             <directory>src/TwigExtra/tests</directory>
             <exclude>src/TwigExtra/tests/Functional</exclude>
