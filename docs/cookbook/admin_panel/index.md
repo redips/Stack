@@ -55,6 +55,59 @@ Your route should look like this.
   app_admin_book_index           /admin/books               
 ```
 
+## How to add a resource creation page
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/book_creation.png" alt="Book creation page"></figure>
+
+</div>
+
+Create a form type for your resource.
+
+```shell
+bin/console make:form
+
+Configure the `create` operation in your resource.
+
+```php
+namespace App\Entity;
+
+use App\Form\BookType;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Model\ResourceInterface;
+
+#[AsResource(
+    section: 'admin', // This will influence the route name
+    routePrefix: '/admin',
+    templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic templates
+    formType: BookType::class, // The form type you have generated in previous step
+    operations: [
+        // ...
+        new Create(), // This operation will add "create" operation for the book resource
+    ],    
+)]
+class Book implements ResourceInterface
+{
+    //...
+}
+```
+
+Use the Symfony `debug:router` command to check the results.
+
+```shell
+bin/console debug:router
+```
+
+Your route should look like this.
+
+```shell
+ ------------------------------ ---------------------------
+  Name                           Path                                           
+ ------------------------------ ---------------------------                  
+  app_admin_book_create           /admin/books/new               
+
 ## How to customize the sidebar logo
 
 To customize the sidebar logo, you need to set new logo template at `sylius_admin.common.component.sidebar.logo` twig hook.
