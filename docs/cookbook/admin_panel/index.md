@@ -81,7 +81,7 @@ use Sylius\Resource\Model\ResourceInterface;
 #[AsResource(
     section: 'admin', // This will influence the route name
     routePrefix: '/admin',
-    templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic template for your list
+    templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic templates
     formType: BookType::class, // The form type you have generated in previous step
     operations: [
         // ...
