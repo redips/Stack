@@ -1,0 +1,12 @@
+default:
+    suites:
+        ui_managing_books:
+            contexts:
+                - Sylius\BehatBridge\Behat\Context\Transform\SharedStorageContext
+
+                - MainTests\Sylius\Behat\Context\Setup\BookContext
+
+                - MainTests\Sylius\Behat\Context\Ui\ManagingBooksContext
+
+            filters:
+                tags: "@managing_books&&@ui"

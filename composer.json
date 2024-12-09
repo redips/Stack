@@ -42,7 +42,9 @@
         "webmozart/assert": "^1.9"
     },
     "require-dev": {
+        "behat/behat": "^3.16",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
+        "friends-of-behat/symfony-extension": "^2.6",
         "matthiasnoback/symfony-config-test": "^5.1",
         "matthiasnoback/symfony-dependency-injection-test": "^5.1",
         "phpstan/phpstan": "^1.10",

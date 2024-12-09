@@ -1,0 +1,8 @@
+imports:
+    - config/behat/suites/ui/book/managing_books.yaml
+
+default:
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
+
