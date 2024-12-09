@@ -13,8 +13,13 @@ declare(strict_types=1);
 
 namespace Sylius\BehatBridge\Storage;
 
+use Sylius\BehatBridge\Exception\InvalidArgumentException;
+
 interface SharedStorageInterface
 {
+    /**
+     * @throws InvalidArgumentException
+     */
     public function get(string $key): mixed;
 
     public function has(string $key): bool;
@@ -25,6 +30,8 @@ interface SharedStorageInterface
 
     /**
      * @param array<string, mixed> $clipboard
+     *
+     * @throws InvalidArgumentException
      */
     public function setClipboard(array $clipboard): void;
 }
