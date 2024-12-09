@@ -69,6 +69,7 @@
     "autoload": {
         "psr-4": {
             "Sylius\\AdminUi\\": "src/AdminUi/src/",
+            "Sylius\\BehatBridge\\": "src/BehatBridge/src/",
             "Sylius\\BootstrapAdminUi\\": "src/BootstrapAdminUi/src/",
             "Sylius\\TwigExtra\\": "src/TwigExtra/src/",
             "Sylius\\TwigHooks\\": "src/TwigHooks/src/",

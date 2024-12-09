@@ -107,6 +107,19 @@ jobs:
             -   name: Run PHPUnit (Admin Ui)
                 run: (cd src/AdminUi/ && vendor/bin/phpunit)
 
+            - name: "Restrict packages' versions (Behat Bridge)"
+              run: |
+                  (cd src/BehatBridge/ && composer global config --no-plugins allow-plugins.symfony/flex true)
+                  (cd src/BehatBridge/ && composer global config --no-plugins allow-plugins.symfony/runtime true)
+                  (cd src/BehatBridge/ && composer global require --no-progress --no-scripts --no-plugins "symfony/flex")
+                  (cd src/BehatBridge/ && composer config extra.symfony.require "${{ matrix.symfony }}")                
+
+            -   name: "Install dependencies (Behat Bridge)"
+                run: (cd src/BehatBridge/ && composer update --no-interaction --no-scripts)
+
+            -   name: Run PHPUnit (Behat Bridge)
+                run: (cd src/BehatBridge/ && vendor/bin/phpunit)
+
             - name: "Restrict packages' versions (Bootstrap Admin Ui)"
               run: |
                   (cd src/BootstrapAdminUi/ && composer global config --no-plugins allow-plugins.symfony/flex true)
