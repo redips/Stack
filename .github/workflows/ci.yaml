@@ -94,6 +94,9 @@ jobs:
                 run: |
                     APP_LOCALE=fr vendor/bin/phpunit --testsuite="TranslationsTestSuite"
 
+            -   name: Run Behat
+                run: vendor/bin/behat --format=progress --strict
+
             - name: "Restrict packages' versions (Admin Ui)"
               run: |
                   (cd src/AdminUi/ && composer global config --no-plugins allow-plugins.symfony/flex true)
