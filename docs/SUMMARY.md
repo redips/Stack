@@ -1,8 +1,10 @@
 # Table of contents
 
-* [About Sylius Stack](README.md)
-* [Cookbook](cookbook/index.md)
-  * [How to customize your admin panel](cookbook/admin_panel/index.md)
+* [Sylius Stack Documentation](README.md)
+
+## Cookbook
+
+* [How to customize your admin panel](cookbook/admin_panel/index.md)
 
 ## Admin UI
 
