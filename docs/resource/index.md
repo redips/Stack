@@ -30,18 +30,8 @@ So far we support:
 * [Responders](responders.md)
 
 # Deprecated documentation
-* [Configuring Your Resources](configuration.md)
-* [Services](services.md)
-* [Routing](routing.md)
-* [Forms](forms.md)
-* [Getting a Single Resource](show_resource.md)
-* [Getting a Collection of Resources](index_resources.md)
-* [Creating Resources](create_resource.md)
-* [Updating Resources](update_resource.md)
-* [Deleting Resources](delete_resource.md)
-* [Configuring a state machine](state_machine.md)
-* [Configuration Reference](reference.md)
+* [Legacy Resource Documentation](legacy/index.md)
 
 ## Learn more
 
-* [Resource Layer in the Sylius platform](https://docs.sylius.com/en/latest/book/architecture/resource_layer.html) - concept documentation
+* [Resource Layer in the Sylius platform](https://docs.sylius.com/the-book/architecture/resource-layer) - concept documentation
