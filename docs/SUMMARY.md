@@ -32,6 +32,7 @@
     * [Services](resource/legacy/services.md)
     * [Routing](resource/legacy/routing.md)
     * [Forms](resource/legacy/forms.md)
+    * [Getting a Single Resource](resource/legacy/show_resource.md)
     * [Getting a Collection of Resources](resource/legacy/index_resources.md)
     * [Creating Resources](resource/legacy/create_resource.md)
     * [Updating Resources](resource/legacy/update_resource.md)
