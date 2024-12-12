@@ -508,7 +508,3 @@ These vars will be available on any operations for this resource.
 <h1>{{ operation.vars.header }}<!-- Library --></h1>
 <h2>{{ operation.vars.subheader }}<!-- Adding a book --></h2>
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Validation](validation.md)**

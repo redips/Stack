@@ -153,7 +153,3 @@ These vars will be available on any operations for this resource.
 <h1>{{ operation.vars.header }}</h1>
 <h2>{{ operation.vars.subheader }}</h2>
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Configure your operations](configure_your_operations.md)**

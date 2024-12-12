@@ -277,7 +277,3 @@ class Book implements ResourceInterface
 {
 }
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Providers](providers.md)**

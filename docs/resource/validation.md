@@ -86,7 +86,3 @@ class BoardGameResource implements ResourceInterface
 {
 }
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Redirect](redirect.md)**

@@ -160,7 +160,3 @@ class BookRepository extends ServiceEntityRepository implements RepositoryInterf
     }
 }
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Configure your resource](configure_your_resource.md)**
