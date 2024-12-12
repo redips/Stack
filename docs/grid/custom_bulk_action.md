@@ -1,5 +1,5 @@
-Custom Bulk Action
-==================
+Creating custom Bulk Action
+===========================
 
 There are cases where pressing a button per item in a grid is not
 suitable. And there are also certain cases when built-in bulk action

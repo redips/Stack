@@ -1,5 +1,5 @@
-Field configuration
-===================
+Configuring Fields
+==================
 
 Each field can be configured with several configuration keys, to make it
 more suitable to your grid requirements.

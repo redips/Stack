@@ -1,5 +1,5 @@
-Custom Field Type
-=================
+Creating custom Field type
+==========================
 
 There are certain cases when built-in field types are not enough. Sylius
 Grids allows to define new types with ease!

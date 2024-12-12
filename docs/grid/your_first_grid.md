@@ -1,5 +1,5 @@
-Your First Grid
-===============
+Creating Your First Grid
+========================
 
 In order to use grids, we need to register your entity as a Sylius
 resource. Let us assume you have a Supplier model in your application,
