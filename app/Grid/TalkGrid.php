@@ -44,6 +44,7 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
     {
         $gridBuilder
             ->addOrderBy('startsAt')
+            ->setLimits([10, 25, 50])
             ->addFilter(
                 EntityFilter::create('conference', Conference::class)
                     ->setLabel('app.ui.conference')
