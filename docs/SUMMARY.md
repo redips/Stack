@@ -44,17 +44,17 @@
 ## Grid
 
 * [Grid Bundle documentation](grid/index.md)
-  * [Custom bulk action](grid/custom_bulk_action.md)
   * [Installation](grid/installation.md)
+  * [Creating your first grid](grid/your_first_grid.md)
+  * [Configuring Fields](grid/field_configuration.md)
   * [Field types](grid/field_types.md)
-  * [Custom filter](grid/custom_filter.md)
-  * [Custom field_type](grid/custom_field_type.md)
-  * [Advanced configuration](grid/advanced_configuration.md)
+  * [Creating custom Field type](grid/custom_field_type.md)
+  * [Creating custom Action](grid/custom_action.md)
+  * [Creating custom Bulk Action](grid/custom_bulk_action.md)
   * [Filters](grid/filters.md)
-  * [Configuration](grid/configuration.md)
-  * [Your first grid](grid/your_first_grid.md)
-  * [Field configuration](grid/field_configuration.md)
-  * [Custom action](grid/custom_action.md)
+  * [Creating custom filter](grid/custom_filter.md)
+  * [Advanced configuration](grid/advanced_configuration.md)
+  * [Configuration Reference](grid/configuration.md)
 
 ## 🍀 Twig Extra
 

@@ -1,5 +1,5 @@
-Custom Action
-=============
+Creating custom Action
+======================
 
 There are certain cases when built-in action types are not enough.
 

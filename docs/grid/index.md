@@ -19,13 +19,13 @@ Menu
 ----
 
 * [Installation](installation.md)
-* [Creating your First Grid](your_first_grid.md)
+* [Creating your first grid](your_first_grid.md)
 * [Configuring Fields](field_configuration.md)
 * [Field types](field_types.md)
 * [Creating custom Field type](custom_field_type.md)
 * [Creating custom Action](custom_action.md)
 * [Creating custom Bulk Action](custom_bulk_action.md)
-* [Filter types](filters.md)
-* [Creating custom Filter](custom_filter.md)
+* [Filters](filters.md)
+* [Creating custom filter](custom_filter.md)
 * [Advanced configuration](advanced_configuration.md)
 * [Configuration Reference](configuration.md)

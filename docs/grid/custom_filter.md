@@ -1,5 +1,5 @@
-Custom Filter
-=============
+Creating custom filter
+======================
 
 Sylius Grids come with built-in filters, but there are use-cases where you need something more than basic filter. Grids allow you to define your own filter types!
 
