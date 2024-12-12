@@ -201,7 +201,3 @@ final class DeleteBoardGameProcessor implements ProcessorInterface
     }
 }
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Processors](processors.md)**

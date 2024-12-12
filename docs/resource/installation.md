@@ -58,5 +58,3 @@ sylius_routes:
 ```
 
 That's it! Now you can configure your first resource.
-
-**[Go back to the documentation's index](index.md)**

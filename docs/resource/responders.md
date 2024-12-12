@@ -84,5 +84,3 @@ class Subscription implements ResourceInterface
 
 The API responder is used to render serialized data into a Symfony response.
 It's used for JSON/XML responses.
-
-**[Go back to the documentation's index](index.md)**

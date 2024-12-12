@@ -162,7 +162,3 @@ use Sylius\Resource\Model\ResourceInterface;
 )]
 final class BoardGameResource implements ResourceInterface
 ```
-
-**[Go back to the documentation's index](index.md)**
-
-**[> Next chapter: Responders](responders.md)**

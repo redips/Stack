@@ -13,7 +13,6 @@
 ## Bootstrap Admin UI
 
 * [Getting started](bootstrap-admin-ui/getting-started.md)
-* [Customizing](bootstrap-admin-ui/customizing.md)
 
 ## Resource
 
