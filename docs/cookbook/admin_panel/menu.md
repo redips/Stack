@@ -1,10 +1,6 @@
-# How to customize your admin panel
+# Customizing the menu
 
-* [Basic operations](basic_operations.md)
-* [Customizing the_logo](logo.md)
-* [Customizing the menu](menu.md)
-
-## How to customize the admin menu
+## How to customize the sidebar menu
 
 You should decorate the `sylius_admin_ui.knp.menu_builder` service to customize the admin menu.
 
