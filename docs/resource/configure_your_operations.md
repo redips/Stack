@@ -295,18 +295,21 @@ namespace App\Entity;
 use Sylius\Resource\Model\ResourceInterface;
 use Sylius\Resource\Metadata\AsResource;
 use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\Update;
 
 #[AsResource]
 #[Create(path: 'register')]
+#[Update(path: '{id}/edition')]
 class Customer implements ResourceInterface
 {
 }
 
 ```
 
-| Name            | Method    | Path                 |
-|-----------------|-----------|----------------------|
-| app_book_create | GET, POST | /books/{id}/register |    
+| Name            | Method    | Path                |
+|-----------------|-----------|---------------------|
+| app_book_create | GET, POST | /books/register     |   
+| app_book_update | GET, POST | /books/{id}/edition | 
 
 ### Configure the short name
 
@@ -327,9 +330,9 @@ class Customer implements ResourceInterface
 
 ```
 
-| Name              | Method    | Path                 |
-|-------------------|-----------|----------------------|
-| app_book_register | GET, POST | /books/{id}/register |    
+| Name              | Method    | Path            |
+|-------------------|-----------|-----------------|
+| app_book_register | GET, POST | /books/register |    
 
 It influences the path by default too, but you can still customize the path if needed.
 
@@ -366,6 +369,18 @@ class Book implements ResourceInterface
 | create    | templates/books/create.html.twig |   
 | update    | templates/books/update.html.twig |   
 | show      | templates/books/show.html.twig   |
+
+
+{% hint style="info" %}
+You can use `@SyliusAdminUi/crud` as templates dir from the [sylius/admin-ui](../admin-ui/getting-started.md) package.
+{% endhint %}
+
+| Operation | Template Path                        |
+|-----------|--------------------------------------|
+| index     | @SyliusAdminUi/crud/index.html.twig  |  
+| create    | @SyliusAdminUi/crud/create.html.twig |   
+| update    | @SyliusAdminUi/crud/update.html.twig |   
+| show      | @SyliusAdminUi/crud/show.html.twig   |
 
 ### Configure the routes' prefix
 
