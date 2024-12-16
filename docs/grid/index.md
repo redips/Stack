@@ -22,7 +22,7 @@ Menu
 * [Creating your first grid](your_first_grid.md)
 * [Configuring Fields](field_configuration.md)
 * [Field types](field_types.md)
-* [Creating custom Field type](custom_field_type.md)
+* [Creating a custom Field Type](custom_field_type.md)
 * [Creating custom Action](custom_action.md)
 * [Creating custom Bulk Action](custom_bulk_action.md)
 * [Filters](filters.md)

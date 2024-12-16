@@ -1,11 +1,10 @@
-Creating custom Field type
-==========================
+# Creating a custom Field Type
 
 There are certain cases when built-in field types are not enough. Sylius
-Grids allows to define new types with ease!
+Grids make it easy to define new types.
 
 All you need to do is create your own class implementing
-FieldTypeInterface and register it as a service.
+**FieldTypeInterface** and register it as a service.
 
 {% code title="src/Grid/FieldType.php" lineNumbers="true" %}
 ```php
@@ -57,8 +56,8 @@ app.grid_field.custom:
 
 Now you can use your new column type in the grid configuration!
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
@@ -74,11 +73,9 @@ sylius_grid:
                     label: sylius.ui.name
 ```
 {% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
 {% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
@@ -141,5 +138,5 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
-
-</details>
+{% endtab %}
+{% endtabs %}
