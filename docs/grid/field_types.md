@@ -9,8 +9,7 @@ String
 Simplest column type, which basically renders the value at given path as
 a string.
 
-By default it uses the name of the field, but you can specify the path
-alternatively. For example:
+By default, it uses the name of the field, but you can specify a different path if needed. For example:
 
 <details open><summary>Yaml</summary>
 
@@ -23,7 +22,7 @@ sylius_grid:
             fields:
                 email:
                     type: string
-                    label: app.ui.email # each filed type can have a label, we suggest using translation keys instead of messages
+                    label: app.ui.email # each field type can have a label, we suggest using translation keys instead of messages
                     path: contactDetails.email
 ```
 
@@ -43,7 +42,7 @@ return static function (GridConfig $grid): void {
     $grid->addGrid(GridBuilder::create('app_user', '%app.model.user.class%')
         ->addField(
             StringField::create('email')
-                ->setLabel('app.ui.email') // # each filed type can have a label, we suggest using translation keys instead of messages
+                ->setLabel('app.ui.email') // # each field type can have a label, we suggest using translation keys instead of messages
                 ->setPath('contactDetails.email')
         )
     )
@@ -78,7 +77,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
         $gridBuilder
             ->addField(
                 StringField::create('email')
-                    ->setLabel('app.ui.email') // # each filed type can have a label, we suggest using translation keys instead of messages
+                    ->setLabel('app.ui.email') // # each field type can have a label, we suggest using translation keys instead of messages
                     ->setPath('contactDetails.email')
             )
         ;
@@ -99,7 +98,7 @@ This configuration will display the value from
 DateTime
 --------
 
-This column type works exactly the same way as *string*, but expects
+This column type works exactly the same way as *string*, but expects a
 *DateTime* instance and outputs a formatted date and time string.
 
 Available options:
@@ -138,7 +137,7 @@ use Sylius\Bundle\GridBundle\Config\GridConfig;
 return static function (GridConfig $grid): void {
     $grid->addGrid(GridBuilder::create('app_user', '%app.model.user.class%')
         ->addField(
-            DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify it
+            DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify them
                 ->setLabel('app.ui.birthday')
         )
     )
@@ -172,7 +171,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     {
         $gridBuilder
             ->addField(
-                DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify it
+                DateTimeField::create('birthday', 'Y:m:d H:i:s', null) // this format and timezone are the default value, but you can modify them
                     ->setLabel('app.ui.birthday')
             )
         ;
@@ -206,8 +205,8 @@ $field->setOptions([
 Twig (*twig*)
 -------------
 
-Twig column type is the most flexible from all of them, because it
-delegates the logic of rendering the value to Twig templating engine.
+The Twig column type is the most flexible one, because it
+delegates the logic of rendering the value to the Twig templating engine.
 You just have to specify the template and it will be rendered with the
 `data` variable available to you.
 
@@ -292,14 +291,14 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 </details>
 
 In the `@Grid/Column/_prettyName.html.twig` template, you just need to
-render the value for example as you see below:
+render the value. For example:
 
 ```twig
 <strong>{{ data }}</strong>
 ```
 
-If you wish to render more complex grid fields just redefine the path of
-the field to root – `path: .` in the yaml and you can access all
+If you wish to render more complex grid fields, just redefine the path of
+the field to root – `path: .` and then you can access all
 attributes of the object instance:
 
 ```twig
@@ -309,7 +308,7 @@ attributes of the object instance:
 
 ### *Warning*
 
-You have to pass the `'template'` option again if you want to call the `setOptions` function. Otherwise it will be unset:
+You have to pass the `'template'` option again if you want to call the `setOptions` function. Otherwise, it will be unset:
 
 Example:
 ```php
