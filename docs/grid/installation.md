@@ -11,7 +11,7 @@ If you have [Composer installed globally](http://getcomposer.org/doc/00-intro.md
 composer require sylius/grid-bundle
 ```
 
-Otherwise you have to download .phar file.
+Otherwise, you have to download a .phar file.
 
 ```bash
 curl -sS https://getcomposer.org/installer | php
