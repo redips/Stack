@@ -61,7 +61,7 @@ Choose the YAML or the PHP version.
 sylius_twig_hooks:
     hooks:
         # ...
-        'sylius_admin.security.login.logo':
+        'sylius_admin.security.login.page.logo':
             image:
                 # template: '@SyliusBootstrapAdminUi/security/common/logo/image.html.twig'
                 template: 'security/common/logo/image.html.twig'
