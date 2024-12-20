@@ -31,7 +31,7 @@ final readonly class MenuBuilder implements MenuBuilderInterface
                 'route' => 'sylius_admin_ui_dashboard',
             ])
             ->setLabel('sylius.ui.dashboard')
-            ->setLabelAttribute('icon', 'dashboard')
+            ->setLabelAttribute('icon', 'tabler:dashboard')
         ;
 
         return $menu;
