@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Sylius Stack Documentation](README.md)
+* [Getting started](getting-started.md)
 
 ## Cookbook
 
