@@ -18,4 +18,4 @@ The Sylius stack is a set of tools for your Symfony projects:
 📖 Cookbook
 ----------------
 
-* [How to customize your admin panel](cookbook/admin_panel/index.md)
+* [How to customize your admin panel](cookbook/admin_panel.md)

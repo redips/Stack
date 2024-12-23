@@ -5,7 +5,7 @@
 
 ## Cookbook
 
-* [How to customize your admin panel](cookbook/admin_panel/index.md)
+* [How to customize your admin panel](cookbook/admin_panel.md)
   * [Basic operations](cookbook/admin_panel/basic_operations.md)
   * [Customizing the logo](cookbook/admin_panel/logo.md)
   * [Customizing the menu](cookbook/admin_panel/menu.md)
