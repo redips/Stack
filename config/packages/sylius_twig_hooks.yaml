@@ -8,6 +8,11 @@ sylius_twig_hooks:
             page_body:
                 template: 'book/show/content/page_body.html.twig'
 
+        'sylius_admin.common.index.content.header.title_block':
+            title:
+                configuration:
+                    icon: tabler:list-details
+
         'sylius_admin.book.index.content.header':
             description:
                 template: 'book/index/content/header/description.html.twig'
@@ -25,3 +30,10 @@ sylius_twig_hooks:
                 props:
                     form: '@=_context.form'
                     initialFormData: '@=_context.resource'
+
+        'sylius_admin.speaker.index.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: tabler:users
+                    subheader: app.ui.managing_your_speakers
