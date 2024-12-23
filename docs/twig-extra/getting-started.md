@@ -32,7 +32,7 @@ $books = [
     new Book('Dune'),
     new Book('Wuthering Heights'),
     new Book('Fahrenheit 451'),
-     ];
+];
 ```
 
 ```twig
