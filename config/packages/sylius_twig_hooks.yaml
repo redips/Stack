@@ -25,3 +25,10 @@ sylius_twig_hooks:
                 props:
                     form: '@=_context.form'
                     initialFormData: '@=_context.resource'
+
+        'sylius_admin.speaker.index.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: tabler:users
+                    subheader: app.ui.managing_your_speakers
