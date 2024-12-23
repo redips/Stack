@@ -8,6 +8,11 @@ sylius_twig_hooks:
             page_body:
                 template: 'book/show/content/page_body.html.twig'
 
+        'sylius_admin.common.index.content.header.title_block':
+            title:
+                configuration:
+                    icon: tabler:list-details
+
         'sylius_admin.book.index.content.header':
             description:
                 template: 'book/index/content/header/description.html.twig'

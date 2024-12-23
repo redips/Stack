@@ -34,6 +34,26 @@ sylius_twig_hooks:
                     icon: tabler:users # you can use any icon from Symfony UX icons.
 ```
 
+You can also define a default icon for every "index" pages.
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/icon_for_index_pages.png" alt="Icon for index pages"></figure>
+
+</div>
+
+```yaml
+# config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        'sylius_admin.common.index.content.header.title_block':
+            title:
+                configuration:
+                    icon: tabler:list-details
+```
+
 ## Adding a subheader
 
 <div data-full-width="false">
