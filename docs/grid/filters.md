@@ -1,7 +1,7 @@
 Filters
 =======
 
-*Filters* on grids are a kind of search prepared for each grid. Having
+*Filters* on grids act as predefined search options for each grid. Having
 a grid of objects you can filter out only those with a specified name,
 or value etc. Here you can find the supported filters. Keep in mind you
 can very easily define your own ones!
@@ -199,7 +199,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 **Search options**
 
-The filter allows the user to select following search options:
+This filter allows the user to select the following search options:
 
 -   contains
 -   not contains
@@ -213,9 +213,9 @@ The filter allows the user to select following search options:
 -   not in
 -   member of
 
-If you don't want display all theses matching possibilities, you can
+If you don't want to display all these matching possibilities, you can
 choose just one of them. Then only the input field will be displayed.
-You can achieve it like that:
+You can achieve it like this:
 
 <details open><summary>Yaml</summary>
 
@@ -309,8 +309,8 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 </details>
 
-By configuring a filter like above you will have only an input field for
-filtering users objects that `contain` a given string in their username.
+By configuring the filter as shown above, 
+you will create an input field that filters user objects based on whether their username `contains` a given string.
 
 Boolean
 -------
@@ -611,7 +611,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 Money
 -----
 
-This filter checks if an amount is in range and in a specified currency
+This filter checks if an amount is within the specified range and is in the selected currency
 
 <details open><summary>Yaml</summary>
 
@@ -714,7 +714,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 ### *Warning*
 
-Providing different `scale` between *form_options* and *options*
+Providing different `scale` values between *form_options* and *options*
 may cause unwanted, and plausibly volatile results.
 
 Exists

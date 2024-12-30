@@ -12,7 +12,7 @@ more suitable to your grid requirements.
   | position | int    | Position of field in the grid index view.                                                           |
   | options  | array  | Array of field options (see below).                                                                 |
 
-`options` field can contains following fields:
+The `options` field can itself contain the following fields:
 
   | Name     | Type   | Description                                                                                                 | Default     |
   |----------|--------|-------------------------------------------------------------------------------------------------------------|-------------|

@@ -1,14 +1,13 @@
 Creating Your First Grid
 ========================
 
-In order to use grids, we need to register your entity as a Sylius
+In order to use grids, you need to register your entity as a Sylius
 resource. Let us assume you have a Supplier model in your application,
 which represents a supplier of goods in your shop and has several
-fields, including name, description and enabled field.
+fields, including _name_, _description_ and _enabled_.
 
-In order to make it a Sylius resource, you need to configure it under
-`sylius_resource` node. If you don’t have it yet, create a file
-`config/packages/sylius_resource.yaml`.
+In order to make it a Sylius resource, you need to configure it under the
+`sylius_resource` node. If you don’t have it yet, create a `config/packages/sylius_resource.yaml` file.
 
 ```yaml
 # config/packages/sylius_resource.yaml
@@ -20,8 +19,8 @@ sylius_resource:
                 model: App\Entity\Supplier
 ```
 
-That's it! Your class is now a resource. In order to learn what does it
-mean, please refer to the
+That's it! Your class is now a resource. In order to learn what it
+means, please refer to the
 [SyliusResourceBundle](https://github.com/Sylius/SyliusResourceBundle/blob/master/docs/index.md)
 documentation.
 
@@ -42,10 +41,9 @@ Now we can configure our first grid:
  ### **Note**
 
 Remember that a grid is *the way objects of a desired entity are
-displayed on its index view*. Therefore only fields that are useful
+displayed on its index view*. Therefore, only fields that are useful
 for identification of objects are available - only `string` and `twig`
-type. Then even though a Supplier has also a description field, it is
-not needed on index and can't be displayed here.
+types. Although a Supplier also has a _description_ field, it is not needed on the index and won't be displayed here.
 
 <details open><summary>Yaml</summary>
 
@@ -146,9 +144,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 Generating The CRUD Routing
 ---------------------------
 
-That's it. SyliusResourceBundle allows to generate a default CRUD
-interface including the grid we have just defined. Just put this in your
-routing configuration!
+The SyliusResourceBundle allows you to generate a default CRUD
+interface including the grid we have just defined. Just add this to your
+routing configuration:
 
 ```yaml
 # config/routes.yaml
@@ -207,21 +205,20 @@ app:
                     suppliers: Suppliers
 ```
 
-After that your new grid should look like that when accessing the
-`/admin/suppliers/new` path in order to create new object:
+Now, your new grid should look like this when accessing
+`/admin/suppliers/new` in order to create a new object:
 
 ![image](../.gitbook/assets/grid_new.png)
 
-And when accessing index on the */admin/suppliers/* path it should look
-like that:
+And when accessing the index on */admin/suppliers/* it should look
+like this:
 
 ![image](../.gitbook/assets/grid.png)
 
 Defining Filters
 ----------------
 
-In order to make searching for certain things in your grid you can use
-filters.
+To allow users to search for specific items in the grid, you can use filters.
 
 <details open><summary>Yaml</summary>
 
@@ -397,14 +394,13 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 
 ### *Note*
 
-The repository method has to return a queryBuilder object, since the
-query has to adjustable depending on the filters and sorting the user
-later applies.
+The repository method must return a queryBuilder object, 
+as the query needs to adjust based on the filters and sorting the user will apply later.
 
-  Furthermore, all sub entities you wish to use later for filtering
-have to be joined explicitly in the query.
+  Furthermore, all sub entities you wish to use later on for filtering
+must be joined explicitly in the query.
 
-Then you can set up your filter to accordingly:
+Then you can set up your filter accordingly:
 
 <details open><summary>Yaml</summary>
 
@@ -564,7 +560,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 
 </details>
 
-Then at the fields level, define that the field can be used for sorting:
+Then in the fields section, indicate that the field can be used for sorting:
 
 <details open><summary>Yaml</summary>
 
@@ -649,8 +645,8 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 
 </details>
 
-If your field is not of a "simple" type, f.i. a twig template with a
-specific path, you get sorting working with the following definition:
+If your field is not of a "simple" type, e.g. a twig template with a
+specific path, you can enable sorting with the following definition:
 
 <details open><summary>YAML</summary>
 
