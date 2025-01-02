@@ -1,6 +1,6 @@
 # Basic operations
 
-In previous chapter, we have created the Sylius resource. Now we need to create the basic operations.
+In the previous chapter, we have created the Sylius resource. Now, we need to create the basic operations.
 To achieve that, we reuse commands & queries we already have in the Application folder to create providers & processors.
 
 ```txt
@@ -70,7 +70,7 @@ The idea is to reuse this command to create the book in the storage for your "cr
 
 ### Create the CreateBookProcessor
 
-First we need to write the `CreateBookProcessor`.
+First, we need to add the `CreateBookProcessor` in which we're going to call our `CreateBookCommand`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Processor/CreateBookProcessor.php

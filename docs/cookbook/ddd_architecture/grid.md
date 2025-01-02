@@ -138,7 +138,7 @@ class GridPageResolver
 
 ### Create the BookGridProvider
 
-First we need to create the `BookGridProvider`.
+First, we need to create the `BookGridProvider`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php
@@ -158,6 +158,7 @@ use Pagerfanta\PagerfantaInterface;
 use Sylius\Component\Grid\Data\DataProviderInterface;
 use Sylius\Component\Grid\Definition\Grid;
 use Sylius\Component\Grid\Parameters;
+use Webmozart\Assert\Assert;
 
 final readonly class BookGridProvider implements DataProviderInterface
 {
@@ -177,15 +178,18 @@ final readonly class BookGridProvider implements DataProviderInterface
         foreach ($models as $model) {
             $data[] = BookResource::fromModel($model);
         }
+        
+        $paginator = $models->paginator();
+        Assert::notNull($paginator);
 
-        return new Pagerfanta(new FixedAdapter(count($models), $data));
+        return new Pagerfanta(new FixedAdapter($paginator->getTotalItems(), $data));
     }
 }
 ```
 
 ### Create the BookGrid
 
-We also need to create the `BookGrid`.
+Now, we need to create the `BookGrid`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Grid/BookGrid.php
@@ -252,7 +256,7 @@ final class BookGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 ### Add the grid on the Book Resource
 
-And then we create the "update" operation on our BookResource.
+Now that we have a grid, let's add it to the "index" operation on our `BookResource`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
@@ -283,7 +287,7 @@ final class BookResource implements ResourceInterface
 
 ### Create the Author filter type
 
-First, we need to create a Symfony form type for our custom author filter.
+Let's imagine we want to be able to filter books by their author within our grid. First, we need to create a Symfony form type for our custom author filter.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Grid/Filter/AuthorFilterType.php
@@ -322,7 +326,7 @@ final class AuthorFilterType extends AbstractType
     private function getChoices(): array
     {
         // We do not have any findAuthorsQuery
-        // Authors are stored on the Book resource
+        // Authors are stored in the Book resource
         $models = $this->queryBus->ask(new FindBooksQuery());
 
         $choices = [];
@@ -384,7 +388,7 @@ final readonly class BookGridProvider implements DataProviderInterface
     public function getData(Grid $grid, Parameters $parameters): PagerfantaInterface
     {
         /** @var array<string, string> $criteria */
-        $criteria = $parameters->get('criteria', []); // Getting the criteria on query params
+        $criteria = $parameters->get('criteria', []); // Getting the criteria from query params
 
         $models = $this->queryBus->ask(new FindBooksQuery(
             author: !empty($criteria['author'] ?? null) ? new Author($criteria['author']) : null,
