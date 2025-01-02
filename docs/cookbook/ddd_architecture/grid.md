@@ -138,7 +138,7 @@ class GridPageResolver
 
 ### Create the BookGridProvider
 
-First we need to write the `BookGridProvider`.
+First we need to create the `BookGridProvider`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php
@@ -259,7 +259,10 @@ And then we create the "update" operation on our BookResource.
 
 // ...
 use App\BookStore\Infrastructure\Sylius\Grid\BookGrid;
+use App\BookStore\Infrastructure\Symfony\Form\BookResourceType;
+use Sylius\Resource\Metadata\AsResource;
 use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Model\ResourceInterface;
 // ...
 
 #[AsResource(
@@ -392,7 +395,4 @@ final readonly class BookGridProvider implements DataProviderInterface
         // ...
     }
 }
-
 ```
-
-

@@ -138,6 +138,7 @@ And then we create the "update" operation on our BookResource.
 use App\BookStore\Infrastructure\Sylius\State\Processor\CreateBookProcessor;
 use App\BookStore\Infrastructure\Symfony\Form\BookResourceType;
 use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Model\ResourceInterface;
 // ...
 
 #[AsResource(
@@ -160,7 +161,7 @@ final class BookResource implements ResourceInterface
 
 <div data-full-width="false">
 
-<figure><img src="../../.gitbook/assets/update_book_resource.png" alt="Create book resource"></figure>
+<figure><img src="../../.gitbook/assets/update_book_resource.png" alt="Update book resource"></figure>
 
 </div>
 
@@ -199,7 +200,7 @@ final readonly class UpdateBookCommand implements CommandInterface
 }
 ```
 
-In the same folder, we also have this existing FindBookQuery:
+In the same folder, we also have this existing `FindBookQuery`:
 
 ```php
 // src/BookStore/Application/Query/FindBookQuery.php
@@ -228,7 +229,7 @@ The idea is to reuse these query and command to update the book in the storage f
 
 ### Create the BookItemProvider
 
-First we need to write the `BookItemProvider`.
+First, we need to create the `BookItemProvider`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Provider/BookItemProvider.php
@@ -274,7 +275,7 @@ final readonly class BookItemProvider implements ProviderInterface
 
 ### Create the UpdateBookProcessor
 
-We also need to write the `UpdateBookProcessor`.
+We also need to create the `UpdateBookProcessor`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Processor/UpdateBookProcessor.php
@@ -393,7 +394,7 @@ final readonly class DeleteBookCommand implements CommandInterface
 
 ### Create the DeleteBookProcessor
 
-We need to write the `DeleteBookProcessor`.
+We need to create the `DeleteBookProcessor`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Processor/DeleteBookProcessor.php
