@@ -10,6 +10,7 @@
   * [Customizing the logo](cookbook/admin_panel/logo.md)
   * [Customizing the menu](cookbook/admin_panel/menu.md)
   * [Configuring the security access](cookbook/admin_panel/security.md)
+  * [Customizing the page titles](cookbook/admin_panel/page_titles.md)
 * [How to use in a DDD architecture](cookbook/ddd_architecture.md)
   * [Architecture overview](cookbook/ddd_architecture/overview.md)
   * [Resource configuration](cookbook/ddd_architecture/resource_configuration.md)
