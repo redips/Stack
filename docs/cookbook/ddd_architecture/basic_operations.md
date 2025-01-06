@@ -129,7 +129,7 @@ final readonly class CreateBookProcessor implements ProcessorInterface
 
 ### Adding the processor on the Book Resource
 
-And then we create the "update" operation on our BookResource.
+Then, we add the `Create` operation on our `BookResource`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
@@ -165,7 +165,7 @@ final class BookResource implements ResourceInterface
 
 </div>
 
-In the Application folder, we already have this `UpdateBookCommand`:
+Now, we want to be able to edit an existing book. In the Application folder, we already have this `UpdateBookCommand`:
 
 ```php
 // src/Bookstore/Application/Command/UpdateBookCommand.php
@@ -229,7 +229,7 @@ The idea is to reuse these query and command to update the book in the storage f
 
 ### Create the BookItemProvider
 
-First, we need to create the `BookItemProvider`.
+First, we need to create the `BookItemProvider` in order to fetch the right book.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Provider/BookItemProvider.php
@@ -275,7 +275,7 @@ final readonly class BookItemProvider implements ProviderInterface
 
 ### Create the UpdateBookProcessor
 
-We also need to create the `UpdateBookProcessor`.
+We also need to create the `UpdateBookProcessor` where we're going to call our `UpdateBookCommand`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/State/Processor/UpdateBookProcessor.php
@@ -330,7 +330,7 @@ final readonly class UpdateBookProcessor implements ProcessorInterface
 
 ### Adding the provider & processor on the Book Resource
 
-And then we create the "update" operation on the BookResource.
+Now, we add the "update" operation on the `BookResource`.
 
 ```php
 // src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
@@ -350,7 +350,7 @@ use Sylius\Resource\Metadata\Update;
         new Update(
             provider: BookItemProvider::class, // the provider we have just created
             processor: UpdateBookProcessor::class, // the processor we have just created
-            // formType: CreateBookResourceType::class, // Optional: define a specific form type only for the "update" operation
+            // formType: UpdateBookResourceType::class, // Optional: define a specific form type only for the "update" operation
         ),
     ],
 )]
@@ -368,7 +368,7 @@ final class BookResource implements ResourceInterface
 
 </div>
 
-In the Application folder, we already have this `DeleteBookCommand`:
+Now that we can update an existing book, we also want to be able to delete it. In the Application folder, we already have this `DeleteBookCommand`:
 
 ```php
 // src/BookStore/Application/Command/DeleteBookCommand.php
