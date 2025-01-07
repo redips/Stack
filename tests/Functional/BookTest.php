@@ -46,10 +46,9 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Show Book');
+        self::assertSelectorTextContains('h1.page-title', 'Shinning');
 
         // Validate page body
-        self::assertSelectorTextContains('[data-test-title]', 'Shinning');
         self::assertSelectorTextContains('[data-test-author-name]', 'Stephen King');
     }
 
