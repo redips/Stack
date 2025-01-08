@@ -17,6 +17,12 @@ sylius_twig_hooks:
             description:
                 template: 'book/index/content/header/description.html.twig'
 
+        'sylius_admin.book.show.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    title: '@=_context.book.getTitle()'
+
         'sylius_admin.talk.create.content':
             form:
                 component: 'App\Twig\Component\TalkFormComponent'

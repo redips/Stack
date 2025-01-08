@@ -48,8 +48,8 @@ final class FrenchTranslatedUiTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Afficher Livre');
+        // Validate Body
+        self::assertSelectorTextContains('[data-test-author-name] strong', 'Auteur');
     }
 
     public function testBrowsingItems(): void
