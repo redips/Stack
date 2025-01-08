@@ -23,6 +23,13 @@ final class DefaultBooksStory extends Story
         BookFactory::new()
             ->withTitle('1984')
             ->withAuthorName('George Orwell')
+            ->create()
+        ;
+
+        BookFactory::new()
+            ->withTitle('Lord of the Flies')
+            ->withAuthorName('William Golding')
+            ->create()
         ;
 
         BookFactory::createMany(20);
