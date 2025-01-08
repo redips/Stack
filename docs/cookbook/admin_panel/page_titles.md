@@ -28,12 +28,35 @@ We're going to reuse this hook and its template in our config file and add a `he
 sylius_twig_hooks:
     hooks:
         # ...
-        'sylius_admin.speaker.index.content.header.title_block':
+        'sylius_admin.speaker.index.content.header.title_block': # The speaker index title block
             title:
                 template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
                 configuration:
                     title: app.ui.browsing_speakers # here is our title override 
 ```
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/show_book_title.png" alt="Show book title"></figure>
+
+</div>
+
+Note that you can also use [Symfony Expression Language](https://symfony.com/doc/current/components/expression_language.html) in the configuration key for dynamic titles:
+
+```yaml
+# config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        'sylius_admin.book.show.content.header.title_block': # The show page title block
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    title: '@=_context.book.getTitle()' # Use the current book title
+```
+
+`@=_context` contains all the current Twig vars.
 
 ## Adding an icon
 
