@@ -1,10 +1,10 @@
 # Composable Layouts with a predictable structure
 
 {% hint style="info" %}
-All examples in this chapter assumes you are familiar with the [autoprefixing-feature.md](autoprefixing-feature.md "mention").&#x20;
+All examples in this chapter assume you are familiar with the [autoprefixing-feature.md](autoprefixing-feature.md "mention").&#x20;
 {% endhint %}
 
-Before we dive **how** to create composable layouts with `Twig Hooks`, let's first understand **what** the `composable` part means.
+Before we dive into **how** to create composable layouts with `Twig Hooks`, let's first understand **what** the `composable` part means.
 
 >
 >
@@ -20,7 +20,7 @@ So, to achieve composability we need building blocks from which we will build ou
 * Twig Component
 * Live Component
 
-As mentioned in previous chapters, hookables can also define their own hooks, so we are able to create more complex building blocks like the header section consisted of a title and some action buttons.&#x20;
+As mentioned in previous chapters, hookables can also define their own hooks, so we are able to create more complex building blocks like the header section which consisted of a title and some action buttons.&#x20;
 
 To fully utilize this functionality, make sure:
 
@@ -29,19 +29,20 @@ To fully utilize this functionality, make sure:
 
 ### Predictable structure
 
-The idea behind the `Predictable structure` is to organize your hookables (your Twig templates) to make it easier to guess hooks names they are rendered in, and to find them based on a given hook name. So we want to limit the number of places we are looking for a template we want to edit or check.
+The idea behind the `Predictable structure` is to organize your hookables (your Twig templates) to make it easier to guess the hooks names with which they are rendered, and to be able to find them based on a given hook name.
+This approach aims to reduce the need to browse through multiple folders when trying to locate a template we want to edit or check.
 
 {% hint style="info" %}
-When we define a hook in a template which is not a hookable (e.g., it is rendered by a controller) we call such a hook a **primal hook**. For primal hooks we always need to define a full hook name (as [autoprefixing-feature.md](autoprefixing-feature.md "mention")does not work in this case) and a context we want to pass to hookables.
+When we define a hook in a template which is not a hookable (e.g., it is rendered by a controller) we call such a hook a **primal hook**. For primal hooks we always need to define a full hook name (as the [autoprefixing-feature.md](autoprefixing-feature.md "mention") does not work in this case) and a context we want to pass to hookables.
 
-The opposite to **primal hookable** is **subsequent hook**. So it means, a given template is a hookable and defines new hook (or hooks).
+The opposite of **primal hookable** is **subsequent hook**. This means that a given template is a hookable and defines a new hook (or hooks).
 {% endhint %}
 
 The main rule for predictable structure is:
 
 > Given a template defines a hook, all its hookables should live in a directory with the same name as the template.
 
-So, if `templates/course/create.html.twig` define a hook, all its direct hookables should live in the `templates/course/create/` directory (e.g., `templates/course/create/form.html.twig`).&#x20;
+So, if `templates/course/create.html.twig` defines a hook, all its direct hookables should live in the `templates/course/create/` directory (e.g., `templates/course/create/form.html.twig`).&#x20;
 
 #### Example
 
@@ -55,10 +56,11 @@ we can tell that:
 * `header.html.twig` has one direct hookable (`title` )
 * `form.html.twig` has five direct hookables (`create` , `max_number_of_students`, `name`, `price`, `start_date`)
 
-Moreover, assuming the `create.html.twig` defines a `app.course.create` primal hook, we can tell that the `form.html.twig` defines a `app.course.create.form` subsequent hook and the `header.html.twig` defines a `app.course.create.header` subsequent hook.
+Moreover, assuming `create.html.twig` defines an `app.course.create` primal hook, we can tell that the `form.html.twig` defines an `app.course.create.form` subsequent hook and `header.html.twig` defines a `app.course.create.header` subsequent hook.
 
 {% hint style="info" %}
-`app.course.create` can by any name, as there is no convention enforcement for primal hooks. However, in this example we assume that every hook is prefixes with the `app` and the rest of the hook name is related to the template path.
+`app.course.create` can be any name, as there is no convention enforcement for primal hooks. However, in this example we assume that every hook is prefixed with `app` and the rest of the hook name is related to the template path.
 
-In case of defining hooks in bundles, it is recommended to use the configuration key as a prefix. So for `@SyliusAdmin/product/create/html.twig` we get the `sylius_admin.product.create` as the `SyliusAdminBundle` uses the `sylius_admin` as a configuration key.
+When defining hooks inside bundles, it is recommended to use a configuration key as a prefix.
+For instance, for `@SyliusAdmin/product/create/html.twig` we get `sylius_admin.product.create` as `SyliusAdminBundle` uses `sylius_admin` as a configuration key.
 {% endhint %}
