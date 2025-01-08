@@ -12,12 +12,15 @@ app:
         conference: Conference
         conferences: Conferences
         configuration: Configuration
+        edit_conference: Edit conference
         ends_at: Ends at
         first_name: First name
         last_name: Last name
         library: Library
+        managing_your_conferences: Managing your conferences
         managing_your_speakers: Managing your speakers
         name: Name
+        new_conference: New conference
         past_event: Past event
         show_talks: Show talks
         speaker: Speaker

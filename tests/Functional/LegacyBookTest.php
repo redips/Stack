@@ -33,7 +33,7 @@ final class LegacyBookTest extends WebTestCase
     public function testBrowsingBooks(): void
     {
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create()
         ;
@@ -59,7 +59,7 @@ final class LegacyBookTest extends WebTestCase
     public function testEditingBookContent(): void
     {
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 

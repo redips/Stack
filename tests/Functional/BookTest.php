@@ -36,7 +36,7 @@ final class BookTest extends WebTestCase
     public function testShowingBook(): void
     {
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create()
         ;
@@ -46,7 +46,9 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('[data-test-page-title]', 'Shinning');
+        self::assertSelectorTextContains('[data-test-page-title]', 'The Shining');
+        self::assertSelectorTextContains('[data-test-subheader]', 'Stephen King');
+        self::assertSelectorExists('[data-test-icon="tabler:book"]');
 
         // Validate page body
         self::assertSelectorTextContains('[data-test-author-name]', 'Stephen King');
@@ -55,7 +57,7 @@ final class BookTest extends WebTestCase
     public function testBrowsingBooks(): void
     {
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create()
         ;
@@ -89,7 +91,7 @@ final class BookTest extends WebTestCase
         self::assertSelectorExists('tr.item:first-child [data-bs-title=Edit]');
         self::assertSelectorExists('tr.item:first-child [data-bs-title=Delete]');
 
-        self::assertSelectorTextContains('tr.item:last-child', 'Shinning');
+        self::assertSelectorTextContains('tr.item:last-child', 'The Shining');
         self::assertSelectorTextContains('tr.item:last-child', 'Stephen King');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Show]');
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Edit]');
@@ -99,7 +101,7 @@ final class BookTest extends WebTestCase
     public function testSortingBooks(): void
     {
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -116,14 +118,14 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate it's sorted by title desc
-        self::assertSelectorTextContains('tr.item:first-child', 'Shinning');
+        self::assertSelectorTextContains('tr.item:first-child', 'The Shining');
         self::assertSelectorTextContains('tr.item:last-child', 'Carrie');
     }
 
     public function testFilteringBooks(): void
     {
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -135,13 +137,13 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', '/admin/books');
 
         $this->client->submitForm(button: 'Filter', fieldValues: [
-            'criteria[search][value]' => 'Shinn',
+            'criteria[search][value]' => 'Shin',
         ], method: 'GET');
 
         self::assertResponseIsSuccessful();
 
         self::assertSelectorCount(1, 'tr.item');
-        self::assertSelectorTextContains('tr.item:first-child', 'Shinning');
+        self::assertSelectorTextContains('tr.item:first-child', 'The Shining');
     }
 
     public function testAddingBookContent(): void
@@ -159,7 +161,7 @@ final class BookTest extends WebTestCase
         $this->client->request('GET', '/admin/books/new');
 
         $this->client->submitForm('Create', [
-            'sylius_resource[title]' => 'Shinning',
+            'sylius_resource[title]' => 'The Shining',
             'sylius_resource[authorName]' => 'Stephen King',
         ]);
 
@@ -171,9 +173,9 @@ final class BookTest extends WebTestCase
         self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Book has been successfully created.');
 
         /** @var Proxy<Book> $book */
-        $book = BookFactory::find(['title' => 'Shinning']);
+        $book = BookFactory::find(['title' => 'The Shining']);
 
-        self::assertSame('Shinning', $book->getTitle());
+        self::assertSame('The Shining', $book->getTitle());
         self::assertSame('Stephen King', $book->getAuthorName());
     }
 
@@ -195,7 +197,7 @@ final class BookTest extends WebTestCase
     public function testEditingBookContent(): void
     {
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -203,14 +205,14 @@ final class BookTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        self::assertInputValueSame('sylius_resource[title]', 'Shinning');
+        self::assertInputValueSame('sylius_resource[title]', 'The Shining');
         self::assertInputValueSame('sylius_resource[authorName]', 'Stephen King');
     }
 
     public function testEditingBook(): void
     {
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -238,7 +240,7 @@ final class BookTest extends WebTestCase
     public function testValidationErrorsWhenEditingBook(): void
     {
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -258,7 +260,7 @@ final class BookTest extends WebTestCase
     public function testRemovingBook(): void
     {
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 

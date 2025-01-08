@@ -12,11 +12,15 @@ app:
         conference: Conférence
         conferences: Conférences
         configuration: Configuration
+        edit_conference: Modifier la conférence
         ends_at: Termine à
         first_name: Prénom
         last_name: Nom de famille
         library: Bibliothèque
+        managing_your_conferences: Gérer vos conférences
+        managing_your_speakers: Gérer vos conférencier-e-s
         name: Nom
+        new_conference: Nouvelle conférence
         past_event: Evènement passé
         show_talks: Affiche les talks
         speaker: Conférencier

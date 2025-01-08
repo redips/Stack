@@ -19,9 +19,27 @@ sylius_twig_hooks:
 
         'sylius_admin.book.show.content.header.title_block':
             title:
-                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                template: '@SyliusBootstrapAdminUi/shared/crud/show/content/header/title_block/title.html.twig'
                 configuration:
                     title: '@=_context.book.getTitle()'
+                    icon: 'tabler:book'
+                    subheader: '@=_context.book.getAuthorName()'
+
+        'sylius_admin.conference.create.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/create/content/header/title_block/title.html.twig'
+                configuration:
+                    title: 'app.ui.new_conference'
+                    icon: 'tabler:plus'
+                    subheader: app.ui.managing_your_conferences
+
+        'sylius_admin.conference.update.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/update/content/header/title_block/title.html.twig'
+                configuration:
+                    title: app.ui.edit_conference
+                    icon: 'tabler:pencil'
+                    subheader: app.ui.managing_your_conferences
 
         'sylius_admin.talk.create.content':
             form:

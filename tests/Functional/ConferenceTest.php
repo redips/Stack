@@ -75,6 +75,16 @@ final class ConferenceTest extends WebTestCase
         self::assertSelectorExists('tr.item:last-child [data-bs-title=Delete]');
     }
 
+    public function testAddingConferenceContent(): void
+    {
+        $this->client->request('GET', '/admin/conferences/new');
+
+        // Test header
+        self::assertSelectorTextContains('[data-test-page-title]', 'New conference');
+        self::assertSelectorExists('[data-test-icon="tabler:plus"]');
+        self::assertSelectorTextContains('[data-test-subheader]', 'Managing your conferences');
+    }
+
     public function testAddingConference(): void
     {
         $this->client->request('GET', '/admin/conferences/new');
@@ -97,6 +107,20 @@ final class ConferenceTest extends WebTestCase
         self::assertSame('SyliusCon 2024', $conference->getName());
         self::assertSame('2024-11-13 09:00', $conference->getStartsAt()?->format('Y-m-d H:i'));
         self::assertSame('2024-11-13 18:00', $conference->getEndsAt()?->format('Y-m-d H:i'));
+    }
+
+    public function testEditingConferenceContent(): void
+    {
+        $conference = ConferenceFactory::new()
+            ->withName('SyliusCon 2023')
+            ->create();
+
+        $this->client->request('GET', sprintf('/admin/conferences/%s/edit', $conference->getId()));
+
+        // Test header
+        self::assertSelectorTextContains('[data-test-page-title]', 'Edit conference');
+        self::assertSelectorExists('[data-test-icon="tabler:pencil"]');
+        self::assertSelectorTextContains('[data-test-subheader]', 'Managing your conferences');
     }
 
     public function testEditingConference(): void
