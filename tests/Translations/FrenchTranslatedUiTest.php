@@ -6,6 +6,7 @@ namespace MainTests\Sylius\Translations;
 
 use App\Entity\Book;
 use App\Factory\BookFactory;
+use App\Factory\ConferenceFactory;
 use App\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -39,7 +40,7 @@ final class FrenchTranslatedUiTest extends WebTestCase
         $this->markTestSkippedIfNecessary('fr');
 
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create()
         ;
@@ -57,7 +58,7 @@ final class FrenchTranslatedUiTest extends WebTestCase
         $this->markTestSkippedIfNecessary('fr');
 
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create()
         ;
@@ -81,23 +82,34 @@ final class FrenchTranslatedUiTest extends WebTestCase
         self::assertSelectorTextContains('.sylius-table-column-actions', 'Actions');
     }
 
+    public function testAddingNewItemContent(): void
+    {
+        $this->markTestSkippedIfNecessary('fr');
+
+        $this->client->request('GET', '/admin/conferences/new');
+
+        // Test title
+        self::assertSelectorTextContains('[data-test-page-title]', 'Nouvelle conférence');
+    }
+
     public function testAddingNewItem(): void
     {
         $this->markTestSkippedIfNecessary('fr');
 
-        $this->client->request('GET', '/admin/books/new');
+        $this->client->request('GET', '/admin/conferences/new');
 
         $this->client->submitForm('Créer', [
-            'sylius_resource[title]' => 'Shinning',
-            'sylius_resource[authorName]' => 'Stephen King',
+            'conference[name]' => 'Sylius Con 2024',
+            'conference[startsAt]' => '2024-11-13 10:00:00',
+            'conference[endsAt]' => '2024-11-13 17:00:00',
         ]);
 
         self::assertResponseRedirects(expectedCode: Response::HTTP_FOUND);
 
-        $this->client->request('GET', '/admin/books');
+        $this->client->request('GET', '/admin/conferences');
 
         // Test flash message
-        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'Book a bien été créé.');
+        self::assertSelectorTextContains('[data-test-sylius-flash-message]', 'La conférence a bien été créée.');
     }
 
     public function testValidationErrorsWhenAddingNewItem(): void
@@ -117,12 +129,25 @@ final class FrenchTranslatedUiTest extends WebTestCase
         self::assertSelectorTextContains('#sylius_resource_authorName + .invalid-feedback', 'Cette valeur ne doit pas être vide.');
     }
 
+    public function testEditingItemContent(): void
+    {
+        $this->markTestSkippedIfNecessary('fr');
+
+        $conference = ConferenceFactory::createOne();
+
+        $this->client->request('GET', sprintf('/admin/conferences/%s/edit', $conference->getId()));
+
+        // Test title
+        self::assertSelectorTextContains('[data-test-page-title]', 'Modifier la conférence');
+        self::assertSelectorTextContains('[data-test-subheader]', 'Gérer vos conférences');
+    }
+
     public function testEditingItem(): void
     {
         $this->markTestSkippedIfNecessary('fr');
 
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -152,7 +177,7 @@ final class FrenchTranslatedUiTest extends WebTestCase
         $this->markTestSkippedIfNecessary('fr');
 
         $book = BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
@@ -174,7 +199,7 @@ final class FrenchTranslatedUiTest extends WebTestCase
         $this->markTestSkippedIfNecessary('fr');
 
         BookFactory::new()
-            ->withTitle('Shinning')
+            ->withTitle('The Shining')
             ->withAuthorName('Stephen King')
             ->create();
 
