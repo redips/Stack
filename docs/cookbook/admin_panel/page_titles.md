@@ -1,5 +1,40 @@
 # Customizing the page titles
 
+## Changing the default title for a specific page
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/browsing_speakers.png" alt="Title changed to Browsing speakers"></figure>
+
+</div>
+
+By default, each page has a default title based on both page location and resource name.
+If you're not happy with the preset title for a specific page and would like to customize it, 
+you can easily change it using Twig Hooks.
+
+Search for "title_block" in the call graph of the Symfony debug profiler in the `Twig Hooks` section.
+
+<div data-full-width="false">
+
+<figure><img src="../../.gitbook/assets/title_block_in_profiler.png" alt="Title block in profiler"></figure>
+
+</div>
+
+We're going to reuse this hook and its template in our config file and add a `header` key:
+
+```yaml
+# config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        'sylius_admin.speaker.index.content.header.title_block':
+            title:
+                template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    title: app.ui.browsing_speakers # here is our title override 
+```
+
 ## Adding an icon
 
 <div data-full-width="false">
@@ -10,7 +45,8 @@
 
 To add an icon to the page title, you need to use Twig hooks configuration.
 
-Search the "title_block" in the Symfony debug profiler at the Twig hooks section.
+Search for "title_block" in the call graph of the Symfony debug profiler in the `Twig Hooks` section. 
+We're going to reuse this hook and its template in our config file.
 
 <div data-full-width="false">
 
@@ -79,5 +115,5 @@ sylius_twig_hooks:
                 # We need to reuse the same template as 'sylius_admin.common.index.content.header.title_block'
                 template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
                 configuration:
-                    subheader: app.ui.managing_your_speakers # you also need add this key on your translations.
+                    subheader: app.ui.managing_your_speakers # you also need to add this key to your translations
 ```

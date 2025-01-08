@@ -35,6 +35,6 @@ final class DashboardTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        self::assertSelectorTextContains('h1.page-title', 'Dashboard');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Dashboard');
     }
 }

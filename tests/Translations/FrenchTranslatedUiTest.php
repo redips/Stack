@@ -73,7 +73,7 @@ final class FrenchTranslatedUiTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Livres');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Livres');
 
         // Validate Table header
         self::assertSelectorTextContains('.sylius-table-column-title', 'Titre');

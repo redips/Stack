@@ -46,7 +46,7 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Shinning');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Shinning');
 
         // Validate page body
         self::assertSelectorTextContains('[data-test-author-name]', 'Stephen King');
@@ -71,7 +71,7 @@ final class BookTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Books');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Books');
         self::assertSelectorExists('a:contains("Create")');
 
         // Validate Custom Twig Hooks
