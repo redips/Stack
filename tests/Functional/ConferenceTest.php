@@ -52,7 +52,7 @@ final class ConferenceTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Conferences');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Conferences');
         self::assertSelectorExists('a:contains("Create")');
 
         // Validate Table header

@@ -57,7 +57,7 @@ final class TalkTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Talks');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Talks');
         self::assertSelectorExists('a:contains("Create")');
 
         // Validate Table header

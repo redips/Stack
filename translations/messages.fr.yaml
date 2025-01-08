@@ -7,6 +7,7 @@ app:
         biz: Biz
         book: Livre
         books: Livres
+        browsing_speakers: Parcourir les Conférencier-e-s
         company_name: Société
         conference: Conférence
         conferences: Conférences

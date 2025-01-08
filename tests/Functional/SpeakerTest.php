@@ -50,7 +50,9 @@ final class SpeakerTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         // Validate Header
-        self::assertSelectorTextContains('h1.page-title', 'Speakers');
+        self::assertSelectorTextContains('[data-test-page-title]', 'Browsing speakers');
+        self::assertSelectorExists('[data-test-icon="tabler:users"]');
+        self::assertSelectorTextContains('[data-test-subheader]', 'Managing your speakers');
         self::assertSelectorExists('a:contains("Create")');
 
         // Validate Table header
