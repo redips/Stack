@@ -18,11 +18,15 @@ sylius:
         delete: Delete
         details: Details
         edit: Edit
+        empty: 'Empty'
+        equal: 'Equal'
+        ends_with: 'Ends with'
         error: Error
         filter: Filter
         filters: Filters
         from: From
         hello: Hello
+        in: 'In'
         info: Info
         login: Login
         login_to_your_account: 'Login to your account'
@@ -31,12 +35,17 @@ sylius:
         no_label: No
         no_results: No results found
         no_results_adjust_your_search: 'Adjust your search and try again.'
+        not_contains: 'Not contains'
+        not_empty: 'Not empty'
+        not_equal: 'Not equal'
+        not_in: 'Not in'
         pagination:
             number_of_results: 'Showing %from% to %to% of %total% entries'
         reset: Reset
         search: Search
         search_menu: 'Search menu'
         show: Show
+        starts_with: 'Starts with'
         success: Success
         this_form_contains_errors: 'This form contains errors.'
         to: To
