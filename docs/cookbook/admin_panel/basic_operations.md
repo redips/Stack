@@ -264,42 +264,51 @@ Your route should look like this:
   app_admin_book_show           /admin/books/{id}              
 ```
 
+Now we need to configure the templates.
+
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
         # ...
-        # This will replace the default title (optional)
-        'sylius_admin.book.show.content.header.title_block':
-            title:
-                # template: '@SyliusBootstrapAdminUi/shared/crud/show/content/header/title_block/title.html.twig'
-                template: 'book/show/content/header/title_block/title.html.twig'
         # This will create the body block
         'sylius_admin.book.show.content':
             body:
-                template: 'book/show/content/body.html.twig'                
+                template: 'book/show/content/body.html.twig'
 
 ```
+{% endcode %}
+{% endtab %}
 
-```twig
-{% raw %}
-{# templates/book/show/content/header/title_block/title.html.twig #}
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+declare(strict_types=1);
 
-{% import '@SyliusBootstrapAdminUi/shared/helper/header.html.twig' as header %}
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-{% set book = hookable_metadata.context.book %}
-
-<div class="col-12 col-md-6">
-    <div class="d-md-flex gap-2 align-items-center">
-        {{ header.h1(book.title) }}
-    </div>
-    <div class="d-md-flex gap-2 align-items-center mt-2">
-        <h2 class="subheader">{{ book.authorName }}</h2>
-    </div>
-</div>
-{% endraw %}
+return static function (ContainerConfigurator $container): void {
+    $container->extension('sylius_twig_hooks', [
+        'hooks' => [
+            // ...
+            // This will create the body block
+            'sylius_admin.book.show.content' => [
+                'body' => [
+                    'template' => 'book/show/content/body.html.twig',
+                ],
+            ],
+        ],
+    ]);
+};
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ```twig
 {% raw %}
@@ -318,4 +327,9 @@ sylius_twig_hooks:
         </div>
     </div>
 </div>
+{% endraw %}
 ```
+
+{% hint style="info" %}
+Note that you can also [replace the default title](page_titles.md).
+{% endhint %}

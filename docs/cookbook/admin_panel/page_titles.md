@@ -22,6 +22,9 @@ Search for "title_block" in the call graph of the Symfony debug profiler in the 
 
 We're going to reuse this hook and its template in our config file and add a `header` key:
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -32,8 +35,37 @@ sylius_twig_hooks:
             title:
                 template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
                 configuration:
-                    title: app.ui.browsing_speakers # here is our title override 
+                    title: app.ui.browsing_speakers # here is our title override
 ```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            // The speaker index title block
+            'sylius_admin.speaker.index.content.header.title_block' => [
+                'title' => [
+                    'template' => '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig',
+                    'configuration' => [
+                        'title' => 'app.ui.browsing_speakers' // here is our title override 
+                    ],
+                ],
+            ],
+        ],        
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 <div data-full-width="false">
 
@@ -43,6 +75,9 @@ sylius_twig_hooks:
 
 Note that you can also use [Symfony Expression Language](https://symfony.com/doc/current/components/expression_language.html) in the configuration key for dynamic titles:
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -55,6 +90,35 @@ sylius_twig_hooks:
                 configuration:
                     title: '@=_context.book.getTitle()' # Use the current book title
 ```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            // The show page title block
+            'sylius_admin.book.show.content.header.title_block' => [
+                'title' => [
+                    'template' => '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig',
+                    'configuration' => [
+                        'title' => '@=_context.book.getTitle()' // Use the current book title
+                    ],
+                ],
+            ],
+        ],        
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 `@=_context` contains all the current Twig vars.
 
@@ -79,6 +143,9 @@ We're going to reuse this hook and its template in our config file.
 
 Here's an example to define a "users" icon on a speaker list.
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -90,8 +157,37 @@ sylius_twig_hooks:
                 # We need to reuse the same template as 'sylius_admin.common.index.content.header.title_block'
                 template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
                 configuration:
-                    icon: tabler:users # you can use any icon from Symfony UX icons.
+                    icon: tabler:users # You can use any icon from Symfony UX icons.
 ```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            'sylius_admin.speaker.index.content.header.title_block' => [
+                'title' => [
+                    // # We need to reuse the same template as 'sylius_admin.common.index.content.header.title_block'
+                    'template' => '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig',
+                    'configuration' => [
+                        'icon' => 'tabler:users' // You can use any icon from Symfony UX icons.
+                    ],
+                ],
+            ],
+        ],        
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 You can also define a default icon for every "index" pages.
 
@@ -101,6 +197,9 @@ You can also define a default icon for every "index" pages.
 
 </div>
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -112,6 +211,33 @@ sylius_twig_hooks:
                 configuration:
                     icon: tabler:list-details
 ```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            'sylius_admin.common.index.content.header.title_block' => [
+                'title' => [
+                    'configuration' => [
+                        'icon' => 'list-details'
+                    ],
+                ],
+            ],
+        ],        
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ## Adding a subheader
 
@@ -127,6 +253,9 @@ See the [previous section](#adding-an-icon) to see how to search for the title b
 
 Here's an example to define a subheader on a speaker list.
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -138,5 +267,34 @@ sylius_twig_hooks:
                 # We need to reuse the same template as 'sylius_admin.common.index.content.header.title_block'
                 template: '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig'
                 configuration:
-                    subheader: app.ui.managing_your_speakers # you also need to add this key to your translations
+                    subheader: app.ui.managing_your_speakers # You also need to add this key to your translations.
 ```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            'sylius_admin.speaker.index.content.header.title_block' => [
+                'title' => [
+                    // We need to reuse the same template as 'sylius_admin.common.index.content.header.title_block'
+                    'template' => '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig',
+                    'configuration' => [
+                        'subheader' => 'app.ui.managing_your_speakers' // You also need to add this key to your translations.
+                    ],
+                ],
+            ],
+        ],        
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}

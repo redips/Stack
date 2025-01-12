@@ -5,6 +5,9 @@
 To customize the sidebar logo, you need to set new logo template at `sylius_admin.common.component.sidebar.logo` twig hook.
 Choose the YAML or the PHP version.
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -17,7 +20,11 @@ sylius_twig_hooks:
                 template: 'shared/crud/common/sidebar/logo/image.html.twig'
 
 ```
+{% endcode %}
+{% endtab %}
 
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 // config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -38,8 +45,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         
     ]);
 };
-
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ```twig
 {% raw %}
@@ -55,6 +64,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 To customize the login page logo,you need to set new logo template at `sylius_admin.security.login.logo` twig hook.
 Choose the YAML or the PHP version.
 
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
@@ -65,9 +77,12 @@ sylius_twig_hooks:
             image:
                 # template: '@SyliusBootstrapAdminUi/security/common/logo/image.html.twig'
                 template: 'security/common/logo/image.html.twig'
-
 ```
+{% endcode %}
+{% endtab %}
 
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 // config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -88,6 +103,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 };
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ```twig
 {% raw %}
