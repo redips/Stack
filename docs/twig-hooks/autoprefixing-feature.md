@@ -16,7 +16,7 @@ When you are creating a bundle, or a bigger project like [Sylius](https://sylius
 Enabling the autoprefixing feature might improve your developer experience. This feature is crucial for creating [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention").
 
 {% hint style="info" %}
-If you did not read the [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention")section we encourage you to do it before you read more about the autoprefixing feature.&#x20;
+If you did not read the [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention") section we encourage you to do it before you read more about the autoprefixing feature.&#x20;
 {% endhint %}
 
 The mechanism of autoprefixing is pretty simple. We check if there are any prefixes, then we iterate over them and prepend the hook name with a given prefix.
