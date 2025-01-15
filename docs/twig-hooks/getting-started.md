@@ -29,13 +29,9 @@ Once Twig Hooks is installed, you can open **any** Twig file and define your fir
 
 {% code title="some.html.twig" %}
 ```twig
-{# ... #}
-
 {% raw %}
 {% hook 'my_first_hook' %}
 {% endraw %}
-
-{# ... #}
 ```
 {% endcode %}
 
@@ -60,11 +56,9 @@ The ideal hook name:
 * indextopmenu
 {% endhint %}
 
-#### Hooking into a hook
+**Hooking into a hook**
 
-For the purpose of this example, let's consider we want to render the `some_block.html.twig` template inside the
-`my_first_hook` hook. First step is to create a `twig_hooks.yaml` file (or any other format you use) under the
-`config/packages/` directory (if you don't have one already, of course).
+For the purpose of this example, let's consider we want to render the `some_block.html.twig` template inside the `my_first_hook` hook. First step is to create a `twig_hooks.yaml` file (or any other format you use) under the `config/packages/` directory (if you don't have one already, of course).
 
 Now, we can define our first hookable with the following configuration:
 
@@ -83,12 +77,10 @@ Decomposing the example above we can notice that:
 1. `sylius_twig_hooks` is the main key for Twig Hooks configuration
 2. `hooks` is a configuration key for defining hookables for all hooks
 3. `my_first_hook` is our hook name, defined on the Twig file level
-4. `some_block` is the name of our hookable, it can be any string, but it should be unique for a given hook unless you
-   want to override the existing hookable (if you want to read more about overriding hookables check
-   the [overriding-hookables.md](advanced/overriding-hookables.md "mention") section)
+4. `some_block` is the name of our hookable, it can be any string, but it should be unique for a given hook unless you want to override the existing hookable (if you want to read more about overriding hookables check the overriding-hookables.md section)
 5. finally we have a `template` key that defines which template should be rendered inside the `my_first_hook` hook
 
-#### Possible hookable configuration options
+**Possible hookable configuration options**
 
 Depending on the hookable template, we can pass different configuration options while defining hookables:
 
