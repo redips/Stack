@@ -1,5 +1,9 @@
 # Routing
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 SyliusResourceBundle ships with a custom route loader that can save you some time.
 
 ## Generating Generic CRUD Routing

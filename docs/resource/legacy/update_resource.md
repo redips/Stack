@@ -1,5 +1,9 @@
 # Updating Resources
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 To display an edit form of a particular resource, change it or update it via API, you should use the **updateAction** action of your **app.controller.book** service.
 
 <details open><summary>Yaml</summary>

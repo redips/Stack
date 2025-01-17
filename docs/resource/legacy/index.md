@@ -1,5 +1,9 @@
 Legacy Resource Documentation
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 * [Configuring Your Resources](configuration.md)
 * [Services](services.md)
 * [Routing](routing.md)

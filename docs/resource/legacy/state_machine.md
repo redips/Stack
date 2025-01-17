@@ -1,5 +1,9 @@
 # Configuring a state machine
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 You can either use [Symfony workflow](https://symfony.com/doc/current/components/workflow.html) or [Winzou state machine](https://github.com/winzou/StateMachineBundle).
 The recommended way is to use the `Symfony workflow component`.
 

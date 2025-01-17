@@ -1,5 +1,13 @@
 # Getting a Collection of Resources
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 To get a paginated list of Books, we will use **indexAction** of our controller.
 In the default scenario, it will return an instance of paginator, with a list of Books.
 

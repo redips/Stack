@@ -1,5 +1,9 @@
 # Forms
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 Have you noticed how Sylius generates forms for you? Of course, for many use-cases you may want to create a custom form.
 
 ## Custom Resource Form
