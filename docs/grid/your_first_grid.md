@@ -6,7 +6,7 @@ resource. Let us assume you have a Supplier model in your application,
 which represents a supplier of goods in your shop and has several
 fields, including _name_, _description_ and _enabled_.
 
-In order to make it a Sylius resource, you need add the `AsResource` attribute and implement the `ResourceInterface`.
+In order to make it a Sylius resource, you need to add the `AsResource` attribute and implement `ResourceInterface`.
 
 ```php
 // src/Entity/Supplier.php
@@ -191,8 +191,7 @@ Now, your new grid should look like this when accessing the index on */admin/sup
 
 ![image](../.gitbook/assets/suppliers_grid.png)
 
-Defining Filters
-----------------
+## Defining Filters
 
 To allow users to search for specific items in the grid, you can use filters.
 
