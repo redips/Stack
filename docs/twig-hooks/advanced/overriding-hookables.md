@@ -1,6 +1,6 @@
 # Overriding hookables
 
-While designing more complex systems, you might want to provide more than one hook name while defining a hook.&#x20;
+While designing more complex systems, you might want to provide more than one hook name while defining a hook.
 
 ```twig
 {% raw %}
@@ -16,25 +16,21 @@ You can use this mechanism for creating set of hookables for "generic" use-cases
 
 Moreover, there is no limit for number of hook names you can define. So, you can create the following hook:
 
-{% code lineNumbers="true" %}
 ```twig
 {% raw %}
 {% hook ['app.course.create.form', 'app.common.create.form', 'app.common.component.form'] %}
 {% endraw %}
 ```
-{% endcode %}
 
 A hookable **with the same name** from `app.common.create.form` will override a hookable with the same name from `app.common.component.form`. As same as a hookable with the same name from `app.course.create.form` will override a hookable with the same name from `app.common.create.form` and `app.common.component.form`.
 
 Of course, this mechanism is scoped to a given hook definiton. In other template you can still define:
 
-{% code lineNumbers="true" %}
 ```twig
 {% raw %}
 {% hook ['app.common.create.form', 'app.common.component.form'] %}
 {% endraw %}
 ```
-{% endcode %}
 
 and in this case only hookables with the same name from `app.common.create.form` will override the ones from `app.common.component.form`.
 
@@ -61,30 +57,26 @@ And let's assume that we have two pages:
 
 with the following templates:
 
-{% code title="templates/course/create.html.twig" lineNumbers="true" %}
+{% code title="templates/course/create.html.twig" %}
 ```twig
-<div>
-    {% raw %}
+{% raw %}
 {% hook ['app.course.create', 'app.common.create'] %}
 {% endraw %}
-</div>
 ```
 {% endcode %}
 
-{% code title="templates/course_category/create.html.twig" lineNumbers="true" %}
-```
-<div>
-    {% raw %}
+{% code title="templates/course_category/create.html.twig" %}
+```twig
+{% raw %}
 {% hook ['app.course_category.create', 'app.common.create'] %}
 {% endraw %}
-</div>
 ```
 {% endcode %}
 
 As there is no configuration for the `app.course.create` and `app.course_category.create` the `app.common.create` configuration will be applied. But, once we define the following configuration:
 
 {% code title="config/packages/twig_hooks.yaml" lineNumbers="true" %}
-```
+```yaml
 sylius_twig_hooks:
     hooks:
         'app.common.create':
