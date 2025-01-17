@@ -2,12 +2,12 @@
 
 Sometimes when you are creating a bundle or a reusable template for different hookables, you might want to provide a way to adjust it to a given context. Thanks to the configuration data bag, you are able to achieve it easily.
 
-Configuration can be defined only while defining a hookable, and is accessibly with using `hookable_metadata.configuration.<key_name>` or `get_hookable_configuration().<key_name>`.
+While using a hookable template, you can access `configuration` keys via `hookable_metadata` Twig var using `hookable_metadata.configuration.<key_name>` or `get_hookable_configuration().<key_name>`.
 
 #### Example
 
 {% code title="index.html.twig" lineNumbers="true" %}
-```
+```twig
 {#
  # we assume there is a `form` variable holding a `FormView` instance passed
  # from the controller
@@ -27,7 +27,7 @@ Configuration can be defined only while defining a hookable, and is accessibly w
 {% endcode %}
 
 {% code title="generic_field.html.twig" lineNumbers="true" %}
-```
+```twig
 <div class="{{ hookable_metadata.configuration.attr.class|default("field) }}">
      {{ form_row(
           hookable_metadata.context.form[hookable_metadata.configuration.field_name]
@@ -37,7 +37,7 @@ Configuration can be defined only while defining a hookable, and is accessibly w
 {% endcode %}
 
 {% code title="twig_hooks.yaml" lineNumbers="true" %}
-```
+```yaml
 sylius_twig_hooks:
     hooks:
         'index.form':
