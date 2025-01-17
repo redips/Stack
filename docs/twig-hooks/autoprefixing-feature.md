@@ -1,9 +1,11 @@
 # Autoprefixing feature
 
+## Autoprefixing feature
+
 {% hint style="warning" %}
 `Autoprefixing` is turned off by default. If you want to use this feature you need to set the `enable_autoprefixing` setting to `true` in your `config/packages/twig_hooks.yaml` file:
 
-```
+```yaml
 sylius_twig_hooks:
     # ...
     enable_autoprefixing: true
@@ -16,12 +18,12 @@ When you are creating a bundle, or a bigger project like [Sylius](https://sylius
 Enabling the autoprefixing feature might improve your developer experience. This feature is crucial for creating [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention").
 
 {% hint style="info" %}
-If you did not read the [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention") section we encourage you to do it before you read more about the autoprefixing feature.&#x20;
+If you did not read the [composable-layouts-with-a-predictable-structure.md](composable-layouts-with-a-predictable-structure.md "mention") section we encourage you to do it before you read more about the autoprefixing feature.
 {% endhint %}
 
 The mechanism of autoprefixing is pretty simple. We check if there are any prefixes, then we iterate over them and prepend the hook name with a given prefix.
 
-### Defining prefixes
+#### Defining prefixes
 
 Prefixes by default are injected automatically, and they are the name of the hook where the hookable is rendered.
 
@@ -43,7 +45,7 @@ If for some reason you want to take the control over the passed prefixes, you ca
 
 {% code title="index.html.twig" lineNumbers="true" %}
 ```twig
-{% hook 'index.form with {
+{% hook 'index.form' with {
     _prefixes: ['my_custom_prefix']
 } %}
 ```
@@ -51,7 +53,7 @@ If for some reason you want to take the control over the passed prefixes, you ca
 
 From now, only the value of `_prefixes` will be taken into account.
 
-### Example
+#### Example
 
 {% code title="index.html.twig" lineNumbers="true" %}
 ```twig
@@ -59,28 +61,19 @@ From now, only the value of `_prefixes` will be taken into account.
 {% hook 'app.index' %}
 {% endraw %}
 
-{# 
- # index.html.twig is an entry template, so it is not an hookable
- #}
+{# index.html.twig is an entry template, so it is not an hookable #}
 ```
 {% endcode %}
 
-{% code title="index/content.html.twig" lineNumbers="true" %}
-```twig
-{% raw %}
-{% hook 'content' %}
-
-{#
- # this template is an hookable, and is hooked into app.index
- #}
+<pre class="language-twig" data-title="index/content.html.twig" data-line-numbers><code class="lang-twig"><strong>{% hook 'content' %}
+</strong>
+{# this template is an hookable, and is hooked into app.index #}
 
 {#
  # so {% hook 'content' %} this is a shorter form of {% hook 'app.index.content' %}
-{% endraw %}
  # when autoprefixing is turned on
  #}
-```
-{% endcode %}
+</code></pre>
 
 {% code title="index/content/button.html.twig" lineNumbers="true" %}
 ```twig
