@@ -1,5 +1,9 @@
 # Getting a Single Resource
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 Your newly created controller service supports basic CRUD operations and is configurable via routing.
 
 The simplest action is **showAction**. It is used to display a single resource. To use it, the only thing you need to do is register a proper route.

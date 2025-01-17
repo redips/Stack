@@ -1,5 +1,9 @@
 # Configuring Your Resources
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 Now you need to configure your first resource. Let's assume you have a *Book* entity in your application and it has simple fields:
 
 * id

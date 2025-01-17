@@ -1,5 +1,9 @@
 # Creating Resources
 
+{% hint style="warning" %}
+This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
+{% endhint %}
+
 To display a form, handle its submission or to create a new resource via API,
 you should use the **createAction** of your **app.controller.book** service.
 
