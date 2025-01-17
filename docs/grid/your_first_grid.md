@@ -6,47 +6,42 @@ resource. Let us assume you have a Supplier model in your application,
 which represents a supplier of goods in your shop and has several
 fields, including _name_, _description_ and _enabled_.
 
-In order to make it a Sylius resource, you need to configure it under the
-`sylius_resource` node. If you don’t have it yet, create a `config/packages/sylius_resource.yaml` file.
+In order to make it a Sylius resource, you need to add the `AsResource` attribute and implement `ResourceInterface`.
 
-```yaml
-# config/packages/sylius_resource.yaml
-sylius_resource:
-    resources:
-        app.supplier:
-            driver: doctrine/orm
-            classes:
-                model: App\Entity\Supplier
+```php
+// src/Entity/Supplier.php
+namespace App\Entity;
+
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
+
+#[AsResource]
+class Supplier implements ResourceInterface
+{
+    // ...
+}
 ```
 
 That's it! Your class is now a resource. In order to learn what it
 means, please refer to the
-[SyliusResourceBundle](https://github.com/Sylius/SyliusResourceBundle/blob/master/docs/index.md)
+[SyliusResourceBundle](../resource/index.md)
 documentation.
 
-Grid Maker
-----------
+## Grid Maker
 
-You can create your grid using the Symfony Maker bundle.
+You can create your grid using the [Symfony Maker bundle](https://symfony.com/bundles/SymfonyMakerBundle/current/index.html).
 
 ```shell
 $ bin/console make:grid
 ```
 
-Grid Definition
----------------
+## Grid Definition
 
 Now we can configure our first grid:
 
- ### **Note**
-
-Remember that a grid is *the way objects of a desired entity are
-displayed on its index view*. Therefore, only fields that are useful
-for identification of objects are available - only `string` and `twig`
-types. Although a Supplier also has a _description_ field, it is not needed on the index and won't be displayed here.
-
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -59,21 +54,19 @@ sylius_grid:
             fields:
                 name:
                     type: string
-                    label: sylius.ui.name
+                    label: app.ui.name
                 enabled:
                     type: twig
-                    label: sylius.ui.enabled
+                    label: app.ui.enabled
                     options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig" # This will be a checkbox field
+                        template: '@SyliusBootstrapAdminUi/shared/grid/field/boolean.html.twig' # This will be a checkbox field
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
-<?php
-
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
@@ -84,18 +77,20 @@ return static function (GridConfig $grid) {
     $grid->addGrid(GridBuilder::create('app_admin_supplier', Supplier::class)
         ->addField(
             StringField::create('name')
-                ->setLabel('sylius.ui.name')
+                ->setLabel('app.ui.name')
         )
         ->addField(
-            TwigField::create('enabled', '@SyliusUi/Grid/Field/enabled.html.twig')
-                ->setLabel('sylius.ui.enabled')
+            TwigField::create('enabled', '@SyliusBootstrapAdminUi/shared/grid/field/boolean.html.twig')
+                ->setLabel('app.ui.enabled')
         )
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -123,11 +118,11 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
         $gridBuilder
             ->addField(
                 StringField::create('name')
-                    ->setLabel('sylius.ui.name')
+                    ->setLabel('app.ui.name')
             )
             ->addField(
-                TwigField::create('enabled', '@SyliusUi/Grid/Field/enabled.html.twig')
-                    ->setLabel('sylius.ui.enabled')
+                TwigField::create('enabled', '@SyliusBootstrapAdminUi/shared/grid/field/boolean.html.twig')
+                    ->setLabel('app.ui.enabled')
             )
         ;
     }
@@ -138,90 +133,71 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
-</details>
+{% hint style="info" %}
+Remember that a grid is *the way objects of a desired entity are
+displayed on its index view*. Therefore, only fields that are useful
+for identification of objects are available - only `string` and `twig`
+types. Although a Supplier also has a _description_ field, it is not needed on the index and won't be displayed here.
+{% endhint %}
 
-Generating The CRUD Routing
----------------------------
+## Using your grid on an index operation
 
-The SyliusResourceBundle allows you to generate a default CRUD
-interface including the grid we have just defined. Just add this to your
-routing configuration:
+The `SyliusResourceBundle` allows you to use a grid into an index operation:
 
-```yaml
-# config/routes.yaml
-app_admin_supplier:
-    resource: |
-        alias: app.supplier
-        section: admin
-        templates: "@SyliusAdmin\\Crud"
-        except: ['show']
-        redirect: update
-        grid: app_admin_supplier
-        vars:
-            all:
-                subheader: app.ui.supplier # define a translation key for your entity subheader
-            index:
-                icon: 'file image outline' # choose an icon that will be displayed next to the subheader
-    type: sylius.resource
-    prefix: admin
+```php
+// src/Entity/Supplier.php
+namespace App\Entity;
+
+use App\Grid\AdminSupplierGrid;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Model\ResourceInterface;
+
+#[AsResource(
+    section: 'admin', // This will influence the route name
+    routePrefix: '/admin',
+    templatesDir: '@SyliusAdminUi/crud', // This directory contains the generic template for your list
+    operations: [
+        // You can use either the FQCN of your grid
+        new Index(grid: AdminSupplierGrid::class)
+        // Or you can use the grid name
+        new Index(grid: 'app_admin_supplier')
+    ],
+)]
+class Supplier implements ResourceInterface
+{
+    // ...
+}
 ```
 
-This will generate the following paths:
+This will generate the following path:
 
-> -   `/admin/suppliers/` - [`GET`] - Your grid.
-> -   `/admin/suppliers/new` - [`GET/POST`] - Creating new supplier.
-> -   `/admin/suppliers/{id}/edit` - [`GET/PUT`] - Editing an existing supplier.
-> -   `/admin/suppliers/{id}` - [`DELETE`] - Deleting specific supplier.
-> -   `/admin/suppliers/{id}` - [`GET`] - Displaying specific supplier.
-
-### *Tip*
-
-[In the Semantic UI documentation](http://semantic-ui.com/elements/icon.html)
-you can find all possible icons you can choose for your grid.
-
-### *Tip*
-
-See how to add links to your new entity administration in the
- [administration menu](https://docs.sylius.com/en/latest/customization/menu.html).
-
-### *Tip*
-
-Adding translations to the grid (read more
-[here](https://docs.sylius.com/en/latest/customization/translation.html)):
-
-
-```yaml
-# translations/messages.en.yaml
-app:
-    ui:
-        supplier: Supplier
-        suppliers: Suppliers
-    menu:
-        admin:
-            main:
-                additional:
-                    header: Additional
-                    suppliers: Suppliers
+```shell
+ ------------------------------ ---------------------------
+  Name                           Path                                           
+ ------------------------------ ---------------------------                  
+  app_admin_supplier_index           /admin/suppliers               
 ```
 
-Now, your new grid should look like this when accessing
-`/admin/suppliers/new` in order to create a new object:
+{% hint style="info" %}
+See how to add this new page into your [administration menu](../cookbook/admin_panel/menu.md).
+{% endhint %}
 
-![image](../.gitbook/assets/grid_new.png)
+Now, your new grid should look like this when accessing the index on */admin/suppliers/*:
 
-And when accessing the index on */admin/suppliers/* it should look
-like this:
+![image](../.gitbook/assets/suppliers_grid.png)
 
-![image](../.gitbook/assets/grid.png)
-
-Defining Filters
-----------------
+## Defining Filters
 
 To allow users to search for specific items in the grid, you can use filters.
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -230,14 +206,16 @@ sylius_grid:
             filters:
                 name:
                     type: string
+                    label: Name
                 enabled:
                     type: boolean
+                    label: Enabled
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 
@@ -251,16 +229,20 @@ return static function (GridConfig $grid) {
     $grid->addGrid(GridBuilder::create('app_admin_supplier', Supplier::class)
         ->addFilter(
             StringFilter::create('name')
+                ->setLabel('Name')
         )
         ->addFilter(
             BooleanFilter::create('enabled')
+               ->setLabel('Enabled')
         )
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -288,9 +270,11 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
         $gridBuilder
             ->addFilter(
                 StringFilter::create('name')
+                    ->setLabel('Name')
             )
             ->addFilter(
-                BooleanFilter::create('enabled')
+                BooleanFilter::create('enabled')   
+                    ->setLabel('Enabled')
             )
         ;
     }
@@ -301,8 +285,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 How will it look like in the admin panel?
 
@@ -316,8 +301,9 @@ This first requires a
 custom [repository method](https://docs.sylius.com/en/latest/customization/repository.html) for your grid
 query:
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -330,11 +316,11 @@ sylius_grid:
                     repository:
                         method: mySupplierGridQuery
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -351,9 +337,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -389,8 +377,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ### *Note*
 
@@ -402,8 +391,9 @@ must be joined explicitly in the query.
 
 Then you can set up your filter accordingly:
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -419,11 +409,11 @@ sylius_grid:
                     form_options:
                         type: contains
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -442,9 +432,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -482,16 +474,18 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 Default Sorting
 ---------------
 
 You can define by which field you want the grid to be sorted and how.
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -502,11 +496,11 @@ sylius_grid:
                 name: asc
                 # ...
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -521,9 +515,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -557,13 +553,15 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 Then in the fields section, indicate that the field can be used for sorting:
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -577,11 +575,11 @@ sylius_grid:
                     sortable: ~
                 # ...
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -601,9 +599,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -642,14 +642,16 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 If your field is not of a "simple" type, e.g. a twig template with a
 specific path, you can enable sorting with the following definition:
 
-<details open><summary>YAML</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -667,11 +669,11 @@ sylius_grid:
                     sortable: address.country
                 # ...
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -692,9 +694,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -734,8 +738,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 Pagination
 ----------
@@ -744,8 +749,9 @@ You can limit how many items are visible on each page by providing an
 array of integers into the `limits` parameter. The first element of the
 array will be treated as the default, so by configuring:
 
-<details open><summary>YAML</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -753,13 +759,13 @@ sylius_grid:
         app_admin_supplier:
             # ...
             limits: [30, 12, 48]
-                # ...
+            # ...
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -774,9 +780,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -811,8 +819,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 you will see thirty suppliers per page, also you will have the
 possibility to change the number of elements to either 12 or 48.
@@ -827,6 +836,49 @@ Actions Configuration
 
 Next step is adding some actions to the grid: create, update and delete.
 
+First, we need to create these operations on our resource:
+
+```php
+// src/Entity/Supplier.php
+namespace App\Entity;
+
+use App\Grid\AdminSupplierGrid;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\Delete;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Update;
+use Sylius\Resource\Model\ResourceInterface;
+
+#[AsResource(
+    // ...
+    operations: [
+        new Create(),
+        new Update(),
+        new Delete(),
+        // ...
+    ],
+)]
+class Supplier implements ResourceInterface
+{
+    // ...
+}
+```
+
+These new operations are now available:
+
+```shell
+ ------------------------------ -----------------------------
+  Name                           Path                                           
+ ------------------------------ -----------------------------         
+  app_admin_supplier_create     /admin/suppliers/new                           
+  app_admin_supplier_update     /admin/suppliers/{id}/edit                     
+  app_admin_supplier_delete     /admin/suppliers/{id}/delete                   
+  app_admin_supplier_index      /admin/suppliers                 
+```
+
+Then we need to add these operations into our Grid using Actions.
+
 ### *Note*
 
 There are two types of actions that can be added to a grid: `main`
@@ -834,8 +886,9 @@ which "influence" the whole grid (like adding new objects) and `item`
 which influence one row of the grid (one object) like editing or
 deleting.
 
-<details open><summary>YAML</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
 ```yaml
 # config/packages/sylius_grid.yaml
 sylius_grid:
@@ -852,11 +905,11 @@ sylius_grid:
                     delete:
                         type: delete
 ```
+{% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
 ```php
 <?php
 // config/packages/sylius_grid.php
@@ -886,9 +939,11 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code lineNumbers="true" %}
 ```php
 <?php
 # src/Grid/AdminSupplierGrid.php
@@ -937,8 +992,9 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
-
-</details>
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 This activates such a view on the `/admin/suppliers/` path:
 
