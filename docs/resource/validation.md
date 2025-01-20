@@ -10,6 +10,7 @@ It uses `symfony/validator` to validate your data.
 
 ## on HTML request
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -30,11 +31,13 @@ class Book implements ResourceInterface
     private ?string $title;
 }
 ```
+{% endcode %}
 
 In this example, validation will fail when adding a new book without specifying its title on the form.
 
 ## on API request
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -53,6 +56,7 @@ class Book implements ResourceInterface
     private ?string $title;
 }
 ```
+{% endcode %}
 
 In this example, validation will fail when adding a new book without specifying its title on the payload.
 
@@ -62,6 +66,7 @@ In some case, you may want to disable this validation.
 
 For example, in a "publish" operation, you may want to apply a state machine transition without validation existing data.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php" lineNumbers="true" %}
 ```php
 namespace App\BoardGameBlog\Infrastructure\Sylius\Resource;
 
@@ -86,3 +91,4 @@ class BoardGameResource implements ResourceInterface
 {
 }
 ```
+{% endcode %}

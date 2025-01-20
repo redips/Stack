@@ -16,8 +16,8 @@ src
 
 ## Define The Sylius Book Resource
 
+{% code title="src/BookStore/Infrastructure/Sylius/Resource/BookResource.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
 
 namespace App\BookStore\Infrastructure\Sylius\Resource;
 
@@ -79,11 +79,12 @@ final class BookResource implements ResourceInterface
     }
 }
 ```
+{% endcode %}
 
 ## Define The Symfony Book Resource Form Type
 
+{% code title="src/BookStore/Infrastructure/Symfony/Form/BookResourceType.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Symfony/Form/BookResourceType.php
 
 namespace App\BookStore\Infrastructure\Symfony\Form;
 
@@ -114,3 +115,4 @@ final class BookResourceType extends AbstractType
     }
 }
 ```
+{% endcode %}

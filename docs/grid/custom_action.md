@@ -20,13 +20,14 @@ colour to be `purple`.
 Now configure the new action's template like below in the
 `config/packages/sylius_grid.yaml`:
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     templates:
         action:
             contactSupplier: "@App/Grid/Action/contactSupplier.html.twig"
 ```
+{% endcode %}
 
 From now on you can use your new action type in the grid configuration!
 
@@ -35,9 +36,8 @@ suppliers, then you can configure the grid action:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
-
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -56,14 +56,15 @@ sylius_grid:
                                 parameters:
                                     id: resource.id
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
@@ -90,12 +91,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -141,5 +143,6 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
     }
 }
 ```
+{% endcode %}
 
 </details>

@@ -5,6 +5,7 @@ By default, Doctrine options `fetchJoinCollection` and `useOutputWalkers` are en
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -15,11 +16,13 @@ sylius_grid:
                         fetch_join_collection: false
                         use_output_walkers: false
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -36,6 +39,7 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 </details>
 

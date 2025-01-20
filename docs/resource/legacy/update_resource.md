@@ -8,23 +8,22 @@ To display an edit form of a particular resource, change it or update it via API
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{id}/edit
     methods: [GET, PUT]
     defaults:
         _controller: app.controller.book::updateAction
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -34,6 +33,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     controller: 'app.controller.book::updateAction',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -59,9 +59,8 @@ Just like for other actions, you can customize the template.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{id}/edit
     methods: [GET, PUT]
@@ -70,14 +69,14 @@ app_book_update:
         _sylius:
             template: Admin/Book/update.html.twig
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -88,6 +87,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     template: 'Admin/book/update.html.twig',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -97,9 +97,8 @@ Same way like for **createAction** you can override the default form.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{id}/edit
     methods: [GET, PUT]
@@ -108,14 +107,14 @@ app_book_update:
         _sylius:
             form: App\Form\BookType
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -127,6 +126,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     form: BookType::class,
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -138,9 +138,8 @@ Below you can see how to specify custom options, in this case, ``validation_grou
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{id}/edit
     methods: [GET, PUT]
@@ -152,14 +151,14 @@ app_book_update:
                 options:
                     validation_groups: [sylius, my_custom_group]
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -174,6 +173,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -183,9 +183,8 @@ By default, the **updateAction** will look for the resource by id. You can easil
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{title}/edit
     methods: [GET, PUT]
@@ -194,14 +193,14 @@ app_book_update:
         _sylius:
             criteria: { title: $title }
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -215,6 +214,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -224,9 +224,8 @@ By default the controller will try to get the id of resource and redirect to the
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{id}/edit
     methods: [GET, PUT]
@@ -235,14 +234,14 @@ app_book_update:
         _sylius:
             redirect: app_book_index
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -254,6 +253,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     redirect: 'app_book_index',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -261,9 +261,8 @@ You can also perform more complex redirects, with parameters. For example:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /genre/{genreId}/books/{id}/edit
     methods: [GET, PUT]
@@ -274,14 +273,14 @@ app_book_update:
                 route: app_genre_show
                 parameters: { id: $genreId }
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -296,6 +295,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -307,9 +307,8 @@ own action name.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_customer_update:
     path: /customer/book-update/{id}
     methods: [GET, PUT]
@@ -318,14 +317,14 @@ app_book_customer_update:
         _sylius:
             event: customer_update
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -337,6 +336,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     event: 'customer_update',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -351,9 +351,8 @@ Sylius, by default is returning the ``204 HTTP Code``, which indicates an empty 
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /books/{title}/edit
     methods: [GET, PUT]
@@ -363,14 +362,14 @@ app_book_update:
             criteria: { title: $title }
             return_content: true
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use App\Form\BookType;
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -383,6 +382,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     returnContent: true,
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -392,9 +392,8 @@ It is worth noticing, that the ``applyStateMachineTransitionAction`` returns a d
 
 ## Configuration Reference
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_update:
     path: /genre/{genreId}/books/{title}/edit
     methods: [GET, PUT, PATCH]
@@ -415,6 +414,7 @@ app_book_update:
                 parameters: { title: resource.title }
             return_content: true
 ```     
+{% endcode %}
 
 Remember that you can use controller's Fully Qualified Class Name (``App\Controller\BookController``) instead of id ``app.controller.book`` 
      

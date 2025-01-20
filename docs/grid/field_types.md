@@ -13,9 +13,8 @@ By default, it uses the name of the field, but you can specify a different path 
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
-
 sylius_grid:
     grids:
         app_user:
@@ -25,14 +24,15 @@ sylius_grid:
                     label: app.ui.email # each field type can have a label, we suggest using translation keys instead of messages
                     path: contactDetails.email
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -48,12 +48,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -89,6 +90,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -107,9 +109,8 @@ Available options:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
-
 sylius_grid:
     grids:
         app_user:
@@ -121,14 +122,15 @@ sylius_grid:
                         format: 'Y:m:d H:i:s'
                         timezone: null
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -143,12 +145,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -183,6 +186,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -192,7 +196,7 @@ You have to pass `'format'` and `'timezone'` again if you want to call the `setO
 Otherwise, it will be unset:
 
 Example:
-
+{% code %}
 ```php
 $field->setOptions([
     'format' => 'Y-m-d H:i:s',
@@ -201,6 +205,7 @@ $field->setOptions([
     // Your options here
 ]);
 ```
+{% endcode %}
 
 Twig (*twig*)
 -------------
@@ -212,9 +217,8 @@ You just have to specify the template and it will be rendered with the
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
-
 sylius_grid:
     grids:
         app_user:
@@ -225,14 +229,15 @@ sylius_grid:
                     options:
                         template: "@Grid/Column/_prettyName.html.twig"
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -247,12 +252,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -287,30 +293,36 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
 In the `@Grid/Column/_prettyName.html.twig` template, you just need to
 render the value. For example:
 
+{% code %}
 ```twig
 <strong>{{ data }}</strong>
 ```
+{% endcode %}
 
 If you wish to render more complex grid fields, just redefine the path of
 the field to root – `path: .` and then you can access all
 attributes of the object instance:
 
+{% code %}
 ```twig
 <strong>{{ data.name }}</strong>
 <p>{{ data.description|markdown }}</p>
 ```
+{% endcode %}
 
 ### *Warning*
 
 You have to pass the `'template'` option again if you want to call the `setOptions` function. Otherwise, it will be unset:
 
 Example:
+{% code %}
 ```php
 $field->setOptions([
     'template' => ':Grid/Column:_prettyName.html.twig',
@@ -318,3 +330,4 @@ $field->setOptions([
     // Your options here
 ]);
 ```
+{% endcode %}

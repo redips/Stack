@@ -29,8 +29,8 @@ Learn more on how to [create a User](https://symfony.com/doc/current/security.ht
 
 Here is an example of a user provider configuration:
 
+{% code title="config/packages/security.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/security.yaml
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -43,6 +43,7 @@ security:
                 class: App\Entity\User
                 property: email
 ```
+{% endcode %}
 
 {% hint style="info" %}
 Learn more on how to [create a user provider on the Symfony documentation](https://symfony.com/doc/current/security.html#the-user)
@@ -52,8 +53,8 @@ Learn more on how to [create a user provider on the Symfony documentation](https
 
 Here is an example of how to configure a firewall for your admin routes:
 
+{% code title="config/packages/security.yaml" %}
 ```yaml
-# config/packages/security.yaml
 security:
     firewalls:
         # ...
@@ -71,6 +72,7 @@ security:
                 path: sylius_admin_ui_logout
                 target: sylius_admin_ui_login
 ```
+{% endcode %}
 
 {% hint style="info" %}
 Learn more on how to [configure the firewall on the Symfony documentation](https://symfony.com/doc/current/security.html#the-firewall)
@@ -80,8 +82,8 @@ Learn more on how to [configure the firewall on the Symfony documentation](https
 
 Only admin users will have access to "/admin" routes.
 
+{% code title="config/packages/security.yaml" %}
 ```yaml
-# config/packages/security.yaml
 security:
     access_control:
         - { path: ^/admin/login, roles: PUBLIC_ACCESS }
@@ -89,6 +91,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: PUBLIC_ACCESS }
 ```
+{% endcode %}
 
 {% hint style="info" %}
 Learn more on how to [configure Access Control Authorization on the Symfony documentation](https://symfony.com/doc/current/security.html#access-control-authorization)

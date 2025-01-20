@@ -27,15 +27,15 @@ If you're not using any other Sylius bundles, you will also need to add
 `SyliusResourceBundle` and its dependencies to kernel. Don't worry,
 everything was automatically installed via Composer.
 
+{% code title="config/bundles.php" %}
 ```php
 <?php
-
-// config/bundles.php
 
 return [
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 ];
 ```
+{% endcode %}
 
 Congratulations! The bundle is now installed and ready to use. You need
 to define your first resource and grid!

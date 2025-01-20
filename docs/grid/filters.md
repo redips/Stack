@@ -15,6 +15,7 @@ Simplest filter type. It can filter by one or multiple fields.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -29,11 +30,13 @@ sylius_grid:
                 lastName:
                     type: string
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -57,12 +60,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -104,6 +108,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -111,6 +116,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -121,11 +127,13 @@ sylius_grid:
                     options:
                         fields: [username, email, firstName, lastName]
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -148,12 +156,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -194,6 +203,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -219,6 +229,7 @@ You can achieve it like this:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -229,11 +240,13 @@ sylius_grid:
                     form_options:
                         type: contains
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -258,12 +271,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -306,6 +320,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -319,6 +334,7 @@ Boolean
 
 This filter checks if a value is true or false.
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -327,11 +343,13 @@ sylius_grid:
                 enabled:
                     type: boolean
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -353,12 +371,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -398,6 +417,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -408,6 +428,7 @@ This filter checks if a chosen datetime field is between given dates.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -418,11 +439,13 @@ sylius_grid:
                 completedAt:
                     type: date
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -442,12 +465,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -485,6 +509,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -495,6 +520,7 @@ This type filters by a chosen entity.
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -512,11 +538,13 @@ sylius_grid:
                     form_options:
                         class: "%app.model.customer.class%"
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -552,12 +580,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -605,6 +634,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -615,6 +645,7 @@ This filter checks if an amount is within the specified range and is in the sele
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -628,11 +659,13 @@ sylius_grid:
                         currency_field: currencyCode
                         scale: 3
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -659,12 +692,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -709,6 +743,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -724,6 +759,7 @@ This filter checks if the specified field contains any value
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -734,11 +770,13 @@ sylius_grid:
                     options:
                         field: completedAt
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -761,12 +799,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -807,6 +846,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 
@@ -817,6 +857,7 @@ This type filters by a value chosen from the defined list
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -829,11 +870,13 @@ sylius_grid:
                             sylius.ui.ready: Ready
                             sylius.ui.shipped: Shipped
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -864,12 +907,13 @@ return static function (GridConfig $grid): void {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/UserGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/UserGrid.php
 
 declare(strict_types=1);
 
@@ -918,6 +962,7 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 </details>
 

@@ -35,8 +35,8 @@ Some variables are already available on your operations, but you can add more va
 
 As an example, we add a `foo` variable to the Twig template with `bar` as value.
 
+{% code title="src/Twig/Context/Factory/ShowSubscriptionContextFactory.php" lineNumbers="true" %}
 ```php
-// src/Twig/Context/Factory/ShowSubscriptionContextFactory.php
 
 namespace App\Twig\Context\Factory;
 
@@ -58,11 +58,12 @@ final class ShowSubscriptionContextFactory implements ContextFactoryInterface
     }
 }
 ```
+{% endcode %}
 
 Use it on your operation.
 
+{% code title="src/Entity/Subscription.php" lineNumbers="true" %}
 ```php
-// src/Entity/Subscription.php
 
 namespace App\Entity;
 
@@ -79,6 +80,7 @@ class Subscription implements ResourceInterface
 {
 }
 ```
+{% endcode %}
 
 ## API Responder
 

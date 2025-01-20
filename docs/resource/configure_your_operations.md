@@ -32,6 +32,7 @@ There are some basic CRUD operations and more.
 
 `Index` operation allows to browse all items of your resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -44,8 +45,8 @@ use Sylius\Resource\Model\ResourceInterface;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `index` operation.
 
@@ -68,6 +69,7 @@ On your Twig template, these variables are available
 To use a grid for you operation, you need to install
 the [Sylius grid package](https://github.com/Sylius/SyliusGridBundle/)
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -84,8 +86,8 @@ use Sylius\Resource\Metadata\Index;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 On your Twig template, these variables are available
 
@@ -103,6 +105,7 @@ The iterator for your books will be available as `books.data` or `resources.data
 
 `Show` operation allows to view details of an item.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -115,8 +118,8 @@ use Sylius\Resource\Metadata\Show;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `show` operation.
 
@@ -138,6 +141,7 @@ On your Twig template, these variables are available
 
 `Create` operation allows to add a new item of your resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -150,8 +154,8 @@ use Sylius\Resource\Metadata\Create;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `create` operation.
 
@@ -175,6 +179,7 @@ The iterator for your books will be available as `books.data` or `resources.data
 
 `Update` operation allows to edit an existing item of your resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -187,8 +192,8 @@ use Sylius\Resource\Metadata\Update;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `update` operation.
 
@@ -210,6 +215,7 @@ On your Twig template, these variables are available
 
 `Delete` operation allows to remove an existing item of your resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -222,8 +228,8 @@ use Sylius\Resource\Metadata\Delete;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `delete` operation.
 
@@ -235,6 +241,7 @@ It will configure this route for your `delete` operation.
 
 `Bulk delete` operation allows to remove several items of your resource at the same time.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -247,8 +254,8 @@ use Sylius\Resource\Metadata\BulkDelete;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `bulk_delete` operation.
 
@@ -262,6 +269,7 @@ It will configure this route for your `bulk_delete` operation.
 
 As an example, we add a `publish` operation to our book resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -274,8 +282,8 @@ use Sylius\Resource\Metadata\AsResource;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 It will configure this route for your `apply_state_machine_transition` operation.
 
@@ -289,6 +297,7 @@ It will configure this route for your `apply_state_machine_transition` operation
 
 It customizes the path for your operations.
 
+{% code title="src/Entity/Customer.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -303,8 +312,8 @@ use Sylius\Resource\Metadata\Update;
 class Customer implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Name            | Method    | Path                |
 |-----------------|-----------|---------------------|
@@ -315,6 +324,7 @@ class Customer implements ResourceInterface
 
 It customizes the path for your operations.
 
+{% code title="src/Entity/Customer.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -327,8 +337,8 @@ use Sylius\Resource\Metadata\Create;
 class Customer implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Name              | Method    | Path            |
 |-------------------|-----------|-----------------|
@@ -342,6 +352,7 @@ It defines the templates directory for your operations.
 
 As an example, we defines `index`, `create`, `update` and `show` operations to our book resource.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -360,8 +371,8 @@ use Sylius\Resource\Metadata\Update;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Operation | Template Path                    |
 |-----------|----------------------------------|
@@ -386,6 +397,7 @@ You can use `@SyliusAdminUi/crud` as templates dir from the [sylius/admin-ui](..
 
 It adds a prefix to the path for each operation.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -408,8 +420,8 @@ use Sylius\Resource\Metadata\Update;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Name                 | Method          | Path                     |
 |----------------------|-----------------|--------------------------|
@@ -424,6 +436,7 @@ class Book implements ResourceInterface
 
 It changes the route name for each operation.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -449,8 +462,8 @@ use Sylius\Resource\Metadata\Update;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Name                       | Method          | Path                     |
 |----------------------------|-----------------|--------------------------|
@@ -466,6 +479,7 @@ class Book implements ResourceInterface
 
 It changes the resource identifier for each operation.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -486,8 +500,8 @@ use Sylius\Resource\Metadata\Update;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 | Name                 | Method          | Path                     |
 |----------------------|-----------------|--------------------------|
@@ -501,6 +515,7 @@ class Book implements ResourceInterface
 
 It defines the simple vars that you can use on your templates.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -513,13 +528,15 @@ use Sylius\Resource\Metadata\Create;
 class Book implements ResourceInterface
 {
 }
-
 ```
+{% endcode %}
 
 You can use these vars on your Twig templates.
 These vars will be available on any operations for this resource.
 
+{% code %}
 ```html
 <h1>{{ operation.vars.header }}<!-- Library --></h1>
 <h2>{{ operation.vars.subheader }}<!-- Adding a book --></h2>
 ```
+{% endcode %}

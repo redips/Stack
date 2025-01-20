@@ -36,8 +36,8 @@ src
 
 In the Application folder, we already have this `FindBooksQuery`:
 
+{% code title="src/Bookstore/Application/Query/FindBooksQuery.php" lineNumbers="true" %}
 ```php
-// src/Bookstore/Application/Query/FindBooksQuery.php
 
 declare(strict_types=1);
 
@@ -62,11 +62,12 @@ final readonly class FindBooksQuery implements QueryInterface
     }
 }
 ```
+{% endcode %}
 
 And its query handler:
 
+{% code title="src/Bookstore/Application/Query/FindBooksQueryHandler.php" lineNumbers="true" %}
 ```php
-// src/Bookstore/Application/Query/FindBooksQueryHandler.php
 
 namespace App\BookStore\Application\Query;
 
@@ -104,6 +105,7 @@ final readonly class FindBooksQueryHandler
     }
 }
 ```
+{% endcode %}
 
 The idea is to reuse this query to list book from your storage for your "index" operation.
 
@@ -111,8 +113,8 @@ The idea is to reuse this query to list book from your storage for your "index" 
 
 To resolve current page and items per page in the grid provider, we can use this helper:
 
+{% code title="src/Shared/Infrastructure/Sylius/Grid/GridPageResolver.php" lineNumbers="true" %}
 ```php
-// src/Shared/Infrastructure/Sylius/Grid/GridPageResolver.php
 
 declare(strict_types=1);
 
@@ -133,15 +135,15 @@ class GridPageResolver
         return $parameters->has('limit') ? (int) $parameters->get('limit') : $grid->getLimits()[0] ?? 10;
     }
 }
-
 ```
+{% endcode %}
 
 ### Create the BookGridProvider
 
 First, we need to create the `BookGridProvider`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php
 
 declare(strict_types=1);
 
@@ -186,13 +188,14 @@ final readonly class BookGridProvider implements DataProviderInterface
     }
 }
 ```
+{% endcode %}
 
 ### Create the BookGrid
 
 Now, we need to create the `BookGrid`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Grid/BookGrid.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Grid/BookGrid.php
 
 declare(strict_types=1);
 
@@ -253,14 +256,14 @@ final class BookGrid extends AbstractGrid implements ResourceAwareGridInterface
     }
 }
 ```
+{% endcode %}
 
 ### Add the grid on the Book Resource
 
 Now that we have a grid, let's add it to the "index" operation on our `BookResource`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Resource/BookResource.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
-
 // ...
 use App\BookStore\Infrastructure\Sylius\Grid\BookGrid;
 use App\BookStore\Infrastructure\Symfony\Form\BookResourceType;
@@ -284,13 +287,14 @@ final class BookResource implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 ### Create the Author filter type
 
 Let's imagine we want to be able to filter books by their author within our grid. First, we need to create a Symfony form type for our custom author filter.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Grid/Filter/AuthorFilterType.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Grid/Filter/AuthorFilterType.php
 
 declare(strict_types=1);
 
@@ -342,11 +346,12 @@ final class AuthorFilterType extends AbstractType
     }
 }
 ```
+{% endcode %}
 
 ### Create the Author filter
 
+{% code title="src/BookStore/Infrastructure/Sylius/Grid/Filter/AuthorFilter.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Grid/Filter/AuthorFilter.php
 
 declare(strict_types=1);
 
@@ -373,14 +378,12 @@ final readonly class AuthorFilter implements ConfigurableFilterInterface
     }
 } 
 ```
+{% endcode %}
 
 ### Use the Author Filter on the Grid provider
 
+{% code title="src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Grid/BookGridProvider.php
-
-// ...
-
 final readonly class BookGridProvider implements DataProviderInterface
 {
     // ...
@@ -400,3 +403,4 @@ final readonly class BookGridProvider implements DataProviderInterface
     }
 }
 ```
+{% endcode %}

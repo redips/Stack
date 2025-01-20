@@ -35,9 +35,8 @@ You can install the optional [BootstrapAdminUi package](../bootstrap-admin-ui/ge
 
 *Usage with Sylius Resource package*
 
+{% code title="src/Entity/Speaker.php" lineNumbers="true" %}
 ```php
-// src/Entity/Speaker.php
-
 namespace App\Entity;
 
 use Sylius\Resource\Metadata\AsResource;
@@ -52,6 +51,7 @@ class Speaker implements ResourceInterface
 }
 
 ```
+{% endcode %}
 
 ### Dashboard
 
