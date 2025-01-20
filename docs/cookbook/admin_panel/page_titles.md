@@ -24,9 +24,8 @@ We're going to reuse this hook and its template in our config file and add a `he
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
@@ -41,9 +40,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -77,9 +75,8 @@ Note that you can also use [Symfony Expression Language](https://symfony.com/doc
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
@@ -94,9 +91,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -145,9 +141,8 @@ Here's an example to define a "users" icon on a speaker list.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
@@ -163,9 +158,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -199,9 +193,8 @@ You can also define a default icon for every "index" pages.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
@@ -215,9 +208,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -255,9 +247,8 @@ Here's an example to define a subheader on a speaker list.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_bootstrap_admin_ui.yaml
 # ...
 sylius_twig_hooks:
     hooks:
@@ -273,9 +264,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

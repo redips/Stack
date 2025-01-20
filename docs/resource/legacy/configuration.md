@@ -16,6 +16,7 @@ You can see a full exemplary configuration of a typical resource
 
 ## Implement the ResourceInterface in your model class.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 namespace App\Entity;
 
@@ -32,11 +33,13 @@ class Book implements ResourceInterface
     }
 }
 ```
+{% endcode %}
 
 ## Configure the class as a resource.
 
 In your ``config/packages/sylius_resource.yaml`` add:
 
+{% code title="config/packages/sylius_resource.yaml" lineNumbers="true" %}
 ```yaml
 sylius_resource:
     resources:
@@ -44,12 +47,15 @@ sylius_resource:
             classes:
                 model: App\Entity\Book
 ```
+{% endcode %}
+
 That's it! Your Book entity is now registered as Sylius Resource.
 
 ## You can also configure several doctrine drivers.
 
 Remember that the ``doctrine/orm`` driver is used by default.
 
+{% code title="config/packages/sylius_resource.yaml" lineNumbers="true" %}
 ```yaml
 sylius_resource:
     drivers:
@@ -64,12 +70,14 @@ sylius_resource:
             classes:
                 model: App\Document\ArticleDocument
 ```
+{% endcode %}
 
 ## Update the resource repository
 
 If you use the "make:entity" command you should have a generated repository which extends ServiceEntityRepository.
 Then you just have to implement `SyliusRepositoryInterface` and use `ResourceRepositoryTrait`.
 
+{% code title="src/Repository/BookRepository.php" lineNumbers="true" %}
 ```php
 namespace App\Repository;
 
@@ -87,9 +95,11 @@ class BookRepository extends ServiceEntityRepository implements RepositoryInterf
     }
 }
 ```
+{% endcode %}
 
 And configure this repository class:
 
+{% code title="config/packages/sylius_resource.yaml" lineNumbers="true" %}
 ```yaml
 sylius_resource:
     drivers:
@@ -101,6 +111,7 @@ sylius_resource:
                 model: App\Entity\Book
                 repository: App\Entity\BookRepository
 ```
+{% endcode %}
 
 ## Generate API routing.
 
@@ -109,12 +120,15 @@ Learn more about using Sylius REST API in these articles:
 
 Add the following lines to ``config/routes.yaml``:
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
         alias: app.book
     type: sylius.resource_api
 ```
+{% endcode %}
+
 After that a full JSON/XML CRUD API is ready to use.
 Sounds crazy? Spin up the built-in server and give it a try:
 
@@ -140,12 +154,15 @@ As you can guess, other CRUD actions are available through this API.
 
 What if you want to render HTML pages? That's easy! Update the routing configuration:
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
         alias: app.book
     type: sylius.resource
 ```
+{% endcode %}
+
 This will generate routing for HTML views.
 
 Run the ``debug:router`` command to see available routes:

@@ -5,6 +5,7 @@ This section provides all the configuration options for `sylius_grid`.
 
 <details open><summary>Yaml</summary>
 
+{% code %}
 ```yaml
 sylius_grid:
     grids:
@@ -146,11 +147,13 @@ sylius_grid:
                                     parameters:
                                         userId: resource.id
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code %}
 ```php
 <?php
 
@@ -274,5 +277,6 @@ return static function (GridConfig $grid): void {
     );
 };
 ```
+{% endcode %}
 
 </details>

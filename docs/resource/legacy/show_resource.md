@@ -12,23 +12,22 @@ Let's assume that you have a ``app.book`` resource registered. To display a sing
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_show:
     path: /books/{id}
     methods: [GET]
     defaults:
         _controller: app.controller.book::showAction
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="rc/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -38,6 +37,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     controller: 'app.controller.book::showAction',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -53,9 +53,8 @@ Okay, but what if you want to display the same Book resource, but with a differe
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_admin_book_show:
     path: /admin/books/{id}
     methods: [GET]
@@ -64,13 +63,14 @@ app_admin_book_show:
         _sylius:
             template: Admin/Book/show.html.twig
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
 
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -82,6 +82,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     template: 'Admin/Book/show.html.twig',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -94,9 +95,8 @@ Displaying books by id can be boring... and let's say we do not want to allow vi
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_show:
     path: /books/{title}
     methods: [GET]
@@ -107,13 +107,14 @@ app_book_show:
                 title: $title
                 enabled: true
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
 
 use Sylius\Resource\Annotation\SyliusRoute;
 
@@ -128,6 +129,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -141,9 +143,8 @@ Creating yet another action to change the method called could be a solution but 
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_show:
     path: /books/{author}
     methods: [GET]
@@ -154,14 +155,14 @@ app_book_show:
                 method: findOneNewestByAuthor
                 arguments: [$author]
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -175,6 +176,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -186,9 +188,8 @@ If you would like to use your own service to get the resource, then try the foll
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_show:
     path: /books/{author}
     methods: [GET]
@@ -199,14 +200,14 @@ app_book_show:
                 method: ["expr:service('app.repository.custom_book_repository')", "findOneNewestByAuthor"]
                 arguments: [$author]
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -220,6 +221,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -229,9 +231,8 @@ With this configuration, method ``findOneNewestByAuthor`` from service with ID `
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
-# config/routes.yaml
-
 app_book_show:
     path: /books/{author}
     methods: [GET]
@@ -247,14 +248,14 @@ app_book_show:
             serialization_groups: [Custom, Details]
             serialization_version: 1.0.2
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusRoute;
 
 #[SyliusRoute(
@@ -273,6 +274,7 @@ use Sylius\Resource\Annotation\SyliusRoute;
     serializationVersion: '1.0.2',
 )]
 ```
+{% endcode %}
 
 </details>
 

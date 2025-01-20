@@ -35,8 +35,8 @@ src
 
 In the Application folder, we already have this `CreateBookCommand`:
 
+{% code title="src/Bookstore/Application/Command/CreateBookCommand.php" lineNumbers="true" %}
 ```php
-// src/Bookstore/Application/Command/CreateBookCommand.php
 
 declare(strict_types=1);
 
@@ -65,6 +65,7 @@ final readonly class CreateBookCommand implements CommandInterface
     }
 }
 ```
+{% endcode %}
 
 The idea is to reuse this command to create the book in the storage for your "create" operation.
 
@@ -72,8 +73,8 @@ The idea is to reuse this command to create the book in the storage for your "cr
 
 First, we need to add the `CreateBookProcessor` in which we're going to call our `CreateBookCommand`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/State/Processor/CreateBookProcessor.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/State/Processor/CreateBookProcessor.php
 
 declare(strict_types=1);
 
@@ -126,13 +127,14 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}
 
 ### Adding the processor on the Book Resource
 
 Then, we add the `Create` operation on our `BookResource`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Resource/BookResource.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
 
 // ...
 use App\BookStore\Infrastructure\Sylius\State\Processor\CreateBookProcessor;
@@ -156,6 +158,7 @@ final class BookResource implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 ## Book edition
 
@@ -167,8 +170,8 @@ final class BookResource implements ResourceInterface
 
 Now, we want to be able to edit an existing book. In the Application folder, we already have this `UpdateBookCommand`:
 
+{% code title="src/Bookstore/Application/Command/UpdateBookCommand.php" lineNumbers="true" %}
 ```php
-// src/Bookstore/Application/Command/UpdateBookCommand.php
 
 declare(strict_types=1);
 
@@ -199,11 +202,12 @@ final readonly class UpdateBookCommand implements CommandInterface
     }
 }
 ```
+{% endcode %}
 
 In the same folder, we also have this existing `FindBookQuery`:
 
+{% code title="src/BookStore/Application/Query/FindBookQuery.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Application/Query/FindBookQuery.php
 
 declare(strict_types=1);
 
@@ -224,6 +228,7 @@ final readonly class FindBookQuery implements QueryInterface
     }
 }
 ```
+{% endcode %}
 
 The idea is to reuse these query and command to update the book in the storage for your "update" operation.
 
@@ -231,8 +236,8 @@ The idea is to reuse these query and command to update the book in the storage f
 
 First, we need to create the `BookItemProvider` in order to fetch the right book.
 
+{% code title="src/BookStore/Infrastructure/Sylius/State/Provider/BookItemProvider.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/State/Provider/BookItemProvider.php
 
 declare(strict_types=1);
 
@@ -272,13 +277,14 @@ final readonly class BookItemProvider implements ProviderInterface
     }
 }
 ```
+{% endcode %}
 
 ### Create the UpdateBookProcessor
 
 We also need to create the `UpdateBookProcessor` where we're going to call our `UpdateBookCommand`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/State/Processor/UpdateBookProcessor.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/State/Processor/UpdateBookProcessor.php
 
 declare(strict_types=1);
 
@@ -327,14 +333,14 @@ final readonly class UpdateBookProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}
 
 ### Adding the provider & processor on the Book Resource
 
 Now, we add the "update" operation on the `BookResource`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Resource/BookResource.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
-
 // ...
 use App\BookStore\Infrastructure\Sylius\State\Processor\UpdateBookProcessor;
 use App\BookStore\Infrastructure\Sylius\State\Provider\BookItemProvider;
@@ -359,6 +365,7 @@ final class BookResource implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 ## Book removal
 
@@ -370,8 +377,8 @@ final class BookResource implements ResourceInterface
 
 Now that we can update an existing book, we also want to be able to delete it. In the Application folder, we already have this `DeleteBookCommand`:
 
+{% code title="src/BookStore/Application/Command/DeleteBookCommand.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Application/Command/DeleteBookCommand.php
 
 declare(strict_types=1);
 
@@ -391,13 +398,14 @@ final readonly class DeleteBookCommand implements CommandInterface
     }
 }
 ```
+{% endcode %}
 
 ### Create the DeleteBookProcessor
 
 We need to create the `DeleteBookProcessor`.
 
+{% code title="src/BookStore/Infrastructure/Sylius/State/Processor/DeleteBookProcessor.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/State/Processor/DeleteBookProcessor.php
 
 declare(strict_types=1);
 
@@ -431,14 +439,14 @@ final readonly class DeleteBookProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}
 
 ### Adding the processor on the Book Resource
 
 And then we create the "delete" operation on the BookResource.
 
+{% code title="src/BookStore/Infrastructure/Sylius/Resource/BookResource.php" lineNumbers="true" %}
 ```php
-// src/BookStore/Infrastructure/Sylius/Resource/BookResource.php
-
 // ...
 use App\BookStore\Infrastructure\Sylius\State\Processor\DeleteBookProcessor;
 use App\BookStore\Infrastructure\Sylius\State\Provider\BookItemProvider;
@@ -460,3 +468,4 @@ final class BookResource implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}

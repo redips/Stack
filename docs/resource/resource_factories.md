@@ -24,6 +24,7 @@ It has a `createNew` method with no arguments.
 
 If you are using Symfony autowiring, you can inject the resource factory using the right variable name.
 
+{% code title="src/MyService.php" lineNumbers="true" %}
 ```php
 namespace App;
 
@@ -36,6 +37,7 @@ final class MyService
     ) {}
 }
 ```
+{% endcode %}
 
 In this example, the `app.factory.book` will be injected in your `$bookFactory`
 
@@ -47,9 +49,8 @@ $ bin/console debug:autowiring app.factory.book
 
 ## Define your custom factory
 
+{% code title="src/Factory/BookFactory.php" lineNumbers="true" %}
 ```php
-// src/Factory/BookFactory.php
-
 declare(strict_types=1);
 
 namespace App\Factory;
@@ -68,20 +69,22 @@ final class BookFactory implements FactoryInterface
     }
 }
 ```
+{% endcode %}
 
 Configure your factory
 
+{% code title="config/services.yaml" lineNumbers="true" %}
 ```yaml
-# config/services.yaml
 services:
     App\Factory\BookFactory:
         decorates: 'app.factory.book'
 ```
+{% endcode %}
 
 ## Use your custom method
 
+{% code title="src/Factory/BookFactory.php" lineNumbers="true" %}
 ```php
-// src/Factory/BookFactory.php
 
 declare(strict_types=1);
 
@@ -112,11 +115,12 @@ final class BookFactory implements FactoryInterface
     }
 }
 ```
+{% endcode %}
 
 Use it on your create operation
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book.php
 
 declare(strict_types=1);
 
@@ -135,6 +139,7 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}
 
 ## Pass arguments to your method
 
@@ -148,8 +153,8 @@ You can pass arguments to your factory method.
 
 It uses the [Symfony expression language](https://symfony.com/doc/current/components/expression_language.html) component.
 
+{% code title="src/Factory/BookFactory.php" lineNumbers="true" %}
 ```php
-// src/Factory/BookFactory.php
 
 declare(strict_types=1);
 
@@ -182,11 +187,12 @@ final class BookFactory implements FactoryInterface
     }
 }
 ```
+{% endcode %}
 
 Use it on your create operation
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book.php
 
 declare(strict_types=1);
 
@@ -206,13 +212,14 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}
 
 ## Use a factory without declaring it 
 
 You can use a factory without declaring it on `services.yaml`.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book.php
 
 declare(strict_types=1);
 
@@ -235,12 +242,13 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}
 
 
 ## Use a callable for your custom factory
 
+{% code title="src/Factory/BookFactory.php" lineNumbers="true" %}
 ```php
-// src/Factory/BookFactory.php
 
 declare(strict_types=1);
 
@@ -256,9 +264,10 @@ final class BookFactory
     }
 }
 ```
+{% endcode %}
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-// src/Entity/Book.php
 
 declare(strict_types=1);
 
@@ -277,3 +286,4 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}

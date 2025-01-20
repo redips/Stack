@@ -10,6 +10,7 @@ Have you noticed how Sylius generates forms for you? Of course, for many use-cas
 
 ### Create a FormType class for your resource
 
+{% code title="src/Form/Type/BookType.php" lineNumbers="true" %}
 ```php
 namespace App\Form\Type;
 
@@ -36,6 +37,8 @@ class BookType extends AbstractResourceType
     }
 }
 ```
+{% endcode %}
+
 ### **Note**
 The getBlockPrefix method returns the prefix of the template block name for this type.
 
@@ -47,6 +50,7 @@ The getBlockPrefix method returns the prefix of the template block name for this
 the registration of a form type is only needed when the form is extending the ``AbstractResourceType``
 or when it has some custom constructor dependencies.
 
+{% code %}
 ```yaml
 app.book.form.type:
     class: App\Form\Type\BookType
@@ -54,8 +58,11 @@ app.book.form.type:
         - { name: form.type }
     arguments: ['%app.model.book.class%', '%app.book.form.type.validation_groups%']
 ```
+{% endcode %}
+
 ## Configure the form for your resource
 
+{% code title="config/routes/sylius_resource.yaml" lineNumbers="true" %}
 ```yaml
 sylius_resource:
     resources:
@@ -64,6 +71,8 @@ sylius_resource:
                 model: App\Entity\Book
                 form: App\Form\Type\BookType
 ```
+{% endcode %}
+
 That's it. Your new class will be used for all forms!
 
 **[Go back to the documentation's index](index.md)**

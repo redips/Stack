@@ -24,6 +24,7 @@ Redirections are configured on your operations with these default behaviours.
 
 For example, let's configure a custom redirection to create & update operations.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 
 declare(strict_types=1);
@@ -42,6 +43,7 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}
 
 After adding or editing a book, it will be redirected to the edition page of a book.
 
@@ -59,6 +61,7 @@ It uses the [Symfony expression language](https://symfony.com/doc/current/compon
 
 As an example, let's redirect a book creation to the author details page of the created book.
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
 
 declare(strict_types=1);
@@ -81,3 +84,4 @@ class Book implements ResourceInterface
 {
 }
 ```
+{% endcode %}

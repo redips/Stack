@@ -11,6 +11,7 @@ it for the `sylius_grid`.
 In the template we will specify the button's icon to be `export` and its
 colour to be `orange`.
 
+{% code %}
 ```twig
 {% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
 
@@ -18,17 +19,19 @@ colour to be `orange`.
 
 {{ buttons.default(path, action.label, null, 'export', 'orange') }}
 ```
+{% endcode %}
 
 Now configure the new action's template like below in the
 `config/packages/sylius_grid.yaml`:
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     templates:
         bulk_action:
             export: "@App/Grid/BulkAction/export.html.twig"
 ```
+{% endcode %}
 
 From now on you can use your new bulk action type in the grid
 configuration!
@@ -38,6 +41,7 @@ ids, then you can configure the grid action:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -54,11 +58,13 @@ sylius_grid:
                                 parameters:
                                     format: csv
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -88,12 +94,13 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/AdminProductGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminProductGrid.php
 
 declare(strict_types=1);
 
@@ -139,5 +146,6 @@ final class AdminProductGrid extends AbstractGrid implements ResourceAwareGridIn
     }
 }
 ```
+{% endcode %}
 
 </details>

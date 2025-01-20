@@ -12,26 +12,28 @@ To generate a full CRUD routing, simply configure it in your ``config/routes.yam
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
         alias: app.book
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
     alias: 'app.book',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -57,6 +59,7 @@ By default, Sylius will use a plural form of the resource name, but you can easi
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -64,14 +67,14 @@ app_book:
         path: library
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -79,6 +82,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     path: 'library',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -102,12 +106,15 @@ app_book_delete          DELETE          ANY      ANY    /library/{id}
 
 To generate a full API-friendly CRUD routing, add these YAML lines to your ``config/routes.yaml``:
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
         alias: app.book
     type: sylius.resource_api
 ```
+{% endcode %}
+
 Results in the following routes:
 
 ```bash
@@ -129,6 +136,7 @@ If you want to skip some routes, simply use ``except`` configuration:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -136,14 +144,14 @@ app_book:
         except: ['delete', 'update']
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -151,6 +159,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     except: ['delete', 'update'],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -174,6 +183,7 @@ If you want to generate only some specific routes, simply use the ``only`` confi
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -181,14 +191,14 @@ app_book:
         only: ['show', 'index']
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -196,6 +206,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     only: ['show', 'index'],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -217,6 +228,7 @@ Sometimes you want to generate routing for different "sections" of an applicatio
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_admin_book:
     resource: |
@@ -233,12 +245,12 @@ app_library_book:
     type: sylius.resource
     prefix: /library
 ```
+{% endcode %}
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -254,6 +266,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     only: ['show', 'index'],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -282,6 +295,7 @@ You can easily change that per route, but it is also easy when you generate the 
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_admin_book:
     resource: |
@@ -291,14 +305,14 @@ app_admin_book:
     type: sylius.resource
     prefix: /admin
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -308,6 +322,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     templates: 'Admin/Book',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -324,6 +339,7 @@ If you want to use a custom form:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -331,14 +347,14 @@ app_book:
         form: App/Form/Type/AdminBookType
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use App\Form\Type\AdminBookType;
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
@@ -347,6 +363,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     form: AdminBookType::class,
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -362,6 +379,7 @@ If you want to change that behavior, use the following configuration:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -369,14 +387,14 @@ app_book:
         redirect: update
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -384,6 +402,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     redirect: 'update',
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -392,6 +411,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
 One of the ResourceBundle dependencies is JMSSerializer, which provides a useful functionality of [object versioning](http://jmsyst.com/libs/serializer/master/cookbook/exclusion_strategies#versioning-objects). It is possible to take an advantage of it almost out of the box.
 If you would like to return only the second version of your object serializations, use the following snippet:
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -399,8 +419,11 @@ app_book:
         serialization_version: 2
     type: sylius.resource_api
 ```
+{% endcode %}
+
 What is more, you can use a path variable to dynamically change your request. You can achieve this by setting a path prefix when importing file or specify it in the path option.
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -408,6 +431,8 @@ app_book:
         serialization_version: $version
     type: sylius.resource_api
 ```
+{% endcode %}
+
 ### **Note** 
 Remember that a dynamically resolved `books` prefix is no longer available when you specify ``path``, and it has to be defined manually.
 
@@ -418,6 +443,7 @@ Assuming that the path prefix is `/libraries/{libraryId}`, if you would like to 
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -427,14 +453,14 @@ app_book:
             library: $libraryId
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -445,6 +471,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 
@@ -472,6 +499,7 @@ If you want to look for books by ``isbn``, use the following configuration:
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/routes.yaml" lineNumbers="true" %}
 ```yaml
 app_book:
     resource: |
@@ -481,14 +509,14 @@ app_book:
             isbn: $isbn
     type: sylius.resource
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="src/Entity/Book.php" lineNumbers="true" %}
 ```php
-# src/Entity/Book
-
 use Sylius\Resource\Annotation\SyliusCrudRoutes;
 
 #[SyliusCrudRoutes(
@@ -499,6 +527,7 @@ use Sylius\Resource\Annotation\SyliusCrudRoutes;
     ],
 )]
 ```
+{% endcode %}
 
 </details>
 

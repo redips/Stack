@@ -5,6 +5,7 @@ Sylius Grids come with built-in filters, but there are use-cases where you need 
 
 To add a new filter, we need to create an appropriate class and form type.
 
+{% code title="src/Grid/Filter/SuppliersStatisticsFilter.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -44,9 +45,11 @@ class SuppliersStatisticsFilter implements ConfigurableFilterInterface
     }
 }
 ```
+{% endcode %}
 
 And the form type:
 
+{% code title="src/Grid/Filter/SuppliersStatisticsFilter.php" lineNumbers="true" %}
 ```php
 <?php
 
@@ -79,36 +82,38 @@ class SuppliersStatisticsFilterType extends AbstractType
     }
 }
 ```
+{% endcode %}
 
 Create a template for the filter, similar to the existing ones:
 
+{% code title="templates/Grid/Filter/suppliers_statistics.html.twig" lineNumbers="true" %}
 ```html
-# templates/Grid/Filter/suppliers_statistics.html.twig
+# 
 {% form_theme form '@SyliusUi/Form/theme.html.twig' %}
 
 {{ form_row(form) }}
 ```
+{% endcode %}
 
 
 If you use Autoconfiguration, the filter is automatically registered as a grid filter.
 
 But if you don't use autoconfiguration, let's register your new filter type as service.
 
+{% code title="config/services.yaml" lineNumbers="true" %}
 ```yaml
-# config/services.yaml
-
 services:
     App\Grid\Filter\SuppliersStatisticsFilter:
         tags: ['sylius.grid_filter']
 ```
+{% endcode %}
 
 Now you can use your new filter type in the grid configuration!
 
 <details open><summary>Yaml</summary>
 
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
-
 sylius_grid:
     grids:
         app_tournament:
@@ -123,14 +128,15 @@ sylius_grid:
         filter:
             suppliers_statistics: '@App/Grid/Filter/suppliers_statistics.html.twig'
 ```
+{% endcode %}
 
 </details>
 
 <details open><summary>PHP</summary>
 
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Tournament;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
@@ -148,12 +154,13 @@ return static function (GridConfig $grid) {
     )
 };
 ```
+{% endcode %}
 
 OR
 
+{% code title="src/Grid/TournamentGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/TournamentGrid.php
 
 declare(strict_types=1);
 
@@ -187,5 +194,6 @@ final class TournamentGrid extends AbstractGrid implements ResourceAwareGridInte
     }
 }
 ```
+{% endcode %}
 
 </details>

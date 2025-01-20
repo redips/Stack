@@ -31,9 +31,8 @@ Custom processors are useful to customize your logic to send an email, persist d
 
 As an example, send an email after customer registration
 
+{% code title="src/Sylius/State/Processor/CreateCustomerProcessor.php" lineNumbers="true" %}
 ```php
-// src/Sylius/State/Processor/CreateCustomerProcessor.php
-
 namespace App\Sylius\State\Processor;
 
 use Sylius\Component\Customer\Model\CustomerInterface;
@@ -61,11 +60,12 @@ final class CreateCustomerProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}
 
 Use this processor on your operation.
 
+{% code title="src/Entity/Customer.php" lineNumbers="true" %}
 ```php
-// src/Entity/Customer.php
 
 namespace App\Entity\Customer;
 
@@ -78,13 +78,14 @@ use Sylius\Resource\Model\ResourceInterface;
 #[Create(processor: CreateCustomerProcessor::class)]
 final class BoardGameResource implements ResourceInterface
 ```
+{% endcode %}
 
 ### Example #2: Use a custom delete processor
 
 As another example, let's configure a `DeleteBoardGameProcessor` on a `BoardGameResource` which is not a Doctrine entity.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/State/Processor/DeleteBoardGameProcessor.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/State/Processor/DeleteBoardGameProcessor.php
 
 namespace App\BoardGameBlog\Infrastructure\Sylius\State\Processor;
 
@@ -105,11 +106,12 @@ final class DeleteBoardGameProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}
 
 Use this processor on your operation.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php
 
 namespace App\BoardGameBlog\Infrastructure\Sylius\Resource;
 
@@ -127,6 +129,7 @@ use Sylius\Resource\Model\ResourceInterface;
 #[Delete(processor: DeleteBoardGameProcessor::class)]
 final class BoardGameResource implements ResourceInterface
 ```
+{% endcode %}
 
 Note that in a delete operation, you can disable providing data.
 See [Disable providing data](providers.md#disable-providing-data) chapter.
@@ -137,8 +140,8 @@ In some cases, you may want not to write data.
 
 For example, you can implement a preview for the updated data without saving them into your storage.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php
 
 namespace App\BoardGameBlog\Infrastructure\Sylius\Resource;
 
@@ -162,3 +165,4 @@ use Sylius\Resource\Model\ResourceInterface;
 )]
 final class BoardGameResource implements ResourceInterface
 ```
+{% endcode %}

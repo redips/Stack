@@ -8,8 +8,8 @@ fields, including _name_, _description_ and _enabled_.
 
 In order to make it a Sylius resource, you need to add the `AsResource` attribute and implement `ResourceInterface`.
 
+{% code title="src/Entity/Supplier.php" lineNumbers="true" %}
 ```php
-// src/Entity/Supplier.php
 namespace App\Entity;
 
 use Sylius\Resource\Metadata\AsResource;
@@ -21,6 +21,7 @@ class Supplier implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 That's it! Your class is now a resource. In order to learn what it
 means, please refer to the
@@ -41,9 +42,8 @@ Now we can configure our first grid:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -62,6 +62,7 @@ sylius_grid:
                         template: '@SyliusBootstrapAdminUi/shared/grid/field/boolean.html.twig' # This will be a checkbox field
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
@@ -90,10 +91,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -148,8 +148,8 @@ types. Although a Supplier also has a _description_ field, it is not needed on t
 
 The `SyliusResourceBundle` allows you to use a grid into an index operation:
 
+{% code title="src/Entity/Supplier.php" lineNumbers="true" %}
 ```php
-// src/Entity/Supplier.php
 namespace App\Entity;
 
 use App\Grid\AdminSupplierGrid;
@@ -173,6 +173,7 @@ class Supplier implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 This will generate the following path:
 
@@ -182,6 +183,7 @@ This will generate the following path:
  ------------------------------ ---------------------------                  
   app_admin_supplier_index           /admin/suppliers               
 ```
+{% endcode %}
 
 {% hint style="info" %}
 See how to add this new page into your [administration menu](../cookbook/admin_panel/menu.md).
@@ -197,7 +199,7 @@ To allow users to search for specific items in the grid, you can use filters.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -212,6 +214,7 @@ sylius_grid:
                     label: Enabled
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
@@ -242,10 +245,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -286,6 +288,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -303,9 +306,8 @@ query:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -317,13 +319,13 @@ sylius_grid:
                         method: mySupplierGridQuery
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -341,10 +343,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -378,6 +379,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -393,7 +395,7 @@ Then you can set up your filter accordingly:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```yaml
 sylius_grid:
     grids:
@@ -410,13 +412,13 @@ sylius_grid:
                         type: contains
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -436,10 +438,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -475,6 +476,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -485,9 +487,8 @@ You can define by which field you want the grid to be sorted and how.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -497,13 +498,13 @@ sylius_grid:
                 # ...
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -519,10 +520,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -554,6 +554,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -561,9 +562,8 @@ Then in the fields section, indicate that the field can be used for sorting:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -576,13 +576,13 @@ sylius_grid:
                 # ...
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
@@ -603,10 +603,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -643,6 +642,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -651,9 +651,8 @@ specific path, you can enable sorting with the following definition:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -670,13 +669,13 @@ sylius_grid:
                 # ...
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
@@ -698,10 +697,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -739,6 +737,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -751,9 +750,8 @@ array will be treated as the default, so by configuring:
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -762,13 +760,13 @@ sylius_grid:
             # ...
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\GridBuilder;
@@ -784,10 +782,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -820,6 +817,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 
@@ -838,8 +836,8 @@ Next step is adding some actions to the grid: create, update and delete.
 
 First, we need to create these operations on our resource:
 
+{% code title="src/Entity/Supplier.php" lineNumbers="true" %}
 ```php
-// src/Entity/Supplier.php
 namespace App\Entity;
 
 use App\Grid\AdminSupplierGrid;
@@ -864,6 +862,7 @@ class Supplier implements ResourceInterface
     // ...
 }
 ```
+{% endcode %}
 
 These new operations are now available:
 
@@ -888,9 +887,8 @@ deleting.
 
 {% tabs %}
 {% tab title="YAML" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_grid.yaml
 sylius_grid:
     grids:
         app_admin_supplier:
@@ -906,13 +904,13 @@ sylius_grid:
                         type: delete
 ```
 {% endcode %}
+
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
-// config/packages/sylius_grid.php
 
 use App\Entity\Supplier;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
@@ -943,10 +941,9 @@ return static function (GridConfig $grid) {
 
 OR
 
-{% code lineNumbers="true" %}
+{% code title="src/Grid/AdminSupplierGrid.php" lineNumbers="true" %}
 ```php
 <?php
-# src/Grid/AdminSupplierGrid.php
 
 declare(strict_types=1);
 
@@ -993,6 +990,7 @@ final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridI
 }
 ```
 {% endcode %}
+
 {% endtab %}
 {% endtabs %}
 

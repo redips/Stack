@@ -4,6 +4,7 @@
 This section is deprecated. However, as of now, the Sylius E-Commerce project is still resorting to this configuration so you might want to check it out.
 {% endhint %}
 
+{% code %}
 ```yaml
 sylius_resource:
     resources:
@@ -31,9 +32,11 @@ sylius_resource:
                 templates:
                     form: Book/Translation/_form.html.twig
 ```
+{% endcode %}
 
 ## Routing Generator Configuration Reference
 
+{% code %}
 ```yaml
 app_book:
     resource: |
@@ -51,4 +54,6 @@ app_book:
         serialization_version: 1
     type: sylius.resource
 ```
+{% endcode %}
+
 **[Go back to the documentation's index](index.md)**

@@ -28,8 +28,8 @@ As it uses the Doctrine repository configured on your resource, some default rep
 
 You can customize the method to use.
 
+{% code title="src/Entity/Customer.php" lineNumbers="true" %}
 ```php
-// src/Entity/Customer.php
 
 declare(strict_types=1);
 
@@ -46,6 +46,7 @@ final class Customer implements ResourceInterface
     // [...]
 }
 ```
+{% endcode %}
 
 ### Custom repository arguments
 
@@ -59,8 +60,8 @@ You can pass arguments to your repository method.
 
 It uses the [Symfony expression language](https://symfony.com/doc/current/components/expression_language.html) component.
 
+{% code title="src/Entity/Customer.php" lineNumbers="true" %}
 ```php
-// src/Entity/Customer.php
 
 declare(strict_types=1);
 
@@ -77,6 +78,7 @@ final class Customer implements ResourceInterface
     // [...]
 }
 ```
+{% endcode %}
 
 ## Custom providers
 
@@ -84,8 +86,8 @@ Custom providers are useful to customize your logic to retrieve data and for an 
 
 As an example, let's configure a `BoardGameItemProvider` on a `BoardGameResource` which is not a Doctrine entity.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/State/Provider/BoardGameItemProvider.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/State/Provider/BoardGameItemProvider.php
 
 declare(strict_types=1);
 
@@ -113,11 +115,12 @@ final class BoardGameItemProvider implements ProviderInterface
     }
 }
 ```
+{% endcode %}
 
 Use this provider on your operation.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php
 
 declare(strict_types=1);
 
@@ -135,6 +138,7 @@ final class BoardGameResource implements ResourceInterface
     // [...]
 }
 ```
+{% endcode %}
 
 ## Disable providing data
 
@@ -142,8 +146,8 @@ In some cases, you may want not to read data.
 
 For example, in a delete operation, you can implement your custom delete processor without reading it before.
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/Resource/BoardGameResource.php
 
 declare(strict_types=1);
 
@@ -164,9 +168,10 @@ final class BoardGameResource implements ResourceInterface
     // [...]
 }
 ```
+{% endcode %}
 
+{% code title="src/BoardGameBlog/Infrastructure/Sylius/State/Processor/DeleteBoardGameProcessor.php" lineNumbers="true" %}
 ```php
-// src/BoardGameBlog/Infrastructure/Sylius/State/Processor/DeleteBoardGameProcessor.php
 
 namespace App\BoardGameBlog\Infrastructure\Sylius\State\Processor;
 
@@ -201,3 +206,4 @@ final class DeleteBoardGameProcessor implements ProcessorInterface
     }
 }
 ```
+{% endcode %}

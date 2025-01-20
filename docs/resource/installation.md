@@ -18,9 +18,8 @@ php composer.phar require sylius/resource-bundle
 
 You need to enable the bundle and its dependencies in the kernel:
 
+{% code title="config/bundles.php" %}
 ```php
-# config/bundles.php
-
 return [
     new FOS\RestBundle\FOSRestBundle(),
     new JMS\SerializerBundle\JMSSerializerBundle($this),
@@ -30,22 +29,23 @@ return [
     new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
 ];
 ```
+{% endcode %}
 
 Configure your mapping paths for your resources
 
+{% code title="config/packages/sylius_resource.yaml" lineNumbers="true" %}
 ```yaml
-# config/packages/sylius_resource.yaml
 sylius_resource:
     mapping:
         paths:
             - '%kernel.project_dir%/src/Entity'
 ```
+{% endcode %}
 
 Configure the routing
 
+{% code title="config/routes.yaml" %}
 ```yaml
-# config/routes.yaml
-
 # [...]
 
 sylius_crud_routes:
@@ -56,5 +56,6 @@ sylius_routes:
     resource: 'sylius.routing.loader.routes_attributes'
     type: service
 ```
+{% endcode %}
 
 That's it! Now you can configure your first resource.
