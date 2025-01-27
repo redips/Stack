@@ -1,18 +1,15 @@
-Field Types
-===========
+# Field Types
 
 This is the list of built-in field types.
 
-String
-------
+## String
 
-Simplest column type, which basically renders the value at given path as
-a string.
+The simplest column type, which displays the value at the specified path as plain text.
 
 By default, it uses the name of the field, but you can specify a different path if needed. For example:
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
@@ -25,11 +22,8 @@ sylius_grid:
                     path: contactDetails.email
 ```
 {% endcode %}
-
-</details>
-
-<details open><summary>PHP</summary>
-
+{% endtab %}
+{% tab title="PHP" %}
 {% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
@@ -91,24 +85,21 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 }
 ```
 {% endcode %}
+{% endtab %}
+{% endtabs %}
 
-</details>
+This configuration will display the value of `$user->getContactDetails()->getEmail()`.
 
-This configuration will display the value from
-`$user->getContactDetails()->getEmail()`.
+## DateTime
 
-DateTime
---------
-
-This column type works exactly the same way as *string*, but expects a
-*DateTime* instance and outputs a formatted date and time string.
+This column type works exactly the same way as *StringField*, but expects a *DateTime* instance and outputs a formatted date and time string.
 
 Available options:
-* `format` - default is `Y:m:d H:i:s`, you can modify it with any supported format (see https://www.php.net/manual/en/datetime.format.php)
-* `timezone` - default is `%sylius_grid.timezone%` parameter, null if such a parameter does not exist, you can modify it with any supported timezone (see https://www.php.net/manual/en/timezones.php)
+* `format` - defaults to `Y:m:d H:i:s`, you can set it to any supported format (see https://www.php.net/manual/en/datetime.format.php)
+* `timezone` - defaults to `%sylius_grid.timezone%` parameter, null if such a parameter does not exist, you can set it to any supported timezone (see https://www.php.net/manual/en/timezones.php)
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
@@ -123,11 +114,9 @@ sylius_grid:
                         timezone: null
 ```
 {% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
 {% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
@@ -187,15 +176,12 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 }
 ```
 {% endcode %}
+{% endtab %}
+{% endtabs %}
 
-</details>
+{% hint style="warning" %}
+If you want to call the `setOptions` function, you must pass both `'format'` and `'timezone'` as arguments again. Otherwise, they will be unset.
 
-### *Warning*
-
-You have to pass `'format'` and `'timezone'` again if you want to call the `setOptions` function.
-Otherwise, it will be unset:
-
-Example:
 {% code %}
 ```php
 $field->setOptions([
@@ -206,17 +192,15 @@ $field->setOptions([
 ]);
 ```
 {% endcode %}
+{% endhint %}
 
-Twig (*twig*)
--------------
+## Twig
 
-The Twig column type is the most flexible one, because it
-delegates the logic of rendering the value to the Twig templating engine.
-You just have to specify the template and it will be rendered with the
-`data` variable available to you.
+The Twig column type is the most flexible one, because it delegates the logic of rendering the value to the Twig templating engine.
+First, you must specify the template you want to render.
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
@@ -230,11 +214,9 @@ sylius_grid:
                         template: "@Grid/Column/_prettyName.html.twig"
 ```
 {% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="PHP" %}
 {% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
@@ -294,20 +276,19 @@ final class UserGrid extends AbstractGrid implements ResourceAwareGridInterface
 }
 ```
 {% endcode %}
+{% endtab %}
+{% endtabs %}
 
-</details>
+Then, within the template, you can render the field's value via the `data` variable.
 
-In the `@Grid/Column/_prettyName.html.twig` template, you just need to
-render the value. For example:
-
-{% code %}
+{% code title="@Grid/Column/_prettyName.html.twig" %}
 ```twig
 <strong>{{ data }}</strong>
 ```
 {% endcode %}
 
 If you wish to render more complex grid fields, just redefine the path of
-the field to root – `path: .` and then you can access all
+the field to root in your grid – `path: .` and then you can access all
 attributes of the object instance:
 
 {% code %}
@@ -317,11 +298,9 @@ attributes of the object instance:
 ```
 {% endcode %}
 
-### *Warning*
+{% hint style="warning" %}
+If you want to call the `setOptions` function, you must pass `'template'` as an argument again. Otherwise, it will be unset.
 
-You have to pass the `'template'` option again if you want to call the `setOptions` function. Otherwise, it will be unset:
-
-Example:
 {% code %}
 ```php
 $field->setOptions([
@@ -331,3 +310,4 @@ $field->setOptions([
 ]);
 ```
 {% endcode %}
+{% endhint %}
