@@ -24,7 +24,7 @@ Menu
 * [Field types](field_types.md)
 * [Creating a custom Field Type](custom_field_type.md)
 * [Creating custom Action](custom_action.md)
-* [Creating custom Bulk Action](custom_bulk_action.md)
+* [Creating a custom Bulk Action](custom_bulk_action.md)
 * [Filters](filters.md)
 * [Creating a custom Filter](custom_filter.md)
 * [Advanced configuration](advanced_configuration.md)
