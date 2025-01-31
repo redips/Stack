@@ -62,7 +62,7 @@
   * [Creating custom Action](grid/custom_action.md)
   * [Creating custom Bulk Action](grid/custom_bulk_action.md)
   * [Filters](grid/filters.md)
-  * [Creating custom filter](grid/custom_filter.md)
+  * [Creating a custom Filter](grid/custom_filter.md)
   * [Advanced configuration](grid/advanced_configuration.md)
   * [Configuration Reference](grid/configuration.md)
 

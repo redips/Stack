@@ -1,7 +1,6 @@
-Creating custom filter
-======================
+# Creating a custom Filter
 
-Sylius Grids come with built-in filters, but there are use-cases where you need something more than basic filter. Grids allow you to define your own filter types!
+Sylius Grids come with built-in filters, but there are use-cases where you need something more than a basic filter. Grids let you define your own filter types!
 
 To add a new filter, we need to create an appropriate class and form type.
 
@@ -28,7 +27,7 @@ class SuppliersStatisticsFilter implements ConfigurableFilterInterface
             ->setParameter(':stats', $data['stats'])
         ;
     
-        // For driver abstraction you can use the expression builder. ExpressionBuilder is kind of query builder.
+        // For driver abstraction you can use the expression builder. ExpressionBuilder is a kind of query builder.
         // $data['stats'] contains the submitted value!
         // here is an example
         $dataSource->restrict($dataSource->getExpressionBuilder()->equals('stats', $data['stats']));
@@ -96,9 +95,9 @@ Create a template for the filter, similar to the existing ones:
 {% endcode %}
 
 
-If you use Autoconfiguration, the filter is automatically registered as a grid filter.
+If you use autoconfiguration, the filter is automatically registered as a grid filter.
 
-But if you don't use autoconfiguration, let's register your new filter type as service.
+But if you don't use autoconfiguration, let's register your new filter type as a service.
 
 {% code title="config/services.yaml" lineNumbers="true" %}
 ```yaml
@@ -110,8 +109,8 @@ services:
 
 Now you can use your new filter type in the grid configuration!
 
-<details open><summary>Yaml</summary>
-
+{% tabs %}
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.yaml" lineNumbers="true" %}
 ```yaml
 sylius_grid:
@@ -129,11 +128,9 @@ sylius_grid:
             suppliers_statistics: '@App/Grid/Filter/suppliers_statistics.html.twig'
 ```
 {% endcode %}
+{% endtab %}
 
-</details>
-
-<details open><summary>PHP</summary>
-
+{% tab title="YAML" %}
 {% code title="config/packages/sylius_grid.php" lineNumbers="true" %}
 ```php
 <?php
@@ -195,5 +192,5 @@ final class TournamentGrid extends AbstractGrid implements ResourceAwareGridInte
 }
 ```
 {% endcode %}
-
-</details>
+{% endtab %}
+{% endtabs %}
