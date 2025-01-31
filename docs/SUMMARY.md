@@ -58,7 +58,7 @@
   * [Creating your first grid](grid/your_first_grid.md)
   * [Configuring Fields](grid/field_configuration.md)
   * [Field types](grid/field_types.md)
-  * [Creating custom Field type](grid/custom_field_type.md)
+  * [Creating a custom Field Type](grid/custom_field_type.md)
   * [Creating custom Action](grid/custom_action.md)
   * [Creating custom Bulk Action](grid/custom_bulk_action.md)
   * [Filters](grid/filters.md)
