@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace App\Grid;
 
 use App\Entity\Conference;
-use App\Entity\Speaker;
 use App\Entity\Talk;
 use App\Enum\Track;
+use App\Grid\Filter\SpeakerFilter;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
@@ -28,6 +28,7 @@ use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\Filter\DateFilter;
 use Sylius\Bundle\GridBundle\Builder\Filter\EntityFilter;
+use Sylius\Bundle\GridBundle\Builder\Filter\Filter;
 use Sylius\Bundle\GridBundle\Builder\Filter\SelectFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
@@ -51,9 +52,9 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->addFormOption('choice_label', 'name'),
             )
             ->addFilter(
-                EntityFilter::create(name: 'speaker', resourceClass: Speaker::class, fields: ['speakers.id'])
+                Filter::create(name: 'speaker', type: SpeakerFilter::class)
                     ->setLabel('app.ui.speaker')
-                    ->addFormOption('choice_label', 'fullName'),
+                    ->setOptions(['fields' => ['speakers.id']]),
             )
             ->addFilter(
                 DateFilter::create('startsAt')

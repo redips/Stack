@@ -21,6 +21,7 @@ use Symfony\UX\Autocomplete\Form\BaseEntityAutocompleteType;
 
 #[AsEntityAutocompleteField(
     alias: 'app_admin_speaker',
+    route: 'ux_entity_autocomplete_admin',
 )]
 final class SpeakerAutocompleteType extends AbstractType
 {
