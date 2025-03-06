@@ -34,9 +34,9 @@ final class StatisticsProvider
     ): Statistics {
         return new Statistics(
             businessActivitySummary: new BusinessActivitySummary(
-                totalTalks: $this->talkRepository->findTotalTalks($datePeriod),
-                totalSpeakers: $this->speakerRepository->findTotalTalks($datePeriod),
-                totalConferences: $this->conferenceRepository->findTotalConferences($datePeriod),
+                totalTalks: $this->talkRepository->getTotalTalks($datePeriod),
+                totalSpeakers: $this->speakerRepository->getTotalTalks($datePeriod),
+                totalConferences: $this->conferenceRepository->getTotalConferences($datePeriod),
             ),
         );
     }

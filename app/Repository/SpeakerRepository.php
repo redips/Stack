@@ -38,7 +38,7 @@ class SpeakerRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function findTotalTalks(\DatePeriod $datePeriod): int
+    public function getTotalTalks(\DatePeriod $datePeriod): int
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
@@ -46,13 +46,13 @@ class SpeakerRepository extends ServiceEntityRepository
             ->select('COUNT(DISTINCT o.id)')
             ->join('o.talks', 't')
             ->andWhere(
-                $queryBuilder->expr()->gte('t.startsAt', ':start_date'),
+                $queryBuilder->expr()->gte('t.startsAt', ':startDate'),
             )
             ->andWhere(
-                $queryBuilder->expr()->lt('t.startsAt', ':end_date'),
+                $queryBuilder->expr()->lt('t.startsAt', ':endDate'),
             )
-            ->setParameter('start_date', $datePeriod->getStartDate())
-            ->setParameter('end_date', $datePeriod->getEndDate())
+            ->setParameter('startDate', $datePeriod->getStartDate())
+            ->setParameter('endDate', $datePeriod->getEndDate())
         ;
 
         return (int) $queryBuilder->getQuery()->getSingleScalarResult();

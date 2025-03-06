@@ -120,4 +120,9 @@ class Speaker implements ResourceInterface
     {
         $this->avatar = $avatar;
     }
+
+    public function getTalks(): Collection
+    {
+        return $this->talks;
+    }
 }
