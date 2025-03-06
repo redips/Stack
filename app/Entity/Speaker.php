@@ -63,7 +63,7 @@ class Speaker implements ResourceInterface
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?SpeakerAvatar $avatar = null;
 
-    #[ORM\ManyToMany(targetEntity: Talk::class, mappedBy: 'speakers')]
+    #[ORM\ManyToMany(targetEntity: Talk::class, mappedBy: 'speakers', fetch: 'EXTRA_LAZY')]
     private Collection $talks;
 
     public function __construct()
