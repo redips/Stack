@@ -37,4 +37,24 @@ class SpeakerRepository extends ServiceEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function getTotalSpeakers(\DatePeriod $datePeriod): int
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        $queryBuilder
+            ->select('COUNT(DISTINCT o.id)')
+            ->join('o.talks', 't')
+            ->andWhere(
+                $queryBuilder->expr()->gte('t.startsAt', ':startDate'),
+            )
+            ->andWhere(
+                $queryBuilder->expr()->lt('t.startsAt', ':endDate'),
+            )
+            ->setParameter('startDate', $datePeriod->getStartDate())
+            ->setParameter('endDate', $datePeriod->getEndDate())
+        ;
+
+        return (int) $queryBuilder->getQuery()->getSingleScalarResult();
+    }
 }
