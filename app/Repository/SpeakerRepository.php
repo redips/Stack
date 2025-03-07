@@ -38,7 +38,7 @@ class SpeakerRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function getTotalTalks(\DatePeriod $datePeriod): int
+    public function getTotalSpeakers(\DatePeriod $datePeriod): int
     {
         $queryBuilder = $this->createQueryBuilder('o');
 

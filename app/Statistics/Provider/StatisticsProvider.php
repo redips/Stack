@@ -24,7 +24,7 @@ final class StatisticsProvider
     public function __construct(
         private readonly TalkRepository $talkRepository,
         private readonly SpeakerRepository $speakerRepository,
-        private readonly COnferenceRepository $conferenceRepository,
+        private readonly ConferenceRepository $conferenceRepository,
     ) {
     }
 
@@ -35,7 +35,7 @@ final class StatisticsProvider
         return new Statistics(
             businessActivitySummary: new BusinessActivitySummary(
                 totalTalks: $this->talkRepository->getTotalTalks($datePeriod),
-                totalSpeakers: $this->speakerRepository->getTotalTalks($datePeriod),
+                totalSpeakers: $this->speakerRepository->getTotalSpeakers($datePeriod),
                 totalConferences: $this->conferenceRepository->getTotalConferences($datePeriod),
             ),
         );
