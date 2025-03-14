@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace App\Doctrine;
+namespace App\Doctrine\Query\AST\Function;
 
 use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
@@ -22,7 +22,7 @@ use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\TokenType;
 
-final class Year extends FunctionNode
+final class Day extends FunctionNode
 {
     /** @var Node|string|null */
     public $date;
@@ -42,15 +42,15 @@ final class Year extends FunctionNode
         $platform = $sqlWalker->getConnection()->getDatabasePlatform();
 
         if ($platform instanceof MySQLPlatform) {
-            return sprintf('YEAR(%s)', $sqlWalker->walkArithmeticPrimary($this->date));
+            return sprintf('DAY(%s)', $sqlWalker->walkArithmeticPrimary($this->date));
         }
 
         if ($platform instanceof PostgreSQLPlatform) {
-            return sprintf('EXTRACT(YEAR FROM %s)', $sqlWalker->walkArithmeticPrimary($this->date));
+            return sprintf('EXTRACT(DAY FROM %s)', $sqlWalker->walkArithmeticPrimary($this->date));
         }
 
         if ($platform instanceof SqlitePlatform) {
-            return sprintf('CAST(STRFTIME("%%Y", %s) AS NUMBER)', $sqlWalker->walkArithmeticPrimary($this->date));
+            return sprintf('CAST(STRFTIME("%%d", %s) AS NUMBER)', $sqlWalker->walkArithmeticPrimary($this->date));
         }
 
         throw new \RuntimeException(sprintf('Platform "%s" is not supported!', $platform::class));
