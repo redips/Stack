@@ -22,6 +22,11 @@ doctrine:
                 dir: '%kernel.project_dir%/app/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            string_functions:
+                DAY: 'App\Doctrine\Query\AST\Function\Day'
+                MONTH: 'App\Doctrine\Query\AST\Function\Month'
+                YEAR: 'App\Doctrine\Query\AST\Function\Year'
 
 when@test:
     doctrine:

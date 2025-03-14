@@ -56,4 +56,47 @@ class TalkRepository extends ServiceEntityRepository
 
         return (int) $queryBuilder->getQuery()->getSingleScalarResult();
     }
+
+    public function findTalkStatisticsPerDay(\DatePeriod $datePeriod): array
+    {
+        return $this->findTalkStatistics($datePeriod, [
+            'year' => 'YEAR(o.startsAt) AS year',
+            'month' => 'MONTH(o.startsAt) AS month',
+            'day' => 'DAY(o.startsAt) AS day',
+        ]);
+    }
+
+    public function findTalkStatisticsPerMonth(\DatePeriod $datePeriod): array
+    {
+        return $this->findTalkStatistics($datePeriod, [
+            'year' => 'YEAR(o.startsAt) AS year',
+            'month' => 'MONTH(o.startsAt) AS month',
+        ]);
+    }
+
+    private function findTalkStatistics(\DatePeriod $datePeriod, array $groupBy): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        $queryBuilder
+            ->select('COUNT(o.id) AS total')
+            ->andWhere(
+                $queryBuilder->expr()->gte('o.startsAt', ':startDate'),
+            )
+            ->andWhere(
+                $queryBuilder->expr()->lt('o.startsAt', ':endDate'),
+            )
+            ->setParameter('startDate', $datePeriod->getStartDate())
+            ->setParameter('endDate', $datePeriod->getEndDate())
+        ;
+
+        foreach ($groupBy as $name => $select) {
+            $queryBuilder
+                ->addSelect($select)
+                ->addGroupBy($name)
+            ;
+        }
+
+        return $queryBuilder->getQuery()->getArrayResult();
+    }
 }
