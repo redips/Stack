@@ -25,6 +25,7 @@ Go to your project directory and run the following command:
 composer require -W \
   doctrine/orm "^2.16" \
   doctrine/doctrine-bundle \
+  symfony/asset-mapper \
   sylius/bootstrap-admin-ui \
   sylius/ui-translations
 ```
