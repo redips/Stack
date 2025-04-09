@@ -10,8 +10,11 @@
 
 Create a grid for your resource using Symfony's Maker Bundle.
 
+**Note:** To ease the setup, it is recommended to have an existing Doctrine Entity configured.
+
 ```shell
 bin/console make:grid
+bin/console cache:clear # To refresh grid's cache
 ```
 
 Magic! Here is the generated grid.
