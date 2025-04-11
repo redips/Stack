@@ -7,7 +7,7 @@ Indeed, the highlight of this project is the ability to configure an admin panel
 
 ### Create a new project
 
-Sylius Stack can work on existing Symfony projects, but to get the most out of it, we recommend starting with a fresh Symfony project.
+You can set up the Sylius Stack on existing Symfony projects, but in the case you are starting from scratch, here is what you need to do.
 
 ```bash
 # With Composer:
