@@ -5,11 +5,28 @@
 The Sylius Stack comes with a bunch of components that work great independently, but when they come together, that's when the stack's magic truly operates! 
 Indeed, the highlight of this project is the ability to configure an admin panel UI within minutes.
 
+### Create a new project
+
+You can set up the Sylius Stack on existing Symfony projects, but in the case you are starting from scratch, here is what you need to do.
+
+```bash
+# With Composer:
+composer create-project symfony/skeleton my_project
+
+# Or with Symfony CLI:
+symfony new --docker --php 8.4 my_project
+````
+
 ### Install the package using Composer and Symfony Flex
+
+Go to your project directory and run the following command:
 
 ```bash
 composer require -W \
   doctrine/orm "^2.16" \
+  doctrine/doctrine-bundle \
+  pagerfanta/doctrine-orm-adapter \
+  symfony/asset-mapper \
   sylius/bootstrap-admin-ui \
   sylius/ui-translations
 ```
