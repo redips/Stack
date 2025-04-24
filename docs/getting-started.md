@@ -60,3 +60,82 @@ Now, it's your turn!
 <figure><img src=".gitbook/assets/admin-dashboard.png" alt="Admin dashboard overview"></figure>
 
 </div>
+
+### Using AssetMapper
+
+You may need to disable the Stimulus App started on `sylius/bootstrap-admin-ui` package and start it yourself to prevent twice Ajax calls.
+
+#### Disabling Stimulus app & Symfony UX stylesheets from third party package
+
+First, you need to disable the Stimulus App started on `sylius/bootstrap-admin-ui` package.
+
+{% tabs %}
+{% tab title="YAML" %}
+{% code lineNumbers="true" %}
+```yaml
+# config/packages/sylius_bootstrap_admin_ui.yaml
+# ...
+sylius_twig_hooks:
+    hooks:
+        # ...
+        # Disabling Symfony UX stylesheets
+        'sylius_admin.base#stylesheets':
+            symfony_ux:
+                enabled: false    
+           
+        # Disabling Stimulus App        
+        'sylius_admin.base#javascripts':
+            symfony_ux:
+                enabled: false
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="PHP" %}
+{% code lineNumbers="true" %}
+```php
+// config/packages/sylius_bootstrap_admin_ui.php
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    // ...
+
+    $containerConfigurator->extension('sylius_twig_hooks', [
+        'hooks' => [
+            'sylius_admin.base#stylesheets' => [
+                // Disabling Symfony UX stylesheets
+                'symfony_ux' => [
+                    'enabled' => false,
+                ],
+            ],
+            
+            'sylius_admin.base#javascripts' => [
+                // Disabling Stimulus App        
+                'symfony_ux' => [
+                    'enabled' => false,
+                ],
+            ],
+        ],    
+    ]);
+};
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
+
+#### Starting Stimulus App
+
+```js
+// assets/bootstrap.js
+import { startStimulusApp } from '@symfony/stimulus-bundle';
+
+const app = startStimulusApp();
+// register any custom, 3rd party controllers here
+// app.register('some_controller_name', SomeImportedController);
+```
+
+```js
+// assets/app.js
+import './bootstrap.js';
+// ...
+```
