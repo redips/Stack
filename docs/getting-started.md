@@ -63,11 +63,11 @@ Now, it's your turn!
 
 ### Using AssetMapper
 
-You may need to disable the Stimulus App started on `sylius/bootstrap-admin-ui` package and start it yourself to prevent twice Ajax calls.
+To prevent duplicate Ajax calls, disable the auto-initialized Stimulus app and Symfony UX stylesheets from the `sylius/bootstrap-admin-ui` package, so you can take control of Stimulus initialization in your own code.
 
 #### Disabling Stimulus app & Symfony UX stylesheets from third party package
 
-First, you need to disable the Stimulus App started on `sylius/bootstrap-admin-ui` package.
+First, you need to disable the Stimulus App started by the `sylius/bootstrap-admin-ui` package.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -92,9 +92,8 @@ sylius_twig_hooks:
 {% endtab %}
 
 {% tab title="PHP" %}
-{% code lineNumbers="true" %}
+{% code title="config/packages/sylius_bootstrap_admin_ui.php" lineNumbers="true" %}
 ```php
-// config/packages/sylius_bootstrap_admin_ui.php
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
