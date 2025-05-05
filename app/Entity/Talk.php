@@ -66,6 +66,9 @@ class Talk implements ResourceInterface
     #[NotBlank]
     private ?\DateTimeImmutable $endsAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $videoUrl = null;
+
     #[ORM\Column(enumType: Track::class)]
     #[NotBlank]
     private ?Track $track = null;
@@ -127,6 +130,16 @@ class Talk implements ResourceInterface
     public function setEndsAt(?\DateTimeImmutable $endsAt): void
     {
         $this->endsAt = $endsAt;
+    }
+
+    public function getVideoUrl(): ?string
+    {
+        return $this->videoUrl;
+    }
+
+    public function setVideoUrl(?string $videoUrl): void
+    {
+        $this->videoUrl = $videoUrl;
     }
 
     public function getTrack(): ?Track

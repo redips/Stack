@@ -19,6 +19,7 @@ use App\Enum\Track;
 use App\Grid\Filter\SpeakerFilter;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
+use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\BulkActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
@@ -94,6 +95,13 @@ final class TalkGrid extends AbstractGrid implements ResourceAwareGridInterface
             )
             ->addActionGroup(
                 ItemActionGroup::create(
+                    ShowAction::create()
+                        ->setOptions([
+                            'link' => [
+                                'url' => 'resource.videoUrl',
+                            ],
+                        ])
+                        ->setIcon('tabler:video'),
                     UpdateAction::create(),
                     DeleteAction::create(),
                 ),
