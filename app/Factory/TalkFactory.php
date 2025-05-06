@@ -73,6 +73,11 @@ final class TalkFactory extends PersistentProxyObjectFactory
         return $this->with(['conference' => $conference]);
     }
 
+    public function withVideoUrl(string $videoUrl): self
+    {
+        return $this->with(['videoUrl' => $videoUrl]);
+    }
+
     protected function defaults(): array|callable
     {
         return [

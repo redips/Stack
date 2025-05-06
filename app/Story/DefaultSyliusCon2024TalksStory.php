@@ -278,6 +278,7 @@ final class DefaultSyliusCon2024TalksStory extends Story
             ->withStartingDate(new \DateTimeImmutable('2024-11-13 11:00:00'))
             ->withEndingDate(new \DateTimeImmutable('2024-11-13 11:45:00'))
             ->withConference(ConferenceFactory::findOrCreate(['name' => 'SyliusCon 2024']))
+            ->withVideoUrl('https://www.youtube.com/watch?v=VgtygyxbdyM')
             ->create()
         ;
 
