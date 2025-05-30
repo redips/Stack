@@ -49,11 +49,11 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    Template(@SyliusAdminUi/crud/create.html.twig) --> Hook{Hook 'create'}
+    Template["@SyliusAdminUi/crud/create.html.twig"] --> Hook["Hook: 'create'"]
 
-    Hook --> Sidebar([@SyliusBootstrapAdminUi/shared/crud/common/sidebar.html.twig])
-    Hook --> Navbar([@SyliusBootstrapAdminUi/shared/crud/common/navbar.html.twig])
-    Hook --> Content([@SyliusBootstrapAdminUi/shared/crud/common/content.html.twig])
+    Hook --> Sidebar["@SyliusBootstrapAdminUi/shared/crud/common/sidebar.html.twig"]
+    Hook --> Navbar["@SyliusBootstrapAdminUi/shared/crud/common/navbar.html.twig"]
+    Hook --> Content["@SyliusBootstrapAdminUi/shared/crud/common/content.html.twig"]
 ```
 
 ### Index
